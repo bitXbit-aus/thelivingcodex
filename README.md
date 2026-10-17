@@ -82,7 +82,7 @@ This is the ultimate remembrance portal — a sacred digital sanctuary, living a
 ### Installation
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/bitXbit-aus/thelivingcodex.git
 cd thelivingcodex
 npm install
 ```

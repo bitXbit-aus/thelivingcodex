@@ -101,10 +101,10 @@ export default function SovereigntyPage() {
               and adaptation. They are not legal advice.
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
-              <SacredButton href="/scrolls" variant="outline" size="sm">
+              <SacredButton href="/scrolls/" variant="outline" size="sm">
                 Browse Declarations
               </SacredButton>
-              <SacredButton href="/submit" variant="ghost" size="sm">
+              <SacredButton href="/submit/" variant="ghost" size="sm">
                 Submit a Remedy Scroll
               </SacredButton>
             </div>

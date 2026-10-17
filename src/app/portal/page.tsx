@@ -92,7 +92,7 @@ export default function PortalPage() {
               </ul>
               <div className="mt-6">
                 <Link
-                  href="/scrolls"
+                  href="/scrolls/"
                   className="inline-flex items-center gap-1 text-xs font-medium tracking-wider uppercase text-[#d4a853] transition-colors hover:text-[#f5f0e8]"
                 >
                   Begin as Seeker
@@ -142,7 +142,7 @@ export default function PortalPage() {
               </ul>
               <div className="mt-6">
                 <Link
-                  href="/nodes"
+                  href="/nodes/"
                   className="inline-flex items-center gap-1 text-xs font-medium tracking-wider uppercase text-[#d4a853] transition-colors hover:text-[#f5f0e8]"
                 >
                   Enter as Initiate
@@ -188,7 +188,7 @@ export default function PortalPage() {
               </ul>
               <div className="mt-6">
                 <Link
-                  href="/technologies"
+                  href="/technologies/"
                   className="inline-flex items-center gap-1 text-xs font-medium tracking-wider uppercase text-[#d4a853] transition-colors hover:text-[#f5f0e8]"
                 >
                   Build as Architect
@@ -232,7 +232,7 @@ export default function PortalPage() {
           </div>
 
           <div className="mt-8 text-center">
-            <SacredButton href="/scrolls" variant="outline" size="md">
+            <SacredButton href="/scrolls/" variant="outline" size="md">
               Browse All Scrolls
             </SacredButton>
           </div>
@@ -273,7 +273,7 @@ export default function PortalPage() {
           </div>
 
           <div className="mt-8 text-center">
-            <SacredButton href="/technologies" variant="outline" size="md">
+            <SacredButton href="/technologies/" variant="outline" size="md">
               Learn About Frequency Healing
             </SacredButton>
           </div>

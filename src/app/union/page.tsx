@@ -98,10 +98,10 @@ export default function UnionPage() {
             you choose to dance with another whole. That is sacred union."
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <SacredButton href="/scrolls" variant="outline" size="md">
+            <SacredButton href="/scrolls/" variant="outline" size="md">
               Read Union Scrolls
             </SacredButton>
-            <SacredButton href="/submit" variant="ghost" size="md">
+            <SacredButton href="/submit/" variant="ghost" size="md">
               Submit a Union Transmission
             </SacredButton>
           </div>

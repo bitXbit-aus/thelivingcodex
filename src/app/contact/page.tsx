@@ -75,7 +75,7 @@ export default function ContactPage() {
             <SacredButton href="/" variant="primary" size="md">
               Return Home
             </SacredButton>
-            <SacredButton href="/portal" variant="outline" size="md">
+            <SacredButton href="/portal/" variant="outline" size="md">
               Visit Portal
             </SacredButton>
           </div>

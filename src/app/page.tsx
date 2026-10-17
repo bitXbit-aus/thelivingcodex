@@ -54,18 +54,18 @@ export default function HomePage() {
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            <SacredButton href="/portal" variant="primary" size="lg">
+            <SacredButton href="/portal/" variant="primary" size="lg">
               Enter the Codex
             </SacredButton>
-            <SacredButton href="/portal" variant="secondary" size="lg">
+            <SacredButton href="/portal/" variant="secondary" size="lg">
               Open the Remembrance Portal
             </SacredButton>
           </div>
           <div className="mt-3 flex flex-wrap items-center justify-center gap-3">
-            <SacredButton href="/submit" variant="outline" size="md">
+            <SacredButton href="/submit/" variant="outline" size="md">
               Submit a Scroll
             </SacredButton>
-            <SacredButton href="/nodes" variant="outline" size="md">
+            <SacredButton href="/nodes/" variant="outline" size="md">
               Explore the Node Grid
             </SacredButton>
           </div>
@@ -205,7 +205,7 @@ export default function HomePage() {
               subtitle="Words cast into the field. Read them. Feel them. Add your own."
               align="left"
             />
-            <SacredButton href="/scrolls" variant="outline" size="sm">
+            <SacredButton href="/scrolls/" variant="outline" size="sm">
               View All Scrolls
             </SacredButton>
           </div>
@@ -250,7 +250,7 @@ export default function HomePage() {
           </div>
 
           <div className="mt-8 text-center">
-            <SacredButton href="/nodes" variant="secondary" size="md">
+            <SacredButton href="/nodes/" variant="secondary" size="md">
               Explore the Full Constellation
             </SacredButton>
           </div>
@@ -287,7 +287,7 @@ export default function HomePage() {
           </div>
 
           <div className="mt-8 text-center">
-            <SacredButton href="/technologies" variant="outline" size="md">
+            <SacredButton href="/technologies/" variant="outline" size="md">
               Discover All Technologies
             </SacredButton>
           </div>
@@ -344,10 +344,10 @@ export default function HomePage() {
             </p>
 
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-              <SacredButton href="/portal" variant="primary" size="lg">
+              <SacredButton href="/portal/" variant="primary" size="lg">
                 Enter the Remembrance Portal
               </SacredButton>
-              <SacredButton href="/submit" variant="secondary" size="lg">
+              <SacredButton href="/submit/" variant="secondary" size="lg">
                 Submit a Scroll
               </SacredButton>
             </div>

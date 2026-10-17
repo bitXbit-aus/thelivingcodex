@@ -41,7 +41,7 @@ export default function NodesPage() {
           className="mt-8 flex items-center justify-center"
         >
           <a
-            href="/map"
+            href="/map/"
             className="group flex items-center gap-3 rounded-xl border border-[rgba(212,168,83,0.2)] bg-[#12141c]/60 px-6 py-3 backdrop-blur-sm transition-all hover:border-[#d4a853] hover:bg-[#1a1d2a]/80"
           >
             <MapPin className="h-5 w-5 text-[#d4a853] transition-transform group-hover:scale-110" />
@@ -216,7 +216,7 @@ export default function NodesPage() {
             constellation. The grid grows stronger with each contribution.
           </p>
           <div className="mt-6">
-            <SacredButton href="/submit" variant="primary" size="md">
+            <SacredButton href="/submit/" variant="primary" size="md">
               Offer a Node Activation
             </SacredButton>
           </div>

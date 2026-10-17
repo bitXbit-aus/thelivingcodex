@@ -93,7 +93,7 @@ export default function DashboardPage() {
             the portal opens.
           </p>
           <div className="mt-6">
-            <SacredButton href="/contact" variant="primary" size="md">
+            <SacredButton href="/contact/" variant="primary" size="md">
               Get Notified
             </SacredButton>
           </div>

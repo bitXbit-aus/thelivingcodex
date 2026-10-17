@@ -82,10 +82,10 @@ export default function SubmitPage() {
             for the public archive according to your chosen settings.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <SacredButton href="/scrolls" variant="primary" size="md">
+            <SacredButton href="/scrolls/" variant="primary" size="md">
               Explore Scrolls
             </SacredButton>
-            <SacredButton href="/portal" variant="outline" size="md">
+            <SacredButton href="/portal/" variant="outline" size="md">
               Return to Portal
             </SacredButton>
           </div>

@@ -88,10 +88,10 @@ export default function AboutPage() {
               is not complete without you.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <SacredButton href="/portal" variant="primary" size="md">
+              <SacredButton href="/portal/" variant="primary" size="md">
                 Enter the Portal
               </SacredButton>
-              <SacredButton href="/submit" variant="outline" size="md">
+              <SacredButton href="/submit/" variant="outline" size="md">
                 Submit a Scroll
               </SacredButton>
             </div>

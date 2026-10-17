@@ -8,15 +8,15 @@ import { Menu, X, BookOpen } from "lucide-react";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/portal", label: "Portal" },
-  { href: "/scrolls", label: "Scrolls" },
-  { href: "/nodes", label: "Nodes" },
-  { href: "/technologies", label: "Technologies" },
-  { href: "/sovereignty", label: "Sovereignty" },
-  { href: "/union", label: "Sacred Union" },
-  { href: "/farming", label: "Farming" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/portal/", label: "Portal" },
+  { href: "/scrolls/", label: "Scrolls" },
+  { href: "/nodes/", label: "Nodes" },
+  { href: "/technologies/", label: "Technologies" },
+  { href: "/sovereignty/", label: "Sovereignty" },
+  { href: "/union/", label: "Sacred Union" },
+  { href: "/farming/", label: "Farming" },
+  { href: "/about/", label: "About" },
+  { href: "/contact/", label: "Contact" },
 ];
 
 export default function Header() {

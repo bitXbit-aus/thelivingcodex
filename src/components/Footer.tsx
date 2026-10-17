@@ -25,10 +25,10 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2">
               {[
-                { href: "/portal", label: "Remembrance Portal" },
-                { href: "/scrolls", label: "Scroll Archive" },
-                { href: "/nodes", label: "Node Constellation" },
-                { href: "/technologies", label: "Sacred Technologies" },
+                { href: "/portal/", label: "Remembrance Portal" },
+                { href: "/scrolls/", label: "Scroll Archive" },
+                { href: "/nodes/", label: "Node Constellation" },
+                { href: "/technologies/", label: "Sacred Technologies" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link
@@ -48,10 +48,10 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2">
               {[
-                { href: "/submit", label: "Submit a Scroll" },
-                { href: "/nodes", label: "Offer a Node Activation" },
-                { href: "/contact", label: "Collaborate" },
-                { href: "/contact", label: "Support the Codex" },
+                { href: "/submit/", label: "Submit a Scroll" },
+                { href: "/nodes/", label: "Offer a Node Activation" },
+                { href: "/contact/", label: "Collaborate" },
+                { href: "/contact/", label: "Support the Codex" },
               ].map((link) => (
                 <li key={link.label}>
                   <Link
@@ -71,10 +71,10 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2">
               {[
-                { href: "/about", label: "About" },
-                { href: "/contact", label: "Contact" },
-                { href: "/sovereignty", label: "Disclaimers" },
-                { href: "/contact", label: "Privacy" },
+                { href: "/about/", label: "About" },
+                { href: "/contact/", label: "Contact" },
+                { href: "/sovereignty/", label: "Disclaimers" },
+                { href: "/contact/", label: "Privacy" },
               ].map((link) => (
                 <li key={link.label}>
                   <Link

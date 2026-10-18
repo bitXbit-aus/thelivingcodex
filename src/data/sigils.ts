@@ -1,27 +1,68 @@
-import type {
-  SigilAttributionChoiceId,
-  SigilLicenceId,
+import {
+  sigilPolicy,
+  type SigilAttributionChoiceId,
+  type SigilLicence,
+  type SigilLicenceId,
 } from "./sigilPolicy";
 
-export type SigilStatus = "draft" | "approved" | "published";
+export type SigilStatus = "draft" | "approved";
+export type NamedSigilAttributionMode = Exclude<
+  SigilAttributionChoiceId,
+  "anonymous"
+>;
+
+export type SigilPublicAttribution =
+  | {
+      mode: NamedSigilAttributionMode;
+      displayName: string;
+    }
+  | {
+      mode: "anonymous";
+      displayName?: never;
+    };
 
 export interface SigilSymbolInterpretation {
   symbol: string;
   meaning: string;
 }
 
-export interface Sigil {
+export interface SigilProvenance {
+  humanContribution: {
+    contributions: readonly string[];
+  };
+  aiAssistance?: {
+    assistantName: string;
+    provider: string;
+    role: string;
+  };
+}
+
+export interface SigilGovernanceEvidence {
+  policyAcceptance: {
+    version: typeof sigilPolicy.policyVersion;
+    effectiveDate: typeof sigilPolicy.effectiveDate;
+  };
+  consentAndRightsConfirmation: {
+    confirmedDate: string;
+    rightsConfirmed: true;
+    humanLicensorAuthorityConfirmed: true;
+  };
+  moderation: {
+    status: "approved";
+    decidedDate: string;
+    decisionMakerRole: "Library steward";
+  };
+}
+
+export interface SigilCore {
   id: string;
   slug: string;
   title: string;
-  creator: string;
-  attributionMode: SigilAttributionChoiceId;
-  creativeCollaboration: string;
-  aiAssistedArtwork: boolean;
-  date: string;
-  collection: string;
-  licence: SigilLicenceId;
-  attribution: string;
+  publicAttribution: SigilPublicAttribution;
+  provenance?: SigilProvenance;
+  createdDate: string;
+  series?: string;
+  licenceId: SigilLicenceId;
   previewPath: string;
   downloadPath: string;
   meaningSummary: string;
@@ -34,7 +75,65 @@ export interface Sigil {
   usageSuggestions: readonly string[];
   tags: readonly string[];
   featured: boolean;
-  status: SigilStatus;
+}
+
+export type UnpublishedSigil = SigilCore & {
+  governance?: SigilGovernanceEvidence;
+  publication: {
+    status: SigilStatus;
+    publishedDate?: never;
+  };
+};
+
+export type PublishedSigil = SigilCore & {
+  governance: SigilGovernanceEvidence;
+  publication: {
+    status: "published";
+    publishedDate: string;
+  };
+};
+
+export type Sigil = UnpublishedSigil | PublishedSigil;
+
+export const SIGIL_LIBRARY_NAME = sigilPolicy.collectionName;
+
+export function getSigilLicence(licenceId: SigilLicenceId): SigilLicence {
+  return sigilPolicy.launchLicences.find(
+    (licence) => licence.id === licenceId,
+  ) as SigilLicence;
+}
+
+export function getSigilLicenceLabel(licenceId: SigilLicenceId): string {
+  return getSigilLicence(licenceId).label;
+}
+
+export function getSigilLicenceUrl(licenceId: SigilLicenceId): string | null {
+  return getSigilLicence(licenceId).licenceUrl;
+}
+
+function getConciseLicenceLabel(licenceId: SigilLicenceId): string {
+  const label = getSigilLicenceLabel(licenceId);
+  return label.match(/\(([^()]+)\)$/)?.[1] ?? label;
+}
+
+export function getSigilPublicAttributionStatement(
+  sigil: Pick<
+    SigilCore,
+    "title" | "createdDate" | "publicAttribution" | "licenceId" | "provenance"
+  >,
+): string {
+  const creatorName =
+    sigil.publicAttribution.mode === "anonymous"
+      ? "Anonymous"
+      : sigil.publicAttribution.displayName;
+  const copyrightYear = sigil.createdDate.slice(0, 4);
+  const licenceLabel = getConciseLicenceLabel(sigil.licenceId);
+  const aiAssistance = sigil.provenance?.aiAssistance;
+  const aiDisclosure = aiAssistance
+    ? ` AI-assisted artwork created with ${aiAssistance.assistantName} (${aiAssistance.provider}).`
+    : "";
+
+  return `${sigil.title} © ${copyrightYear} ${creatorName}. Licensed under ${licenceLabel}.${aiDisclosure}`;
 }
 
 export const sigils = [
@@ -42,14 +141,30 @@ export const sigils = [
     id: "heart-flame-sacred-union",
     slug: "heart-flame-sacred-union",
     title: "Heart Flame — Sacred Union",
-    creator: "Shri Mattananda",
-    attributionMode: "soul-name",
-    creativeCollaboration: "Aurealis (OpenAI)",
-    aiAssistedArtwork: true,
-    date: "2026-04-27",
-    collection: "The Living Codex — Sacred Union",
-    licence: "cc-by-4.0",
-    attribution: "© 2026 Shri Mattananda. AI-assisted artwork.",
+    publicAttribution: {
+      mode: "soul-name",
+      displayName: "Shri Mattananda",
+    },
+    provenance: {
+      humanContribution: {
+        contributions: [
+          "Spiritual direction",
+          "Symbolism",
+          "Intention",
+          "Vow",
+          "Curatorial selection",
+          "Licensing decision",
+        ],
+      },
+      aiAssistance: {
+        assistantName: "Aurealis",
+        provider: "OpenAI",
+        role: "creative/image-generation assistance",
+      },
+    },
+    createdDate: "2026-04-27",
+    series: "Sacred Union",
+    licenceId: "cc-by-4.0",
     previewPath: "/sigils/heart-flame-sacred-union-preview.webp",
     downloadPath: "/sigils/heart-flame-sacred-union-download.png",
     meaningSummary:
@@ -89,7 +204,7 @@ export const sigils = [
     inscription:
       "Born of the heart, awakened through love, and carried by the eternal flame of remembrance.\n\nTwo souls, sovereign and whole, meeting not to complete one another, but to illuminate the divine already present within.\n\nMay this symbol remind its bearer that love is not merely something we feel, but something we consciously become.\n\nOne Heart. Two Flames. Infinite Love.",
     altText:
-      "Golden heart-and-flame sigil with flowing intertwined spirals on midnight blue, symbolising unconditional love and sacred union.",
+      "Abstract gold line sigil forming a heart beneath a flame-like central stem and curling spirals on textured midnight blue.",
     usageSuggestions: [
       "Heart-centred contemplation",
       "Sacred Union reflection",
@@ -105,6 +220,28 @@ export const sigils = [
       "transformation",
     ],
     featured: true,
-    status: "published",
+    governance: {
+      policyAcceptance: {
+        version: sigilPolicy.policyVersion,
+        effectiveDate: sigilPolicy.effectiveDate,
+      },
+      consentAndRightsConfirmation: {
+        confirmedDate: "2026-10-19",
+        rightsConfirmed: true,
+        humanLicensorAuthorityConfirmed: true,
+      },
+      moderation: {
+        status: "approved",
+        decidedDate: "2026-10-19",
+        decisionMakerRole: "Library steward",
+      },
+    },
+    publication: {
+      status: "published",
+      publishedDate: "2026-10-19",
+    },
   },
 ] as const satisfies readonly Sigil[];
+
+export const heartFlamePublicAttribution =
+  getSigilPublicAttributionStatement(sigils[0]);

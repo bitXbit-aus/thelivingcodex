@@ -4,7 +4,7 @@
 
 The Living Sigil Library is a curated public collection of contributed sigil artwork. It holds each work with care, preserves the contributor's stated attribution and licence choice, and presents spiritual expression without guaranteeing results.
 
-The canonical implementation policy is the structured `sigilPolicy` object in `src/data/sigilPolicy.ts`. This document explains that policy in readable form. Policy version **1.0.2** is effective **2026-10-19**. Future submission records must persist the accepted policy version and effective date so the applicable terms remain identifiable. The append-only snapshot registry and revision procedure are documented in [`docs/sigil-policy-history.md`](sigil-policy-history.md); historical entries must never be edited or removed.
+The canonical implementation policy is the structured `sigilPolicy` object in `src/data/sigilPolicy.ts`. This document explains that policy in readable form. Policy version **1.0.3** is effective **2026-10-19**. Future submission records must persist the accepted policy version and effective date so the applicable terms remain identifiable. The append-only snapshot registry and revision procedure are documented in [`docs/sigil-policy-history.md`](sigil-policy-history.md); historical entries must never be edited or removed.
 
 ## Submission is not publication
 
@@ -24,13 +24,13 @@ If authorship, provenance, consent, or permission is uncertain, publication paus
 
 ## Creator-voice content
 
-Creator-voice content is any text that speaks in the creator's own voice or carries their spiritual, devotional, or interpretive meaning for a work. It includes the **vow**, **motto**, **inscription**, **intention**, **significance**, **meaning**, **symbolism**, and **comparison notes** recorded for a sigil.
+Creator-voice content is any text that speaks in the creator's own voice or carries their spiritual, devotional, or interpretive meaning for a work. It includes the **vow**, **motto**, **inscription**, **intention**, **significance**, **meaning**, **symbolism**, **comparison notes**, **interpretive disclaimer**, and **usage suggestions** recorded for a sigil.
 
 **All creator-voice content is optional and must be supplied by the creator.** Only structural, factual, and editorial fields are required — a record's identity, public attribution, dates, licence, file paths, accessibility alternative text, tags, and featured status. No creator-voice field is required, so a creator-voice omission never surfaces as a build error and must never be made to tempt an implementer to supply text in the creator's place.
 
 An implementer, moderator, or AI assistant must never invent, infer, paraphrase, or fabricate creator-voice content, and must not present a plausible-sounding substitute as the creator's words or meaning. In particular, it is prohibited to compose creator-voice text by recombining, stitching together, or reordering the creator's own supplied phrases, or by summarising them into a new statement: assembling a new sentence out of the creator's words is composition, not transcription, and is a breach.
 
-A record should carry the creator-voice content the creator actually supplied — no more and no less. Where the creator has not supplied a given item, the record omits it. A sigil with no creator-voice content should wait for the creator rather than be published with generated text. Correcting a creator's own wording requires the creator's instruction, and any such correction must be documented.
+A record must carry exactly the creator-voice content the creator actually supplied — no more and no less. Where the creator has not supplied a given item, the record omits it. A sigil with no creator-voice content **must await the creator before publication**; this is a binding publication requirement, verified by the `creator-voice-recorded` item in the publication checklist, not merely advice. Correcting a creator's own wording requires the creator's instruction, and any such correction must be documented.
 
 ## Attribution and privacy
 
@@ -140,6 +140,7 @@ The canonical checklist is structured in `sigilPolicy.publicationChecklist`. Bef
 - [ ] Known provenance, cultural-rights, trademark, privacy, and other third-party concerns are resolved or documented.
 - [ ] Public attribution is explicitly **Real name**, **Soul name**, or **Anonymous**, and its spelling matches the contributor's choice.
 - [ ] A launch licence is explicitly selected, and its public label and official link, where applicable, are correct.
+- [ ] `creator-voice-recorded` — the record carries exactly the creator-voice content the creator supplied, verbatim: every creator-voice field present was supplied by the creator, none was invented, inferred, paraphrased, or composed from the creator's own phrases, omitted fields were genuinely not supplied, and a sigil with no creator-voice content awaits the creator before publication.
 - [ ] The upload is within **5 MiB**, matches an allowed extension and server-inspected PNG, JPEG, or WebP type, and satisfies decode, dimension, pixel-count, and safety limits.
 - [ ] The public derivative has a generated filename, has been decoded and re-encoded, and has unnecessary EXIF and other metadata removed.
 - [ ] Pending originals are private, access-controlled, segregated from public delivery, and subject to limited retention.

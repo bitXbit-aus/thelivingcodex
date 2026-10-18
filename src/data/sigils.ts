@@ -328,6 +328,11 @@ export const sigils = [
           checkedDate: "2026-10-19",
           checkerRole: "Library steward",
         },
+        "creator-voice-recorded": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
         "file-validated": {
           status: "passed",
           checkedDate: "2026-10-19",
@@ -507,6 +512,11 @@ export const sigils = [
           checkedDate: "2026-10-19",
           checkerRole: "Library steward",
         },
+        "creator-voice-recorded": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
         "file-validated": {
           status: "passed",
           checkedDate: "2026-10-19",
@@ -679,6 +689,11 @@ export const sigils = [
           checkerRole: "Library steward",
         },
         "licence-confirmed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "creator-voice-recorded": {
           status: "passed",
           checkedDate: "2026-10-19",
           checkerRole: "Library steward",

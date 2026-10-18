@@ -1,7 +1,7 @@
 import type { ISODateString } from "./sigilPolicyHistory";
 
 export const sigilPolicy = {
-  policyVersion: "1.0.2",
+  policyVersion: "1.0.3",
   effectiveDate: "2026-10-19" satisfies ISODateString,
   submissionPolicySnapshot: {
     required: true,
@@ -265,6 +265,12 @@ export const sigilPolicy = {
       label: "Licence confirmed",
       requirement:
         "A launch licence is explicitly selected and its public label and official link, where applicable, are correct.",
+    },
+    {
+      id: "creator-voice-recorded",
+      label: "Creator-voice content faithful",
+      requirement:
+        "The record carries exactly the creator-voice content the creator supplied, verbatim: every creator-voice field present was supplied by the creator, and none was invented, inferred, paraphrased, or composed from the creator's own phrases; and omitted fields were genuinely not supplied by the creator. A sigil with no creator-voice content must await the creator before publication.",
     },
     {
       id: "file-validated",

@@ -4,7 +4,7 @@
 
 The Living Sigil Library is a curated public collection of contributed sigil artwork. It holds each work with care, preserves the contributor's stated attribution and licence choice, and presents spiritual expression without guaranteeing results.
 
-The canonical implementation policy is the structured `sigilPolicy` object in `src/data/sigilPolicy.ts`. This document explains that policy in readable form. Policy version **1.0.0** is effective **2026-10-18**. Future submission records must persist the accepted policy version and effective date so the applicable terms remain identifiable. The append-only snapshot registry and revision procedure are documented in [`docs/sigil-policy-history.md`](sigil-policy-history.md); historical entries must never be edited or removed.
+The canonical implementation policy is the structured `sigilPolicy` object in `src/data/sigilPolicy.ts`. This document explains that policy in readable form. Policy version **1.0.1** is effective **2026-10-19**. Future submission records must persist the accepted policy version and effective date so the applicable terms remain identifiable. The append-only snapshot registry and revision procedure are documented in [`docs/sigil-policy-history.md`](sigil-policy-history.md); historical entries must never be edited or removed.
 
 ## Submission is not publication
 
@@ -15,6 +15,10 @@ Moderators may correct attribution spelling, licence display, descriptions, and 
 ## Authorship and permission
 
 Contributors must submit their own original work or have clear permission from the relevant rights holder to submit it and select the offered licence. A submission must not knowingly infringe copyright, trademark, privacy, cultural, or other rights.
+
+Steward-directed AI-assisted work is eligible as seed content when a human licensor has authority to submit and license it, the human creative contribution and AI assistance are accurately disclosed, required rights and provenance are recorded, and the work passes the same moderation and publication checks as every other work. AI systems and tools are not represented as legal licensors or copyright owners.
+
+The seed prohibition applies to unowned or generic generated placeholders and to third-party works without confirmed rights. It does not exclude rights-cleared, steward-directed AI-assisted work that satisfies the requirements above.
 
 If authorship, provenance, consent, or permission is uncertain, publication pauses until the concern is resolved. Publication by The Living Codex is not independent verification of authorship, ownership, provenance, or claimed outcomes.
 
@@ -122,6 +126,7 @@ The canonical checklist is structured in `sigilPolicy.publicationChecklist`. Bef
 - [ ] The work is explicitly intended for the Living Sigil Library.
 - [ ] The accepted policy version and effective date are stored with the submission.
 - [ ] Original authorship or adequate permission to submit and apply the selected licence is confirmed.
+- [ ] Any human creative contribution and AI assistance are accurately disclosed, and AI systems or tools are not listed as legal licensors or copyright owners.
 - [ ] Known provenance, cultural-rights, trademark, privacy, and other third-party concerns are resolved or documented.
 - [ ] Public attribution is explicitly **Real name**, **Soul name**, or **Anonymous**, and its spelling matches the contributor's choice.
 - [ ] A launch licence is explicitly selected, and its public label and official link, where applicable, are correct.
@@ -136,7 +141,7 @@ The canonical checklist is structured in `sigilPolicy.publicationChecklist`. Bef
 
 ## Launch readiness
 
-The **Library steward** is responsible for confirming launch readiness. **Awaiting 3–6 steward-provided, rights-cleared works before launch.** Placeholder, generated, or third-party sigils must not be represented as approved seed contributions. Every seed work must pass the same rights, attribution, licence, privacy, security, and moderation checks as later submissions.
+The **Library steward** is responsible for confirming launch readiness. **Heart Flame is approved as one rights-cleared seed work. A further 2–5 steward-provided, rights-cleared works are required to reach the 3–6 work launch range.** Unowned or generic generated placeholders and third-party works without confirmed rights must not be represented as approved seed contributions. Rights-cleared, steward-directed AI-assisted works may qualify under the eligibility requirements above. Every seed work must pass the same rights, attribution, licence, privacy, security, and moderation checks as later submissions.
 
 ## References and review notice
 

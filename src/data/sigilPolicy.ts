@@ -1,8 +1,8 @@
 import type { ISODateString } from "./sigilPolicyHistory";
 
 export const sigilPolicy = {
-  policyVersion: "1.0.0",
-  effectiveDate: "2026-10-18" satisfies ISODateString,
+  policyVersion: "1.0.1",
+  effectiveDate: "2026-10-19" satisfies ISODateString,
   submissionPolicySnapshot: {
     required: true,
     fields: ["policyVersion", "policyEffectiveDate"] as const,
@@ -82,6 +82,23 @@ export const sigilPolicy = {
     qualifiedReviewRequiredBeforePublicFormLaunch: true,
     creativeCommonsGuidanceUrl:
       "https://creativecommons.org/share-your-work/cclicenses/",
+  },
+  seedEligibility: {
+    humanLicensorRequired: true,
+    aiSystemsAreLegalLicensorsOrCopyrightOwners: false,
+    stewardDirectedAIAssistedWork: {
+      eligible: true,
+      requirements: [
+        "A human licensor has authority to submit the work and apply the selected licence.",
+        "Human creative contribution and AI assistance are accurately disclosed.",
+        "Required rights and provenance are recorded.",
+        "The work passes the normal moderation and publication checks.",
+      ],
+    },
+    ineligible: [
+      "Unowned or generic generated placeholders.",
+      "Third-party works without confirmed rights.",
+    ],
   },
   uploadSecurity: {
     maxUploadSizeMiB: 5,
@@ -235,7 +252,7 @@ export const sigilPolicy = {
       id: "rights-confirmed",
       label: "Rights and permission confirmed",
       requirement:
-        "Original authorship or adequate permission to submit and apply the selected licence is confirmed, and known third-party concerns are resolved or documented.",
+        "Original authorship or adequate permission to submit and apply the selected licence is confirmed; any human creative contribution and AI assistance are accurately disclosed; required rights and provenance are recorded; and known third-party concerns are resolved or documented.",
     },
     {
       id: "attribution-confirmed",
@@ -289,8 +306,10 @@ export const sigilPolicy = {
   launchReadiness: {
     responsibleRole: "Library steward",
     rightsClearedSeedWorksRequired: { minimum: 3, maximum: 6 },
+    approvedSeedWorksCount: 1,
+    additionalRightsClearedSeedWorksRequired: { minimum: 2, maximum: 5 },
     status:
-      "Awaiting 3–6 steward-provided, rights-cleared works before launch. Placeholder, generated, or third-party works must not be represented as approved seed contributions.",
+      "Heart Flame is approved as one rights-cleared seed work. A further 2–5 steward-provided, rights-cleared works are required to reach the 3–6 work launch range.",
   },
 } as const;
 

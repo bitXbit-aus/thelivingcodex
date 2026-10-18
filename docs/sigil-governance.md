@@ -26,7 +26,11 @@ If authorship, provenance, consent, or permission is uncertain, publication paus
 
 Creator-voice content is any text that speaks in the creator's own voice or carries their spiritual, devotional, or interpretive meaning for a work. It includes the **vow**, **motto**, **inscription**, **intention**, **significance**, **meaning**, **symbolism**, and **comparison notes** recorded for a sigil.
 
-Creator-voice content must be supplied by the creator. An implementer, moderator, or AI assistant must never invent, infer, paraphrase, or fabricate it, and must not present a plausible-sounding substitute as the creator's words or meaning. Where a creator has not supplied a given item, the record omits it. A few creator-voice fields are genuinely optional per work — the **vow** and **comparison notes** — while the core fields (inscription, intention, significance, meaning, symbolism, and alternative text) remain required, so an omission surfaces as a build error rather than tempting an implementer to invent text. Correcting a creator's own wording requires the creator's instruction, and any such correction must be documented.
+**All creator-voice content is optional and must be supplied by the creator.** Only structural, factual, and editorial fields are required — a record's identity, public attribution, dates, licence, file paths, accessibility alternative text, tags, and featured status. No creator-voice field is required, so a creator-voice omission never surfaces as a build error and must never be made to tempt an implementer to supply text in the creator's place.
+
+An implementer, moderator, or AI assistant must never invent, infer, paraphrase, or fabricate creator-voice content, and must not present a plausible-sounding substitute as the creator's words or meaning. In particular, it is prohibited to compose creator-voice text by recombining, stitching together, or reordering the creator's own supplied phrases, or by summarising them into a new statement: assembling a new sentence out of the creator's words is composition, not transcription, and is a breach.
+
+A record should carry the creator-voice content the creator actually supplied — no more and no less. Where the creator has not supplied a given item, the record omits it. A sigil with no creator-voice content should wait for the creator rather than be published with generated text. Correcting a creator's own wording requires the creator's instruction, and any such correction must be documented.
 
 ## Attribution and privacy
 

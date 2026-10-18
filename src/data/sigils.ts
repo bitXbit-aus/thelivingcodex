@@ -77,24 +77,25 @@ export interface SigilCore {
   licenceId: SigilLicenceId;
   previewPath: string;
   downloadPath: string;
-  meaningSummary: string;
-  symbolInterpretations: readonly SigilSymbolInterpretation[];
+  // Creator-voice fields. Every field in this block is creator-supplied
+  // content and is optional. An implementer or AI assistant must never invent,
+  // infer, paraphrase, or compose these fields — including by assembling the
+  // creator's own phrases into new sentences or summarising them into a new
+  // statement. An omitted field is correct; a composed field is a breach. See
+  // "Creator-voice content" in docs/sigil-governance.md.
+  meaningSummary?: string;
+  symbolInterpretations?: readonly SigilSymbolInterpretation[];
   comparisonNote?: string;
   interpretiveDisclaimer?: string;
-  intention: string;
-  // Creator-voice fields. Every field below is creator-supplied content and
-  // must never be invented, inferred, or fabricated by an implementer or AI
-  // assistant. See "Creator-voice content" in docs/sigil-governance.md.
-  // `vow` is optional: not every sigil carries a vow, and a vow is published
-  // only when the creator supplies one.
+  intention?: string;
   vow?: string;
-  // `motto` is optional creator-voice content: published only when the creator
-  // supplies one. See "Creator-voice content" in docs/sigil-governance.md.
   motto?: string;
-  significance: string;
-  inscription: string;
+  significance?: string;
+  inscription?: string;
+  usageSuggestions?: readonly string[];
+  // `altText` is a factual accessibility description of the visible artwork,
+  // not creator voice, so it remains required.
   altText: string;
-  usageSuggestions: readonly string[];
   tags: readonly string[];
   featured: boolean;
 }
@@ -617,8 +618,6 @@ export const sigils = [
     intention:
       "To honour the interconnected web of life, cultivate intuitive awareness of the natural world, and restore humanity's relationship with the intelligence and regenerative processes of the living Earth.",
     motto: "What nourishes the roots ultimately nourishes the whole.",
-    significance:
-      "Observing before intervening; nurturing before harvesting; giving back to the Earth that gives so freely; and recognising that no living being exists entirely independently.",
     inscription:
       "Beneath the soil, beyond the reach of ordinary sight, the threads of life weave their silent tapestry.\n\nI honour the roots that nourish, the fungi that transform, the leaves that receive the sunlight, and the unseen relationships that sustain creation.\n\nMay I learn to observe before I intervene, to nurture before I harvest, and to give back to the Earth that gives so freely.\n\nThrough stillness, I listen.\nThrough awareness, I recognise.\nThrough reciprocity, I restore.\n\nI am not separate from the living world. I am one participant within its extraordinary unfolding.\n\nOne Earth. Infinite Connections. A Living Web of Remembrance.",
     altText:

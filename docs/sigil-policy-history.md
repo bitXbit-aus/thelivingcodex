@@ -36,8 +36,6 @@ Policy 1.0.1 clarifies that rights-cleared, steward-directed AI-assisted works m
 - Canonical module: `src/data/sigilPolicy.ts`
 - Governance document: `docs/sigil-governance.md`
 
-Every retained entry is immutable. Future revisions must append another snapshot without editing or removing any retained entry.
-
 ### Version 1.0.2
 
 Policy 1.0.2 removes the mutable approved-seed count from the versioned policy module. The policy now stores only the durable launch rule (launch requires 3–6 approved, rights-cleared seed works); the approved count, the remaining works required to reach that range, and the readiness state are derived at runtime from the sigil catalogue by the readiness helper in `src/data/sigils.ts`. This keeps the policy immutable while the catalogue grows, so approving a new seed no longer forces a policy revision.
@@ -48,8 +46,6 @@ Policy 1.0.2 removes the mutable approved-seed count from the versioned policy m
 - Source commit: `2e498eada8be1d9f2994cb65ff38f719ae0eb9b3`
 - Canonical module: `src/data/sigilPolicy.ts`
 - Governance document: `docs/sigil-governance.md`
-
-All entries are immutable. Future revisions must append another snapshot without editing or removing any retained entry.
 
 ### Version 1.0.3
 

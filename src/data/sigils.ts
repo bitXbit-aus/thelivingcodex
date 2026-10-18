@@ -79,6 +79,8 @@ export interface SigilCore {
   downloadPath: string;
   meaningSummary: string;
   symbolInterpretations: readonly SigilSymbolInterpretation[];
+  comparisonNote?: string;
+  interpretiveDisclaimer?: string;
   intention: string;
   vow: string;
   significance: string;
@@ -354,6 +356,186 @@ export const sigils = [
       publishedDate: "2026-10-19",
     },
   },
+  {
+    id: "the-sovereign-heart",
+    slug: "the-sovereign-heart",
+    title: "The Sovereign Heart",
+    publicAttribution: {
+      mode: "soul-name",
+      displayName: "Shri Mattananda",
+    },
+    provenance: {
+      humanContribution: {
+        contributions: [
+          "Spiritual direction",
+          "Symbolism",
+          "Intention",
+          "Inscription",
+          "Curatorial selection",
+          "Licensing decision",
+        ],
+      },
+      aiAssistance: {
+        assistantName: "Aurealis",
+        provider: "OpenAI",
+        role: "creative/image-generation assistance",
+      },
+    },
+    createdDate: "2026-04-27",
+    series: "The Living Codex — Sacred Heart",
+    licenceId: "cc-by-4.0",
+    previewPath: "/sigils/the-sovereign-heart-preview.webp",
+    downloadPath: "/sigils/the-sovereign-heart-download.png",
+    meaningSummary:
+      "An emblem representing the union of spiritual sovereignty, unconditional love, inner balance and the conscious embodiment of divine purpose.",
+    symbolInterpretations: [
+      {
+        symbol: "Central heart",
+        meaning:
+          "Unconditional love as the foundation of existence, and the meeting place of human experience and spiritual consciousness.",
+      },
+      {
+        symbol: "Vertical axis",
+        meaning:
+          "The connection between Earth and Source, representing spiritual alignment, integrity and the embodiment of higher wisdom.",
+      },
+      {
+        symbol: "Two horizontal crossbars",
+        meaning:
+          "A possible representation of the spiritual and material dimensions of existence, united through conscious awareness.",
+      },
+      {
+        symbol: "Upper mirrored spirals",
+        meaning:
+          "The complementary masculine and feminine principles, harmonised through mutual respect and sovereignty.",
+      },
+      {
+        symbol: "Lower mirrored spirals",
+        meaning:
+          "Expansion, generosity and the outward expression of love into the world.",
+      },
+      {
+        symbol: "Upper dot",
+        meaning:
+          "The individual spark of consciousness, symbolising the soul's connection to the infinite.",
+      },
+      {
+        symbol: "Descending point",
+        meaning:
+          "The grounding of spiritual intention into physical reality through deliberate, compassionate action.",
+      },
+    ],
+    comparisonNote:
+      "Unlike the first Heart Flame sigil, which emphasises energetic movement and sacred relationship, this design has a strong central axis. Symbolically, it suggests love anchored through discipline, integrity and conscious responsibility.",
+    interpretiveDisclaimer:
+      "These meanings are interpretive rather than a verified historical decoding of the artwork.",
+    intention:
+      "To awaken the sovereign heart, restore alignment between spirit and matter, and embody unconditional love through truth, integrity, compassion and conscious service.",
+    vow: "I anchor this sigil as a vow to live from the sovereign heart.",
+    significance:
+      "Remaining sovereign without becoming separate; loving without possessing; serving without surrendering one's integrity; remaining spiritually open while grounded in everyday life.",
+    inscription:
+      "Within the sacred chamber of the heart resides the eternal flame of sovereignty.\n\nThrough love, I remember.\nThrough truth, I align.\nThrough compassion, I serve.\nThrough conscious action, I embody the divine.\n\nI honour the sacred union of spirit and matter, the masculine and feminine, the heavens and the Earth.\n\nMay my heart remain open, my intentions remain pure, and my actions reflect the love I have come to embody.\n\nOne Heart. One Truth. One Sovereign Being.",
+    altText:
+      "Black ink sigil on aged parchment: a heart formed of curving lines around a central vertical axis with two crossbars, mirrored spirals above and below, and a dot at the crown.",
+    usageSuggestions: [
+      "Heart-centred contemplation",
+      "Reflecting on the four sovereign intentions",
+      "Alignment of spirit and matter",
+      "Devotional remembrance",
+    ],
+    tags: [
+      "sovereignty",
+      "sacred heart",
+      "divine alignment",
+      "sacred devotion",
+      "unconditional love",
+      "masculine and feminine",
+      "integrity",
+      "compassion",
+      "conscious service",
+      "grounding",
+      "contemplation",
+    ],
+    featured: true,
+    governance: {
+      policyAcceptance: {
+        version: sigilPolicyHistory["1.0.2"].version,
+        effectiveDate: sigilPolicyHistory["1.0.2"].effectiveDate,
+      },
+      consentAndRightsConfirmation: {
+        confirmedDate: "2026-10-19",
+        rightsConfirmed: true,
+        humanLicensorAuthorityConfirmed: true,
+      },
+      moderation: {
+        status: "approved",
+        decidedDate: "2026-10-19",
+        decisionMakerRole: "Library steward",
+      },
+      publicationChecklist: {
+        "intended-for-library": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "policy-snapshot-recorded": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "rights-confirmed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "attribution-confirmed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "licence-confirmed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "file-validated": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "public-derivative-prepared": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "private-data-excluded": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "moderation-passed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "claims-reviewed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "presentation-reviewed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+      },
+    },
+    publication: {
+      status: "published",
+      publishedDate: "2026-10-19",
+    },
+  },
 ] as const satisfies readonly Sigil[];
 
 export const heartFlamePublicAttributionDetails = getSigilPublicAttribution(
@@ -361,6 +543,12 @@ export const heartFlamePublicAttributionDetails = getSigilPublicAttribution(
 );
 export const heartFlamePublicAttribution =
   heartFlamePublicAttributionDetails.text;
+
+export const sovereignHeartPublicAttributionDetails = getSigilPublicAttribution(
+  sigils[1],
+);
+export const sovereignHeartPublicAttribution =
+  sovereignHeartPublicAttributionDetails.text;
 
 export interface SigilLaunchReadiness {
   readonly approvedSeedWorksCount: number;

@@ -4,7 +4,7 @@
 
 The Living Sigil Library is a curated public collection of contributed sigil artwork. It holds each work with care, preserves the contributor's stated attribution and licence choice, and presents spiritual expression without guaranteeing results.
 
-The canonical implementation policy is the structured `sigilPolicy` object in `src/data/sigilPolicy.ts`. This document explains that policy in readable form. Policy version **1.0.0** is effective **2026-10-18**. Future submission records must persist the accepted policy version and effective date so the applicable terms remain identifiable.
+The canonical implementation policy is the structured `sigilPolicy` object in `src/data/sigilPolicy.ts`. This document explains that policy in readable form. Policy version **1.0.0** is effective **2026-10-18**. Future submission records must persist the accepted policy version and effective date so the applicable terms remain identifiable. The append-only snapshot registry and revision procedure are documented in [`docs/sigil-policy-history.md`](sigil-policy-history.md); historical entries must never be edited or removed.
 
 ## Submission is not publication
 

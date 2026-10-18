@@ -1,6 +1,8 @@
+import type { ISODateString } from "./sigilPolicyHistory";
+
 export const sigilPolicy = {
   policyVersion: "1.0.0",
-  effectiveDate: "2026-10-18",
+  effectiveDate: "2026-10-18" satisfies ISODateString,
   submissionPolicySnapshot: {
     required: true,
     fields: ["policyVersion", "policyEffectiveDate"] as const,

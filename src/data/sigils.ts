@@ -3,7 +3,13 @@ import {
   type SigilAttributionChoiceId,
   type SigilLicence,
   type SigilLicenceId,
+  type SigilPublicationChecklistItemId,
 } from "./sigilPolicy";
+import {
+  sigilPolicyHistory,
+  type ISODateString,
+  type SigilPolicyAcceptance,
+} from "./sigilPolicyHistory";
 
 export type SigilStatus = "draft" | "approved";
 export type NamedSigilAttributionMode = Exclude<
@@ -37,21 +43,27 @@ export interface SigilProvenance {
   };
 }
 
-export interface SigilGovernanceEvidence {
-  policyAcceptance: {
-    version: typeof sigilPolicy.policyVersion;
-    effectiveDate: typeof sigilPolicy.effectiveDate;
+export type SigilPublicationChecklistEvidence = {
+  readonly [ItemId in SigilPublicationChecklistItemId]: {
+    readonly status: "passed";
+    readonly checkedDate: ISODateString;
+    readonly checkerRole: "Library steward";
   };
+};
+
+export interface SigilGovernanceEvidence {
+  policyAcceptance: SigilPolicyAcceptance;
   consentAndRightsConfirmation: {
-    confirmedDate: string;
+    confirmedDate: ISODateString;
     rightsConfirmed: true;
     humanLicensorAuthorityConfirmed: true;
   };
   moderation: {
     status: "approved";
-    decidedDate: string;
+    decidedDate: ISODateString;
     decisionMakerRole: "Library steward";
   };
+  publicationChecklist: SigilPublicationChecklistEvidence;
 }
 
 export interface SigilCore {
@@ -60,7 +72,7 @@ export interface SigilCore {
   title: string;
   publicAttribution: SigilPublicAttribution;
   provenance?: SigilProvenance;
-  createdDate: string;
+  createdDate: ISODateString;
   series?: string;
   licenceId: SigilLicenceId;
   previewPath: string;
@@ -89,7 +101,7 @@ export type PublishedSigil = SigilCore & {
   governance: SigilGovernanceEvidence;
   publication: {
     status: "published";
-    publishedDate: string;
+    publishedDate: ISODateString;
   };
 };
 
@@ -116,24 +128,68 @@ function getConciseLicenceLabel(licenceId: SigilLicenceId): string {
   return label.match(/\(([^()]+)\)$/)?.[1] ?? label;
 }
 
-export function getSigilPublicAttributionStatement(
-  sigil: Pick<
-    SigilCore,
-    "title" | "createdDate" | "publicAttribution" | "licenceId" | "provenance"
-  >,
-): string {
+export interface SigilPublicAttributionResult {
+  readonly title: string;
+  readonly copyrightYear: string;
+  readonly creatorName: string;
+  readonly licenceLabel: string;
+  readonly licenceUrl: string | null;
+  readonly aiAssistanceDisclosure: string | null;
+  readonly sourceUrl: string;
+  readonly text: string;
+}
+
+const SIGIL_PUBLIC_ORIGIN = "https://thelivingcodex.online";
+
+type SigilAttributionSource = Pick<
+  SigilCore,
+  | "title"
+  | "createdDate"
+  | "publicAttribution"
+  | "licenceId"
+  | "provenance"
+  | "downloadPath"
+>;
+
+export function getSigilPublicAttribution(
+  sigil: SigilAttributionSource,
+): SigilPublicAttributionResult {
   const creatorName =
     sigil.publicAttribution.mode === "anonymous"
       ? "Anonymous"
       : sigil.publicAttribution.displayName;
   const copyrightYear = sigil.createdDate.slice(0, 4);
   const licenceLabel = getConciseLicenceLabel(sigil.licenceId);
+  const licenceUrl = getSigilLicenceUrl(sigil.licenceId);
   const aiAssistance = sigil.provenance?.aiAssistance;
-  const aiDisclosure = aiAssistance
-    ? ` AI-assisted artwork created with ${aiAssistance.assistantName} (${aiAssistance.provider}).`
+  const aiAssistanceDisclosure = aiAssistance
+    ? `AI-assisted artwork created with ${aiAssistance.assistantName} (${aiAssistance.provider}).`
+    : null;
+  const sourceUrl = new URL(sigil.downloadPath, SIGIL_PUBLIC_ORIGIN).href;
+  const licenceStatement = licenceUrl
+    ? `Licensed under ${licenceLabel}. Official licence: ${licenceUrl}.`
+    : `Published under ${licenceLabel}; no public reuse licence URL applies.`;
+  const disclosureStatement = aiAssistanceDisclosure
+    ? ` ${aiAssistanceDisclosure}`
     : "";
+  const text = `${sigil.title} © ${copyrightYear} ${creatorName}. ${licenceStatement}${disclosureStatement} Source: ${sourceUrl}`;
 
-  return `${sigil.title} © ${copyrightYear} ${creatorName}. Licensed under ${licenceLabel}.${aiDisclosure}`;
+  return {
+    title: sigil.title,
+    copyrightYear,
+    creatorName,
+    licenceLabel,
+    licenceUrl,
+    aiAssistanceDisclosure,
+    sourceUrl,
+    text,
+  };
+}
+
+export function getSigilPublicAttributionStatement(
+  sigil: SigilAttributionSource,
+): string {
+  return getSigilPublicAttribution(sigil).text;
 }
 
 export const sigils = [
@@ -222,8 +278,8 @@ export const sigils = [
     featured: true,
     governance: {
       policyAcceptance: {
-        version: sigilPolicy.policyVersion,
-        effectiveDate: sigilPolicy.effectiveDate,
+        version: sigilPolicyHistory["1.0.0"].version,
+        effectiveDate: sigilPolicyHistory["1.0.0"].effectiveDate,
       },
       consentAndRightsConfirmation: {
         confirmedDate: "2026-10-19",
@@ -235,6 +291,63 @@ export const sigils = [
         decidedDate: "2026-10-19",
         decisionMakerRole: "Library steward",
       },
+      publicationChecklist: {
+        "intended-for-library": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "policy-snapshot-recorded": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "rights-confirmed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "attribution-confirmed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "licence-confirmed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "file-validated": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "public-derivative-prepared": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "private-data-excluded": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "moderation-passed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "claims-reviewed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "presentation-reviewed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+      },
     },
     publication: {
       status: "published",
@@ -243,5 +356,8 @@ export const sigils = [
   },
 ] as const satisfies readonly Sigil[];
 
+export const heartFlamePublicAttributionDetails = getSigilPublicAttribution(
+  sigils[0],
+);
 export const heartFlamePublicAttribution =
-  getSigilPublicAttributionStatement(sigils[0]);
+  heartFlamePublicAttributionDetails.text;

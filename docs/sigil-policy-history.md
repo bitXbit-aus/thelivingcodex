@@ -50,3 +50,16 @@ Policy 1.0.2 removes the mutable approved-seed count from the versioned policy m
 - Governance document: `docs/sigil-governance.md`
 
 All entries are immutable. Future revisions must append another snapshot without editing or removing any retained entry.
+
+### Version 1.0.3
+
+Policy 1.0.3 makes creator-voice fidelity enforceable. It adds the `creator-voice-recorded` item to the canonical publication checklist, requiring that a record carries exactly the creator-voice content the creator supplied — verbatim — that every creator-voice field present was supplied by the creator and none was invented, inferred, paraphrased, or composed from the creator's own phrases, that omitted fields were genuinely not supplied, and that a sigil with no creator-voice content awaits the creator before publication. The creator-voice enumeration in the governance document is aligned to include the interpretive disclaimer and usage suggestions the code declares creator-supplied, and the former "should wait for the creator" advice is now a binding rule tied to this checklist item.
+
+- Version: `1.0.3`
+- Effective date: `2026-10-19`
+- Collection: `Living Sigil Library`
+- Source commit: `e613498bfe3bf7fc51b0722b961a357ad639d294`
+- Canonical module: `src/data/sigilPolicy.ts`
+- Governance document: `docs/sigil-governance.md`
+
+All entries are immutable. Future revisions must append another snapshot without editing or removing any retained entry.

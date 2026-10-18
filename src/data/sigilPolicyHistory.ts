@@ -70,6 +70,14 @@ export const sigilPolicyHistory = {
     canonicalModule: "src/data/sigilPolicy.ts",
     governanceDocument: "docs/sigil-governance.md",
   },
+  "1.0.3": {
+    version: "1.0.3",
+    effectiveDate: "2026-10-19",
+    collectionName: "Living Sigil Library",
+    sourceCommit: "e613498bfe3bf7fc51b0722b961a357ad639d294",
+    canonicalModule: "src/data/sigilPolicy.ts",
+    governanceDocument: "docs/sigil-governance.md",
+  },
 } as const satisfies Readonly<Record<string, SigilPolicySnapshotDefinition>>;
 
 export type SigilPolicySnapshot =

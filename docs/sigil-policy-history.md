@@ -36,7 +36,7 @@ Policy 1.0.1 clarifies that rights-cleared, steward-directed AI-assisted works m
 - Canonical module: `src/data/sigilPolicy.ts`
 - Governance document: `docs/sigil-governance.md`
 
-Both entries are immutable. Future revisions must append another snapshot without editing or removing either retained entry.
+Every retained entry is immutable. Future revisions must append another snapshot without editing or removing any retained entry.
 
 ### Version 1.0.2
 

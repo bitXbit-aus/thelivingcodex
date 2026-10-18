@@ -26,7 +26,7 @@ If authorship, provenance, consent, or permission is uncertain, publication paus
 
 Creator-voice content is any text that speaks in the creator's own voice or carries their spiritual, devotional, or interpretive meaning for a work. It includes the **vow**, **inscription**, **intention**, **significance**, **meaning**, **symbolism**, and **comparison notes** recorded for a sigil.
 
-Creator-voice content must be supplied by the creator. An implementer, moderator, or AI assistant must never invent, infer, paraphrase, or fabricate it, and must not present a plausible-sounding substitute as the creator's words or meaning. Where a creator has not supplied a given item, the record omits it; fields that carry creator voice are therefore optional and are published only when the creator provides them. Correcting a creator's own wording requires the creator's instruction, and any such correction must be documented.
+Creator-voice content must be supplied by the creator. An implementer, moderator, or AI assistant must never invent, infer, paraphrase, or fabricate it, and must not present a plausible-sounding substitute as the creator's words or meaning. Where a creator has not supplied a given item, the record omits it. A few creator-voice fields are genuinely optional per work — the **vow** and **comparison notes** — while the core fields (inscription, intention, significance, meaning, symbolism, and alternative text) remain required, so an omission surfaces as a build error rather than tempting an implementer to invent text. Correcting a creator's own wording requires the creator's instruction, and any such correction must be documented.
 
 ## Attribution and privacy
 

@@ -361,3 +361,59 @@ export const heartFlamePublicAttributionDetails = getSigilPublicAttribution(
 );
 export const heartFlamePublicAttribution =
   heartFlamePublicAttributionDetails.text;
+
+export interface SigilLaunchReadiness {
+  readonly approvedSeedWorksCount: number;
+  readonly requiredMinimum: number;
+  readonly requiredMaximum: number;
+  readonly additionalWorksRequiredMinimum: number;
+  readonly additionalWorksRequiredMaximum: number;
+  readonly meetsMinimum: boolean;
+  readonly isReadyForLaunch: boolean;
+}
+
+function isApprovedRightsClearedSeed(sigil: Sigil): boolean {
+  const governance = sigil.governance;
+
+  if (sigil.publication.status !== "published" || !governance) {
+    return false;
+  }
+
+  return (
+    governance.consentAndRightsConfirmation.rightsConfirmed &&
+    governance.moderation.status === "approved"
+  );
+}
+
+/**
+ * Derives the mutable launch-readiness status from the sigil catalogue and the
+ * durable launch rule in `sigilPolicy.launchReadiness`. Policy owns the rule;
+ * the catalogue owns the approved-seed count, so adding an approved seed never
+ * requires a policy revision.
+ */
+export function getSigilLaunchReadiness(
+  catalogue: readonly Sigil[] = sigils,
+): SigilLaunchReadiness {
+  const { minimum, maximum } =
+    sigilPolicy.launchReadiness.rightsClearedSeedWorksRequired;
+  const approvedSeedWorksCount = catalogue.filter(
+    isApprovedRightsClearedSeed,
+  ).length;
+
+  return {
+    approvedSeedWorksCount,
+    requiredMinimum: minimum,
+    requiredMaximum: maximum,
+    additionalWorksRequiredMinimum: Math.max(
+      0,
+      minimum - approvedSeedWorksCount,
+    ),
+    additionalWorksRequiredMaximum: Math.max(
+      0,
+      maximum - approvedSeedWorksCount,
+    ),
+    meetsMinimum: approvedSeedWorksCount >= minimum,
+    isReadyForLaunch:
+      approvedSeedWorksCount >= minimum && approvedSeedWorksCount <= maximum,
+  };
+}

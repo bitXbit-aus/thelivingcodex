@@ -1,111 +1,150 @@
 # Living Sigil Library governance
 
-## Purpose
+## Purpose and policy record
 
-The Living Sigil Library is a curated public collection of contributed sigil artwork. It is intended to hold each work with care, preserve the contributor's stated attribution and licence choice, and make the collection understandable to visitors without presenting spiritual language as a guarantee of results.
+The Living Sigil Library is a curated public collection of contributed sigil artwork. It holds each work with care, preserves the contributor's stated attribution and licence choice, and presents spiritual expression without guaranteeing results.
 
-This document governs the launch collection. The typed policy in `src/data/sigilPolicy.ts` is the implementation source of truth for names, options, file limits, moderation principles, and the correction or removal route.
+The canonical implementation policy is the structured `sigilPolicy` object in `src/data/sigilPolicy.ts`. This document explains that policy in readable form. Policy version **1.0.0** is effective **2026-10-18**. Future submission records must persist the accepted policy version and effective date so the applicable terms remain identifiable.
 
 ## Submission is not publication
 
-A submission is an invitation to consider a work for the library. Receiving a submission does not mean that the work has been accepted, endorsed, or published. Every work must pass the publication checklist below before it enters the public collection.
+A submission is an invitation to consider a work. Receipt does not mean acceptance, endorsement, or publication. Moderators decide whether a submission is published, deferred, declined, corrected, or removed, and every work must pass the structured publication checklist before entering the public collection.
 
-The Living Codex may decline a submission, request clarification, or defer publication. A contributor may also withdraw a work before publication by using the contact route.
+Moderators may correct attribution spelling, licence display, descriptions, and other metadata when authorised and documented. They must not materially alter the artwork without separate creator approval. A contributor may withdraw a work before publication or request reconsideration through [`/contact/`](/contact/).
 
 ## Authorship and permission
 
-Contributors must submit their own original work or have clear permission from the relevant rights holder to submit it and select the offered licence. Submission must not knowingly infringe copyright, trademark, privacy, cultural, or other rights.
+Contributors must submit their own original work or have clear permission from the relevant rights holder to submit it and select the offered licence. A submission must not knowingly infringe copyright, trademark, privacy, cultural, or other rights.
 
-If authorship, provenance, or permission is uncertain, publication pauses until the concern is resolved. Publication by the Living Codex is not an independent verification of authorship or ownership.
+If authorship, provenance, consent, or permission is uncertain, publication pauses until the concern is resolved. Publication by The Living Codex is not independent verification of authorship, ownership, provenance, or claimed outcomes.
 
 ## Attribution and privacy
 
-A contributor chooses one public attribution for each accepted sigil:
+A contributor selects one public attribution for each accepted sigil:
 
-- **Real name** — the chosen real name is displayed with the work.
-- **Soul name** — the chosen soul name is displayed with the work.
-- **Anonymous** — no contributor name is displayed publicly.
+- **Real name** — publish the contributor's chosen real name.
+- **Soul name** — publish the contributor's chosen soul name.
+- **Anonymous** — publish no contributor name.
 
-Anonymous publication affects public display only. The project may retain the private submission record as needed to review the work, document permission, respond to concerns, or administer removal and correction requests.
+Anonymous publication governs public display, not the private administration record. The project may retain a controlled private record only as needed to review the work, document permission, respond to concerns, or administer correction and removal requests. Original-file access must be controlled and original retention limited.
 
-A contributor's email address is private. It is used for submission follow-up and collection administration and must not be published as part of a sigil record.
+A contributor's email address is private. It may be used for submission follow-up, collection administration, and correction, reconsideration, or removal requests, but it must not be published.
+
+Public records must exclude private email addresses, restricted identity information, private submission notes, and unnecessary embedded metadata. This protection is especially important for anonymous contributors: every public image must be decoded and re-encoded, with unnecessary EXIF and other metadata removed so the public asset does not inadvertently reveal identity, location, device, or submission details.
 
 ## Launch licence options
 
-The contributor selects one option for an accepted work. The selected option must be shown clearly beside the published sigil.
+The contributor selects one option for an accepted work. The selected option must be displayed clearly beside the published sigil. These summaries are informational; contributors and visitors should read the official terms.
 
 ### Display only
 
-The contributor permits the work to be displayed in the Living Sigil Library. This permission does not grant visitors a right to copy, adapt, distribute, or otherwise reuse the work. Any additional use requires separate permission from the relevant rights holder.
+The contributor retains copyright and grants The Living Codex a **non-exclusive, worldwide, royalty-free, withdrawable permission** to:
+
+- store and back up the work;
+- reproduce it for its Living Sigil Library entry;
+- resize or re-encode it and generate thumbnails, accessibility previews, or promotional previews without materially altering the artwork;
+- deliver it through hosting, CDN, and other service providers; and
+- publicly display it solely to operate and promote its Living Sigil Library entry.
+
+Visitors receive no right to copy, adapt, distribute, or otherwise reuse a display-only work. Additional visitor use requires separate permission from the relevant rights holder. The Living Codex may not make material artwork changes without separate creator approval.
+
+After a verified withdrawal request, The Living Codex will stop future distribution and remove public copies within a reasonable period. Limited copies may remain temporarily in controlled backups or service-provider systems until ordinary retention and deletion cycles complete.
 
 ### CC BY 4.0
 
-The contributor offers the work under the Creative Commons Attribution 4.0 International licence. Reuse may be permitted with attribution and remains subject to the full licence terms. Contributors and visitors should review those terms rather than relying on this summary.
+Creative Commons Attribution 4.0 International permits sharing and adaptation, **including commercial use**, when its terms are followed, including attribution. The canonical licence URL is:
+
+https://creativecommons.org/licenses/by/4.0/
 
 ### CC BY-NC-SA 4.0
 
-The contributor offers the work under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International licence. Reuse may be permitted for non-commercial purposes with attribution and ShareAlike obligations and remains subject to the full licence terms. Contributors and visitors should review those terms rather than relying on this summary.
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International permits **non-commercial sharing and adaptation** when its terms are followed, including attribution and licensing adaptations under the same terms. The canonical licence URL is:
 
-The Living Codex does not provide legal advice and does not promise that a selected licence resolves every third-party right or jurisdiction-specific question.
+https://creativecommons.org/licenses/by-nc-sa/4.0/
 
-## Content moderation
+Creative Commons licences are irrevocable once applied. Removing a work from the Living Sigil Library or stopping its future distribution does not revoke licence rights already received by others. The Living Codex does not provide legal advice, and a selected licence may not resolve every third-party-right or jurisdiction-specific issue.
 
-Submissions are reviewed before publication. A work may be declined, deferred, corrected, or removed when:
+## Moderation
 
-- authorship, permission, provenance, or the authority to select a licence is unclear;
-- it appears to infringe copyright, trademark, privacy, cultural, or other rights;
-- required attribution, licence, consent, or contact information is missing or contradictory;
-- it promotes harm, hatred, harassment, exploitation, deception, or unlawful activity;
-- it includes targeted abuse, non-consensual personal information, or dangerous instructions;
-- it claims or implies guaranteed medical, psychological, or energetic outcomes;
-- its file presents a security, technical, accessibility, or publication risk; or
-- it materially conflicts with the stated purpose and care of the collection.
+Moderators review each submission against stable policy reasons. A work may be declined, deferred, or removed for any of the following:
 
-Moderation should be proportionate, privacy-conscious, and consistent. Sacred or spiritual framing does not exempt a submission from these standards. The project may contact the contributor for clarification when doing so is practical and appropriate.
+| ID | Reason | Meaning |
+| --- | --- | --- |
+| `ownership-or-permission` | Ownership or permission concern | Authorship, provenance, consent, or authority to submit and select the licence is missing, unclear, or disputed. |
+| `hateful-or-targeted-abuse` | Hateful or targeted abuse | The submission promotes hatred, harassment, exploitation, or targeted abuse against a person or group. |
+| `personal-privacy-or-cultural-concern` | Personal, privacy, or cultural concern | It exposes non-consensual personal information or raises unresolved privacy, consent, cultural, or community-rights concerns. |
+| `dangerous-instructions-or-harmful-claims` | Dangerous instructions or harmful claims | It promotes dangerous or unlawful conduct, or makes misleading guarantees about medical, psychological, therapeutic, energetic, financial, or other outcomes. |
+| `copyright-or-trademark-conflict` | Copyright or trademark conflict | It appears to infringe or conflict with another party's copyright, trademark, or related rights. |
+| `malicious-or-unsafe-file` | Malicious or unsafe file | The file is unreadable, deceptive, malicious, technically unsafe, or cannot be processed within publication security limits. |
+| `deception-or-misrepresentation` | Deception or misrepresentation | It materially misrepresents its creator, provenance, permissions, purpose, contents, or relationship to The Living Codex. |
+| `collection-purpose-conflict` | Conflict with collection purpose | It materially conflicts with the purpose, care, or public presentation of the Living Sigil Library. |
+
+Decisions should be consistent, proportionate, respectful, and privacy-conscious. Sacred or spiritual framing does not exempt a submission from review. When practical and appropriate, moderators may request clarification. Contributors may request reconsideration through [`/contact/`](/contact/).
 
 ## No guaranteed outcomes
 
-Sigils in the library are creative and spiritual expressions. The Living Codex and its contributors do not guarantee medical, psychological, therapeutic, energetic, financial, or other outcomes from viewing, creating, sharing, or working with a sigil. The collection is not a substitute for qualified medical, mental-health, legal, or other professional care.
+Sigils in the library are creative and spiritual expressions. The Living Codex and its contributors do not guarantee medical, psychological, therapeutic, energetic, financial, or other outcomes from viewing, creating, sharing, or working with a sigil. The collection is not a substitute for qualified medical, mental-health, legal, financial, or other professional care.
 
-## Accepted files
+## Accepted files and upload security
 
-At launch, accepted image formats are:
+Launch uploads are limited to **5 MiB** (`5 * 1024 * 1024` bytes) per image and these raster formats:
 
 - PNG (`.png`, `image/png`)
 - JPEG (`.jpg` or `.jpeg`, `image/jpeg`)
 - WebP (`.webp`, `image/webp`)
 
-The maximum upload size is **5 MB** per image.
+SVG remains excluded initially because it can contain scripts, external references, embedded content, and complex metadata. Accepting SVG safely would require a dedicated sanitisation and rendering process.
 
-SVG is excluded at launch. SVG files can contain scripts, external references, embedded content, and complex metadata; safely accepting them requires a dedicated sanitisation and rendering process. Raster-only launch support keeps review and static publication more predictable. An SVG exported to an accepted raster format may be submitted if the contributor retains the necessary quality and rights.
+Upload handling must use defence in depth:
 
-File extensions and reported MIME types should be checked, and suspicious or unreadable files should not be published.
+1. Treat the client-provided filename and MIME type as untrusted. An extension allowlist and reported MIME check are preliminary filters only.
+2. Inspect file signatures and actual type on the server. Reject mismatches, unreadable files, polyglot or suspicious content, and anything outside the allowlist.
+3. Decode images within bounded resource limits. At launch, reject images wider or taller than **10,000 pixels** or exceeding **40,000,000 total pixels**.
+4. Re-encode an approved derivative for public delivery rather than serving the submitted original. Remove unnecessary EXIF and other metadata.
+5. Generate storage filenames rather than using client filenames.
+6. Keep pending originals private and outside the public webroot, or in equivalently segregated non-public storage. Restrict access and limit retention.
+7. A later dynamic upload system must also enforce per-user and per-origin rate limits plus aggregate upload and storage quotas.
 
-## Correction and removal
+These controls reduce risk together; no filename, extension, MIME value, or single scanner is sufficient by itself.
 
-Requests to correct attribution, licence display, descriptive information, or other publication details — or to remove a work — should be sent through [`/contact/`](/contact/).
+## Correction, reconsideration, withdrawal, and removal
 
-A request should identify the sigil and describe the requested change. The project should verify the requester's relationship to the work when reasonably necessary, acknowledge the request, preserve only the records needed to administer it, and update or remove the public record as appropriate. A removal from the public collection cannot guarantee erasure of copies already made by visitors under a licence or otherwise outside the project's control.
+Requests to correct publication metadata, reconsider a moderation decision, withdraw permission, or remove a work should be sent through [`/contact/`](/contact/).
 
-## Seed-content status
+A request should identify the sigil and requested action. The project should verify the requester's relationship to the work when reasonably necessary, acknowledge the request, preserve only records needed to administer it, and update or remove the public record as appropriate.
 
-The launch seed collection is **awaiting 3–6 works to be provided by the user**. No placeholder, generated, or third-party sigils should be represented as approved seed contributions. Each supplied work must complete the same rights, attribution, licence, file, and moderation checks as later submissions.
+For display-only works, withdrawal operates as described above. For Creative Commons works, stopping distribution and removing the library entry does not revoke rights already granted to recipients under the applicable irrevocable CC licence. Copies outside the project's control may therefore remain lawful under those terms.
 
 ## Publication checklist
 
-Before publishing a sigil, confirm all of the following:
+The canonical checklist is structured in `sigilPolicy.publicationChecklist`. Before publication, the **Library steward** must confirm:
 
-- [ ] The work is intended for the Living Sigil Library, not merely received through another submission flow.
-- [ ] The contributor confirms original authorship or adequate permission to submit and license the work.
-- [ ] Any authorship, provenance, cultural-rights, trademark, privacy, or third-party-rights concern has been resolved or documented.
-- [ ] Public attribution is explicitly set to real name, soul name, or Anonymous.
-- [ ] The public attribution text matches the contributor's choice and spelling.
-- [ ] One launch licence is explicitly selected: display-only, CC BY 4.0, or CC BY-NC-SA 4.0.
-- [ ] The displayed licence label and link, where applicable, match the selected option.
-- [ ] The image is PNG, JPEG, or WebP; it is not SVG; and it is no larger than 5 MB.
-- [ ] The file opens correctly and has been checked for suspicious content, misleading extensions, and publication quality.
-- [ ] The title, description, and accompanying text do not promise guaranteed medical, psychological, or energetic outcomes.
-- [ ] The work passes the moderation grounds in this document.
-- [ ] Private email and other non-public submission details are absent from the published record.
-- [ ] The correction and removal route is available at `/contact/`.
-- [ ] The final public record has been reviewed for accuracy, accessibility, and respectful presentation.
+- [ ] The work is explicitly intended for the Living Sigil Library.
+- [ ] The accepted policy version and effective date are stored with the submission.
+- [ ] Original authorship or adequate permission to submit and apply the selected licence is confirmed.
+- [ ] Known provenance, cultural-rights, trademark, privacy, and other third-party concerns are resolved or documented.
+- [ ] Public attribution is explicitly **Real name**, **Soul name**, or **Anonymous**, and its spelling matches the contributor's choice.
+- [ ] A launch licence is explicitly selected, and its public label and official link, where applicable, are correct.
+- [ ] The upload is within **5 MiB**, matches an allowed extension and server-inspected PNG, JPEG, or WebP type, and satisfies decode, dimension, pixel-count, and safety limits.
+- [ ] The public derivative has a generated filename, has been decoded and re-encoded, and has unnecessary EXIF and other metadata removed.
+- [ ] Pending originals are private, access-controlled, segregated from public delivery, and subject to limited retention.
+- [ ] Private email, restricted identity information, private notes, and unnecessary metadata are absent from the public record.
+- [ ] A moderator has checked every structured moderation reason and recorded the decision.
+- [ ] The title, description, artwork context, and accompanying text do not promise guaranteed outcomes or replace professional care.
+- [ ] The final entry is accurate, accessible, respectful, and shows the selected attribution and licence.
+- [ ] The correction, reconsideration, withdrawal, and removal route is available at `/contact/`.
+
+## Launch readiness
+
+The **Library steward** is responsible for confirming launch readiness. **Three to six rights-cleared works are awaiting provision before launch.** Placeholder, generated, or third-party sigils must not be represented as approved seed contributions. Every seed work must pass the same rights, attribution, licence, privacy, security, and moderation checks as later submissions.
+
+## References and review notice
+
+Official references:
+
+- Creative Commons Attribution 4.0 International: https://creativecommons.org/licenses/by/4.0/
+- Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International: https://creativecommons.org/licenses/by-nc-sa/4.0/
+- Creative Commons licensing guidance: https://creativecommons.org/share-your-work/cclicenses/
+- OWASP File Upload Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html
+
+This policy language should receive qualified legal review before a public submission form launches. Nothing in this document is legal advice.

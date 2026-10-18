@@ -82,7 +82,12 @@ export interface SigilCore {
   comparisonNote?: string;
   interpretiveDisclaimer?: string;
   intention: string;
-  vow: string;
+  // Creator-voice fields. Every field below is creator-supplied content and
+  // must never be invented, inferred, or fabricated by an implementer or AI
+  // assistant. See "Creator-voice content" in docs/sigil-governance.md.
+  // `vow` is optional: not every sigil carries a vow, and a vow is published
+  // only when the creator supplies one.
+  vow?: string;
   significance: string;
   inscription: string;
   altText: string;
@@ -431,7 +436,6 @@ export const sigils = [
       "These meanings are interpretive rather than a verified historical decoding of the artwork.",
     intention:
       "To awaken the sovereign heart, restore alignment between spirit and matter, and embody unconditional love through truth, integrity, compassion and conscious service.",
-    vow: "I anchor this sigil as a vow to live from the sovereign heart.",
     significance:
       "Remaining sovereign without becoming separate; loving without possessing; serving without surrendering one's integrity; remaining spiritually open while grounded in everyday life.",
     inscription:

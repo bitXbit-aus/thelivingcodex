@@ -278,8 +278,8 @@ export const sigils = [
     featured: true,
     governance: {
       policyAcceptance: {
-        version: sigilPolicyHistory["1.0.0"].version,
-        effectiveDate: sigilPolicyHistory["1.0.0"].effectiveDate,
+        version: sigilPolicyHistory["1.0.1"].version,
+        effectiveDate: sigilPolicyHistory["1.0.1"].effectiveDate,
       },
       consentAndRightsConfirmation: {
         confirmedDate: "2026-10-19",

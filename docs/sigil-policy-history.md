@@ -14,7 +14,9 @@ Never edit or remove a historical registry entry. A published or submitted recor
 4. Keep every earlier entry unchanged. Recover the exact historical terms from the recorded source commit when review, correction, or dispute handling requires them.
 5. New records accept the new snapshot; existing records continue to reference their original retained snapshot.
 
-## Initial retained snapshot
+## Retained snapshots
+
+### Version 1.0.0
 
 - Version: `1.0.0`
 - Effective date: `2026-10-18`
@@ -22,3 +24,16 @@ Never edit or remove a historical registry entry. A published or submitted recor
 - Source commit: `f2b7ccfd71468956156b935cffc4cffaee8a1718`
 - Canonical module: `src/data/sigilPolicy.ts`
 - Governance document: `docs/sigil-governance.md`
+
+### Version 1.0.1
+
+Policy 1.0.1 clarifies that rights-cleared, steward-directed AI-assisted works may be eligible seed contributions when a human licensor has authority, human contribution and AI assistance are accurately disclosed, rights and provenance are recorded, and normal publication checks pass. It distinguishes those works from unowned or generic generated placeholders and third-party works without confirmed rights.
+
+- Version: `1.0.1`
+- Effective date: `2026-10-19`
+- Collection: `Living Sigil Library`
+- Source commit: `a245aff2721bae9a8253c4185f32fec9d7ac9652`
+- Canonical module: `src/data/sigilPolicy.ts`
+- Governance document: `docs/sigil-governance.md`
+
+Both entries are immutable. Future revisions must append another snapshot without editing or removing either retained entry.

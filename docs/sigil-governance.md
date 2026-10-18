@@ -136,7 +136,7 @@ The canonical checklist is structured in `sigilPolicy.publicationChecklist`. Bef
 
 ## Launch readiness
 
-The **Library steward** is responsible for confirming launch readiness. **Three to six rights-cleared works are awaiting provision before launch.** Placeholder, generated, or third-party sigils must not be represented as approved seed contributions. Every seed work must pass the same rights, attribution, licence, privacy, security, and moderation checks as later submissions.
+The **Library steward** is responsible for confirming launch readiness. **Awaiting 3–6 steward-provided, rights-cleared works before launch.** Placeholder, generated, or third-party sigils must not be represented as approved seed contributions. Every seed work must pass the same rights, attribution, licence, privacy, security, and moderation checks as later submissions.
 
 ## References and review notice
 

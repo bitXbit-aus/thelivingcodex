@@ -288,7 +288,7 @@ export const sigilPolicy = {
     responsibleRole: "Library steward",
     rightsClearedSeedWorksRequired: { minimum: 3, maximum: 6 },
     status:
-      "Awaiting provision of 3–6 rights-cleared works before launch. Placeholder, generated, or third-party works must not be represented as approved seed contributions.",
+      "Awaiting 3–6 steward-provided, rights-cleared works before launch. Placeholder, generated, or third-party works must not be represented as approved seed contributions.",
   },
 } as const;
 

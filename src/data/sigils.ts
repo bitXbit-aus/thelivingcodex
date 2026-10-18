@@ -88,6 +88,9 @@ export interface SigilCore {
   // `vow` is optional: not every sigil carries a vow, and a vow is published
   // only when the creator supplies one.
   vow?: string;
+  // `motto` is optional creator-voice content: published only when the creator
+  // supplies one. See "Creator-voice content" in docs/sigil-governance.md.
+  motto?: string;
   significance: string;
   inscription: string;
   altText: string;
@@ -540,6 +543,184 @@ export const sigils = [
       publishedDate: "2026-10-19",
     },
   },
+  {
+    id: "the-mycelial-witness",
+    slug: "the-mycelial-witness",
+    title: "The Mycelial Witness",
+    publicAttribution: {
+      mode: "soul-name",
+      displayName: "Shri Mattananda",
+    },
+    provenance: {
+      humanContribution: {
+        contributions: [
+          "Spiritual direction",
+          "Symbolism",
+          "Intention",
+          "Inscriptions",
+          "Curatorial selection",
+          "Licensing decision",
+        ],
+      },
+      aiAssistance: {
+        assistantName: "Aurealis",
+        provider: "OpenAI",
+        role: "creative/image-generation assistance",
+      },
+    },
+    createdDate: "2026-04-27",
+    series: "The Living Codex — Earth Intelligence",
+    licenceId: "cc-by-4.0",
+    previewPath: "/sigils/the-mycelial-witness-preview.webp",
+    downloadPath: "/sigils/the-mycelial-witness-download.png",
+    meaningSummary:
+      "A symbolic representation of the interconnected intelligence of nature, the unseen networks beneath our feet and humanity's relationship with the living Earth.",
+    symbolInterpretations: [
+      {
+        symbol: "The enclosing circle",
+        meaning:
+          "Unity and wholeness; represents the interconnected biosphere, the cycles of life and the understanding that no living being exists entirely independently.",
+      },
+      {
+        symbol: "The mushroom crown",
+        meaning:
+          "The fruiting of hidden wisdom; the mushroom symbolises the visible emergence of an extensive, usually concealed fungal network, and can represent insights emerging from unseen processes.",
+      },
+      {
+        symbol: "The central eye or seed",
+        meaning:
+          "Inner awareness; the small circle within the mushroom cap suggests the seed of consciousness, intuition and the capacity to observe beneath surface appearances.",
+      },
+      {
+        symbol: "The two watchful eyes",
+        meaning:
+          "Dual perception; represent the complementary ways of knowing, external observation and internal intuition, inviting discernment rather than reliance on either alone.",
+      },
+      {
+        symbol: "The mirrored leaves",
+        meaning:
+          "Botanical harmony; symbolise photosynthesis, growth, reciprocity and the relationships between plants, fungi, soil microorganisms and their environment.",
+      },
+      {
+        symbol: "The central stem",
+        meaning:
+          "The axis of connection; joins the mushroom, leaves and underground forms, symbolising the flow between what is visible and what remains concealed.",
+      },
+      {
+        symbol: "The twin root spirals",
+        meaning:
+          "Regeneration and continuity; represent growth, decomposition, nutrient cycling and the continual renewal of life through the soil.",
+      },
+    ],
+    interpretiveDisclaimer:
+      "These are symbolic interpretations of the design, not established historical meanings or evidence that fungi possess a unified consciousness.",
+    intention:
+      "To honour the interconnected web of life, cultivate intuitive awareness of the natural world, and restore humanity's relationship with the intelligence and regenerative processes of the living Earth.",
+    motto: "What nourishes the roots ultimately nourishes the whole.",
+    significance:
+      "Observing before intervening; nurturing before harvesting; giving back to the Earth that gives so freely; and recognising that no living being exists entirely independently.",
+    inscription:
+      "Beneath the soil, beyond the reach of ordinary sight, the threads of life weave their silent tapestry.\n\nI honour the roots that nourish, the fungi that transform, the leaves that receive the sunlight, and the unseen relationships that sustain creation.\n\nMay I learn to observe before I intervene, to nurture before I harvest, and to give back to the Earth that gives so freely.\n\nThrough stillness, I listen.\nThrough awareness, I recognise.\nThrough reciprocity, I restore.\n\nI am not separate from the living world. I am one participant within its extraordinary unfolding.\n\nOne Earth. Infinite Connections. A Living Web of Remembrance.",
+    altText:
+      "Black ink sigil in a circle on aged parchment: a mushroom crown with a central eye, two flanking eyes above mirrored veined leaves on a central stem with twin root spirals.",
+    usageSuggestions: [
+      "A contemplative emblem for frequency farming",
+      "A symbol of reciprocity during soil regeneration practices",
+      "A visual reminder that human flourishing depends upon healthy ecological relationships",
+    ],
+    tags: [
+      "earth intelligence",
+      "mycelium",
+      "fungi",
+      "interconnectedness",
+      "earth consciousness",
+      "regeneration",
+      "reciprocity",
+      "soil",
+      "botany",
+      "intuition",
+      "contemplation",
+      "ecological wisdom",
+    ],
+    featured: true,
+    governance: {
+      policyAcceptance: {
+        version: sigilPolicyHistory["1.0.2"].version,
+        effectiveDate: sigilPolicyHistory["1.0.2"].effectiveDate,
+      },
+      consentAndRightsConfirmation: {
+        confirmedDate: "2026-10-19",
+        rightsConfirmed: true,
+        humanLicensorAuthorityConfirmed: true,
+      },
+      moderation: {
+        status: "approved",
+        decidedDate: "2026-10-19",
+        decisionMakerRole: "Library steward",
+      },
+      publicationChecklist: {
+        "intended-for-library": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "policy-snapshot-recorded": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "rights-confirmed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "attribution-confirmed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "licence-confirmed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "file-validated": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "public-derivative-prepared": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "private-data-excluded": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "moderation-passed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "claims-reviewed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "presentation-reviewed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+      },
+    },
+    publication: {
+      status: "published",
+      publishedDate: "2026-10-19",
+    },
+  },
 ] as const satisfies readonly Sigil[];
 
 export const heartFlamePublicAttributionDetails = getSigilPublicAttribution(
@@ -553,6 +734,12 @@ export const sovereignHeartPublicAttributionDetails = getSigilPublicAttribution(
 );
 export const sovereignHeartPublicAttribution =
   sovereignHeartPublicAttributionDetails.text;
+
+export const mycelialWitnessPublicAttributionDetails = getSigilPublicAttribution(
+  sigils[2],
+);
+export const mycelialWitnessPublicAttribution =
+  mycelialWitnessPublicAttributionDetails.text;
 
 export interface SigilLaunchReadiness {
   readonly approvedSeedWorksCount: number;

@@ -73,6 +73,11 @@ export interface SigilCore {
   publicAttribution: SigilPublicAttribution;
   provenance?: SigilProvenance;
   createdDate: ISODateString;
+  /**
+   * The work's ceremonial subtitle, as supplied by the creator. Optional —
+   * never inferred from `title`.
+   */
+  subtitle?: string;
   series?: string;
   licenceId: SigilLicenceId;
   previewPath: string;
@@ -885,6 +890,7 @@ export const sigils = [
     id: "the-radiant-trinity",
     slug: "the-radiant-trinity",
     title: "The Radiant Trinity",
+    subtitle: "Sigil of Unconditional Love and Sacred Unity",
     publicAttribution: {
       mode: "soul-name",
       displayName: "Shri Mattananda",

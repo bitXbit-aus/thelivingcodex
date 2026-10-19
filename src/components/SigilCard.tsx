@@ -182,6 +182,11 @@ export default function SigilCard({ sigil }: SigilCardProps) {
         <h3 className="mt-3 text-base font-medium text-[#f5f0e8] transition-colors group-hover:text-[#d4a853]">
           {sigil.title}
         </h3>
+        {sigil.subtitle && (
+          <p className="mt-1 text-xs leading-relaxed text-[#c8c4b8]">
+            {sigil.subtitle}
+          </p>
+        )}
         {sigil.series && (
           <p className="mt-1 text-[10px] tracking-widest uppercase text-[#7a7a8a]">
             {sigil.series}
@@ -269,6 +274,11 @@ export default function SigilCard({ sigil }: SigilCardProps) {
               >
                 {sigil.title}
               </h3>
+              {sigil.subtitle && (
+                <p className="mt-1 text-sm leading-relaxed text-[#c8c4b8]">
+                  {sigil.subtitle}
+                </p>
+              )}
               {sigil.series && (
                 <p className="mt-1 text-[10px] tracking-widest uppercase text-[#7a7a8a]">
                   {sigil.series}

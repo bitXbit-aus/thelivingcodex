@@ -249,20 +249,20 @@ export default function SigilsPage() {
           </div>
         </section>
 
-        {/* Submissions not yet open */}
+        {/* Community submissions */}
         <section className="mt-16 text-center">
           <h2 className="text-2xl font-light tracking-wide text-[#f5f0e8] sm:text-3xl">
-            Community submissions are not yet open
+            Offer a sigil to the Library
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-[#7a7a8a]">
-            The Library opens with a small, steward-approved set of seed works.
-            A moderated submission process for community sigils is being
-            prepared and is not yet available. In the meantime, enquiries about
-            contributing a sigil are welcome through our contact page.
+            Community sigil submissions are open. You may offer an original work
+            and its metadata for consideration. Every submission is moderated by
+            the Library steward, nothing is published automatically, and
+            submission does not guarantee publication.
           </p>
           <div className="mt-8">
-            <SacredButton href="/contact/" variant="outline" size="md">
-              Enquire About Submitting a Sigil
+            <SacredButton href="/submit/sigil/" variant="primary" size="md">
+              Submit a Sigil
             </SacredButton>
           </div>
         </section>

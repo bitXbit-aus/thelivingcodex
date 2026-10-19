@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import SacredButton from "@/components/SacredButton";
 import SectionIntro from "@/components/SectionIntro";
 import DisclaimerBox from "@/components/DisclaimerBox";
 import { categories } from "@/data/scrolls";
-import { CheckCircle, Send, Feather } from "lucide-react";
+import { CheckCircle, Send } from "lucide-react";
 
 export default function SubmitPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -58,7 +59,7 @@ export default function SubmitPage() {
       } else {
         alert("Something went wrong. Please try again.");
       }
-    } catch (err) {
+    } catch {
       alert("Network error. Please try again.");
     }
   };
@@ -101,6 +102,39 @@ export default function SubmitPage() {
           title="Submit a Scroll"
           subtitle="Your remembrance, declaration, ceremony, dream, or transmission. Cast it into the field."
         />
+
+        <nav aria-label="Submission type" className="mt-8 grid gap-3 sm:grid-cols-2">
+          <Link
+            href="/submit/"
+            aria-current="page"
+            className="rounded-lg border border-[#d4a853] bg-[#12141c]/80 p-4 transition-colors"
+          >
+            <span className="block text-[11px] tracking-widest uppercase text-[#d4a853]">
+              Submit a Scroll
+            </span>
+            <span className="mt-1 block text-[11px] leading-relaxed text-[#c8c4b8]">
+              Written remembrance, declaration, ceremony, dream, or transmission.
+            </span>
+            <span className="mt-2 block text-[9px] tracking-wider uppercase text-[#7a7a8a]">
+              Current selection
+            </span>
+          </Link>
+          <Link
+            href="/submit/sigil/"
+            className="rounded-lg border border-[rgba(212,168,83,0.2)] bg-[#12141c]/40 p-4 transition-colors hover:border-[#d4a853]"
+          >
+            <span className="block text-[11px] tracking-widest uppercase text-[#d4a853]">
+              Submit a Sigil
+            </span>
+            <span className="mt-1 block text-[11px] leading-relaxed text-[#c8c4b8]">
+              Original sigil artwork and its metadata, offered to the Living Sigil
+              Library.
+            </span>
+            <span className="mt-2 block text-[9px] tracking-wider uppercase text-[#7a7a8a]">
+              Moderated submission
+            </span>
+          </Link>
+        </nav>
 
         <motion.form
           initial={{ opacity: 0, y: 20 }}
@@ -331,7 +365,7 @@ export default function SubmitPage() {
           <DisclaimerBox>
             Submissions are moderated before appearing in the public archive. The Living
             Codex reserves the right to decline submissions that violate natural law,
-            promote harm, or do not align with the field's intention.
+            promote harm, or do not align with the field&apos;s intention.
           </DisclaimerBox>
 
           <div className="pt-2">

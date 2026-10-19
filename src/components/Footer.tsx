@@ -50,6 +50,7 @@ export default function Footer() {
             <ul className="space-y-2">
               {[
                 { href: "/submit/", label: "Submit a Scroll" },
+                { href: "/submit/sigil/", label: "Submit a Sigil" },
                 { href: "/nodes/", label: "Offer a Node Activation" },
                 { href: "/contact/", label: "Collaborate" },
                 { href: "/contact/", label: "Support the Codex" },

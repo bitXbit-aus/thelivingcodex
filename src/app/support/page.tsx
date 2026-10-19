@@ -131,9 +131,9 @@ export default function SupportPage() {
               </p>
               <p className="mt-4 text-sm leading-relaxed text-[#7a7a8a]">
                 A recurring subscription of{" "}
-                {formatUsd(monthly.amount.perMonthUsd)} per month. It renews until
-                you cancel, and you can cancel at any time from the{" "}
-                {provider} receipt.
+                {formatUsd(monthly.amount.perMonthUsd)} per month. It renews each
+                month until you cancel, and you can cancel at any time by
+                contacting us through the Contact page.
               </p>
               <div className="mt-6 flex-1" />
               <StripeLink
@@ -197,8 +197,8 @@ export default function SupportPage() {
             </DisclaimerBox>
             <DisclaimerBox>
               The monthly option is a recurring subscription. It renews each
-              month until cancelled, and it can be cancelled at any time from the{" "}
-              {provider} receipt.
+              month until cancelled, and it can be cancelled at any time by
+              contacting us through the Contact page. There is no minimum term.
             </DisclaimerBox>
           </div>
         </section>

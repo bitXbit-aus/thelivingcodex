@@ -65,7 +65,7 @@ Policy 1.0.4 establishes permanent registry identifiers for the Living Sigil Lib
 - Version: `1.0.4`
 - Effective date: `2026-10-19`
 - Collection: `Living Sigil Library`
-- Source commit: `PENDING_SOURCE_COMMIT_1_0_4`
+- Source commit: `6907e01b6331a2fd3c16e4573e89142dcd5698d4`
 - Canonical module: `src/data/sigilPolicy.ts`
 - Governance document: `docs/sigil-governance.md`
 

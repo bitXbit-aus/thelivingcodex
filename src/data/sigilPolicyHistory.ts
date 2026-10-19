@@ -82,7 +82,7 @@ export const sigilPolicyHistory = {
     version: "1.0.4",
     effectiveDate: "2026-10-19",
     collectionName: "Living Sigil Library",
-    sourceCommit: "PENDING_SOURCE_COMMIT_1_0_4",
+    sourceCommit: "6907e01b6331a2fd3c16e4573e89142dcd5698d4",
     canonicalModule: "src/data/sigilPolicy.ts",
     governanceDocument: "docs/sigil-governance.md",
   },

@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node scripts/verify-netlify-forms.mjs",
+    "verify:forms": "node scripts/verify-netlify-forms.mjs",
     "start": "next start",
     "lint": "eslint"
   },

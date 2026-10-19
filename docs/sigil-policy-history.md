@@ -6,11 +6,17 @@
 
 Never edit or remove a historical registry entry. A published or submitted record remains valid while its accepted version is retained in the registry, even after the current policy advances.
 
+## What `sourceCommit` records
+
+`sourceCommit` is the full hash of the commit that **introduced** the policy version — the commit that first set the new `policyVersion`, effective date, and policy text (and the matching governance document). It is not the hash of the registration commit and not a hash of the historical entry itself, which cannot contain its own commit hash.
+
+A snapshot entry therefore cannot be authored in the same commit that introduces the policy version: at that point the introducing commit does not exist yet. The version bump commits the policy and governance text first; the registration commit then appends the history entry with the now-known introducing commit hash. The entry's `sourceCommit` is settled in that registration commit, and only the introducing commit is ever recorded.
+
 ## Revision procedure
 
-1. Finalise the revised canonical policy in `src/data/sigilPolicy.ts` and its readable explanation in `docs/sigil-governance.md`.
-2. Commit the exact reviewed policy and governance text.
-3. Add a new immutable entry to `src/data/sigilPolicyHistory.ts` with its version, effective date, collection, full source commit hash, canonical module, and governance document.
+1. Finalise the revised canonical policy in `src/data/sigilPolicy.ts` and its readable explanation in `docs/sigil-governance.md`, including the new `policyVersion` and effective date.
+2. Commit the exact reviewed policy and governance text. This commit is the version's `sourceCommit`. It does **not** contain a history entry for the new version.
+3. In a follow-up registration commit, add a new immutable entry to `src/data/sigilPolicyHistory.ts` with its version, effective date, collection, the full hash of the introducing commit from step 2, canonical module, and governance document. Never leave `sourceCommit` as a placeholder in a committed entry.
 4. Keep every earlier entry unchanged. Recover the exact historical terms from the recorded source commit when review, correction, or dispute handling requires them.
 5. New records accept the new snapshot; existing records continue to reference their original retained snapshot.
 

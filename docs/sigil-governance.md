@@ -4,7 +4,7 @@
 
 The Living Sigil Library is a curated public collection of contributed sigil artwork. It holds each work with care, preserves the contributor's stated attribution and licence choice, and presents spiritual expression without guaranteeing results.
 
-The canonical implementation policy is the structured `sigilPolicy` object in `src/data/sigilPolicy.ts`. This document explains that policy in readable form. Policy version **1.0.6** is effective **2026-10-19**. Future submission records must persist the accepted policy version and effective date so the applicable terms remain identifiable. Policy 1.0.6 records an explicit steward override opening public sigil submissions before the qualified legal review required by this policy had been completed; it does not record that review as done. The append-only snapshot registry and revision procedure are documented in [`docs/sigil-policy-history.md`](sigil-policy-history.md); historical entries must never be edited or removed.
+The canonical implementation policy is the structured `sigilPolicy` object in `src/data/sigilPolicy.ts`. This document explains that policy in readable form. Policy version **1.0.7** is effective **2026-10-19**. Future submission records must persist the accepted policy version and effective date so the applicable terms remain identifiable. Policy 1.0.7 adds a concrete retention target for pending originals, documents that contributor email is also held in the hosting provider's form records, and reconciles the publication checklist below with the 13 canonical per-work items. Policy 1.0.6 recorded an explicit steward override opening public sigil submissions before the qualified legal review required by this policy had been completed; it does not record that review as done, and 1.0.7 does not change that position. The append-only snapshot registry and revision procedure are documented in [`docs/sigil-policy-history.md`](sigil-policy-history.md); historical entries must never be edited or removed.
 
 ## Submission is not publication
 
@@ -42,7 +42,9 @@ A contributor selects one public attribution for each accepted sigil:
 
 Anonymous publication governs public display, not the private administration record. The project may retain a controlled private record only as needed to review the work, document permission, respond to concerns, or administer correction and removal requests. Original-file access must be controlled and original retention limited.
 
-A contributor's email address is private. It may be used for submission follow-up, collection administration, and correction, reconsideration, or removal requests, but it must not be published.
+A contributor's email address is private. It may be used for submission follow-up, collection administration, and correction, reconsideration, or removal requests, but it must not be published. The address is also stored in the hosting provider's (Netlify's) form submission records and may be emailed to the Library steward so the submission can be reviewed; those are processing steps, not publication.
+
+Pending originals are not kept indefinitely. The policy sets a retention target of **30 days after the moderation decision** (publish, decline, deferral, or withdrawal), after which the pending original is to be deleted. Limited copies may remain in hosting-provider backups until their ordinary deletion cycles complete. The 30-day value is a real commitment owned by the Library steward, not a placeholder; changing it requires a policy revision recorded in the history registry.
 
 Public records must exclude private email addresses, restricted identity information, private submission notes, and unnecessary embedded metadata. This protection is especially important for anonymous contributors: every public image must be decoded and re-encoded, with unnecessary EXIF and other metadata removed so the public asset does not inadvertently reveal identity, location, device, or submission details.
 
@@ -109,6 +111,19 @@ Moderators review each submission against stable policy reasons. A work may be d
 
 Decisions should be consistent, proportionate, respectful, and privacy-conscious. Sacred or spiritual framing does not exempt a submission from review. When practical and appropriate, moderators may request clarification. Contributors may request reconsideration through [`/contact/`](/contact/).
 
+## Moderation runbook: handling an untrusted submitted image
+
+The submission form tells contributors that the file is inspected again before publication. This is that procedure. Treat every file from an anonymous public submission as untrusted until it has been inspected.
+
+1. **Do not open the file in a normal browser or image viewer first.** Download it from the Netlify form submission record into a dedicated quarantine folder on the moderation machine, not into a shared or synced folder. Do not visit the direct URL in a browser session that carries your logged-in accounts.
+2. **Identify the real type from its bytes, not its name.** Run `file --mime-type` and inspect the first bytes (`xxd -l 32`) to confirm a PNG, JPEG, or WebP signature. Reject a file whose actual signature disagrees with its extension or reported MIME type, and reject truncated or polyglot files.
+3. **Read dimensions and metadata without rendering.** `exiftool` (or `identify` in a sandbox) gives width, height, and embedded metadata. Reject anything beyond 10,000 px on a side or 40,000,000 total pixels. Note any GPS, device, author, or comment fields — these are exactly what must not be published.
+4. **Decode inside a disposable environment.** Use a throwaway VM or container with no network and no credentials. If you have any reason to suspect the file, do not decode it at all: decline it under `malicious-or-unsafe-file` and delete it.
+5. **Produce the public derivative, never publish the original.** Re-encode to the approved format with metadata stripped (for example `magick input.png -strip output.png`, or `exiftool -all= -overwrite_original` followed by a re-encode), confirm with `exiftool` that GPS and device fields are gone, and give the output a generated filename. Verify the derivative still meets the 5 MiB limit.
+6. **Review the visible content** against every structured moderation reason: ownership and permission, hate or targeted abuse, personal or cultural privacy, dangerous instructions or outcome claims, copyright or trademark conflict, deception, and collection purpose.
+7. **Record the decision** (publish, decline, defer, or withdraw) and the reasons. Schedule deletion of the pending original and the quarantine copy for no later than 30 days after that decision, and record that the deletion happened.
+8. **Never** move the original into `public/sigils/`, never rename it into a public path, and never copy contributor email or submission notes into the public record.
+
 ## No guaranteed outcomes
 
 Sigils in the library are creative and spiritual expressions. The Living Codex and its contributors do not guarantee medical, psychological, therapeutic, energetic, financial, or other outcomes from viewing, creating, sharing, or working with a sigil. The collection is not a substitute for qualified medical, mental-health, legal, financial, or other professional care.
@@ -130,7 +145,7 @@ Upload handling must use defence in depth:
 3. Decode images within bounded resource limits. At launch, reject images wider or taller than **10,000 pixels** or exceeding **40,000,000 total pixels**.
 4. Re-encode an approved derivative for public delivery rather than serving the submitted original. Remove unnecessary EXIF and other metadata.
 5. Generate storage filenames rather than using client filenames.
-6. Keep pending originals private and outside the public webroot, or in equivalently segregated non-public storage. Restrict access and limit retention. **At policy 1.0.6 this requirement is not met by the launch submission form** — see “Submission pipeline: real limits and privacy characteristics” below.
+6. Keep pending originals private and outside the public webroot, or in equivalently segregated non-public storage. Restrict access and limit retention to the policy's target of 30 days after the moderation decision. **At policy 1.0.7 the segregation and access-control part of this requirement is not met by the launch submission form** — see “Submission pipeline: real limits and privacy characteristics” below.
 7. A later dynamic upload system must also enforce per-user and per-origin rate limits plus aggregate upload and storage quotas.
 
 These controls reduce risk together; no filename, extension, MIME value, or single scanner is sufficient by itself.
@@ -144,7 +159,7 @@ The public sigil form at `/submit/sigil/` posts to Netlify Forms. Its real behav
 - Netlify Forms does not accept JSON. The form body is sent as `multipart/form-data`; JSON or URL-encoded bodies are not recorded as submissions with files.
 - The whole request is capped at **8 MB**, and the platform times out after **30 seconds**. The project therefore imposes its own **5 MiB** per-image limit, well inside the platform cap, and bounds every free-text field so that the combined body cannot approach 8 MB.
 - **One file per file field.** The form accepts a single sigil image.
-- Netlify detects forms **at deploy time** from the built static HTML. The detection attributes and the hidden `form-name` value must exist in the prerendered output, not only after client-side hydration; the build verification checks this.
+- Netlify detects forms **at deploy time** from the built static HTML. The detection attributes and the hidden `form-name` value must exist in the prerendered output, not only after client-side hydration. This is enforced: `scripts/verify-netlify-forms.mjs` reads `dist/` after the Next.js build and fails with a non-zero exit status if any expected form lacks `data-netlify="true"`, its hidden `form-name` input, or — for the sigil form — `enctype="multipart/form-data"` and the honeypot attribute. It runs automatically as the `postbuild` step of `npm run build`, and can be run alone with `npm run verify:forms`.
 
 **Where pending files are actually stored**
 
@@ -153,6 +168,14 @@ Uploaded files are stored on Netlify's infrastructure, not in this repository an
 Consequently, **pending submissions are protected by obscurity rather than by segregated private storage**. This is a known limitation against the policy's own `pendingOriginalStorage` requirement — "private and outside the public webroot, or in equivalently segregated non-public storage" — and against the related requirement that original-file access be controlled and retention limited. The limitation is accepted only as an interim launch position, not as compliance. Moving to segregated, access-controlled storage is required before the Library can claim that the upload-security policy is fully met.
 
 Client-side extension, MIME, and size checks exist for early feedback only. They are not security controls: the client-provided filename and MIME type are untrusted, and a determined contributor can bypass them. The server-side inspection, decode, re-encode, metadata-removal, and generated-filename controls described above must still be performed during moderation before any file is published.
+
+**Metadata removal before upload**
+
+As a privacy mitigation, the form decodes the selected image in the contributor's browser, redraws it at the same pixel dimensions, and re-encodes it in the original format (PNG→PNG, JPEG→JPEG, WebP→WebP) before the request is sent. That drops EXIF, XMP, GPS, and device metadata from the copy that Netlify receives. It is best-effort, not a guarantee: it depends on the contributor's browser, and a modified client can bypass it. If the browser cannot re-encode the image, the form says so plainly and requires the contributor to tick an explicit risk-acceptance box before the original is uploaded; it never silently sends the original. The re-encoded copy is re-checked against the 5 MiB limit because PNG output can be much larger than the source.
+
+**Retention of pending originals**
+
+The policy target is deletion within **30 days of the moderation decision** (see the privacy section above). At policy 1.0.7 this deletion is a manual moderation responsibility, not an automated platform control, because Netlify Forms exposes submissions rather than a lifecycle API this static site can operate. It is therefore a real commitment that depends on the steward or a moderator acting on it, and the pipeline requirement is not fully met until deletion is automated or evidenced.
 
 ## Correction, reconsideration, withdrawal, and removal
 
@@ -164,25 +187,31 @@ For display-only works, withdrawal operates as described above. For Creative Com
 
 ## Publication checklist
 
-The canonical checklist is structured in `sigilPolicy.publicationChecklist`. Before publication, the **Library steward** must confirm:
+The canonical checklist is structured in `sigilPolicy.publicationChecklist` and has exactly **13 per-work items**. The list below mirrors those items one-for-one; if the two ever diverge, the structured policy is canonical and this document is wrong. Before publication, the **Library steward** must confirm all 13 for the work in question:
 
-- [ ] The work is explicitly intended for the Living Sigil Library.
-- [ ] The accepted policy version and effective date are stored with the submission.
-- [ ] `registry-id-assigned` — a permanent registry identifier has been assigned in order of admission and recorded with the work; identifiers are never re-sorted, reused, or reassigned.
-- [ ] Original authorship or adequate permission to submit and apply the selected licence is confirmed.
-- [ ] Any human creative contribution and AI assistance are accurately disclosed, and AI systems or tools are not listed as legal licensors or copyright owners.
-- [ ] Known provenance, cultural-rights, trademark, privacy, and other third-party concerns are resolved or documented.
-- [ ] Public attribution is explicitly **Real name**, **Soul name**, or **Anonymous**, and its spelling matches the contributor's choice.
-- [ ] A launch licence is explicitly selected, and its public label and official link, where applicable, are correct.
-- [ ] `creator-voice-recorded` — the record carries exactly the creator-voice content the creator supplied, verbatim: every creator-voice field present was supplied by the creator, none was invented, inferred, paraphrased, or composed from the creator's own phrases, omitted fields were genuinely not supplied, and a sigil with no creator-voice content awaits the creator before publication.
-- [ ] The upload is within **5 MiB**, matches an allowed extension and server-inspected PNG, JPEG, or WebP type, and satisfies decode, dimension, pixel-count, and safety limits.
-- [ ] The public derivative has a generated filename, has been decoded and re-encoded, and has unnecessary EXIF and other metadata removed.
-- [ ] Pending originals are private, access-controlled, segregated from public delivery, and subject to limited retention.
-- [ ] Private email, restricted identity information, private notes, and unnecessary metadata are absent from the public record.
-- [ ] A moderator has checked every structured moderation reason and recorded the decision.
-- [ ] The title, description, artwork context, and accompanying text do not promise guaranteed outcomes or replace professional care.
-- [ ] The final entry is accurate, accessible, respectful, and shows the selected attribution and licence.
-- [ ] The correction, reconsideration, withdrawal, and removal route is available at `/contact/`.
+- [ ] `intended-for-library` — **Collection intent confirmed.** The work is explicitly intended for the Living Sigil Library.
+- [ ] `policy-snapshot-recorded` — **Policy snapshot recorded.** The accepted policy version and effective date are stored with the submission.
+- [ ] `registry-id-assigned` — **Registry identifier assigned.** A permanent registry identifier has been assigned in order of admission and recorded with the work. Identifiers are never re-sorted, reused, or reassigned.
+- [ ] `rights-confirmed` — **Rights and permission confirmed.** Original authorship or adequate permission to submit and apply the selected licence is confirmed; any human creative contribution and AI assistance are accurately disclosed; required rights and provenance are recorded; and known third-party concerns are resolved or documented.
+- [ ] `attribution-confirmed` — **Attribution confirmed.** Real name, soul name, or Anonymous is explicitly selected and the public text matches that choice.
+- [ ] `licence-confirmed` — **Licence confirmed.** A launch licence is explicitly selected and its public label and official link, where applicable, are correct.
+- [ ] `creator-voice-recorded` — **Creator-voice content faithful.** The record carries exactly the creator-voice content the creator supplied, verbatim: every creator-voice field present was supplied by the creator, and none was invented, inferred, paraphrased, or composed from the creator's own phrases; and omitted fields were genuinely not supplied by the creator. A sigil with no creator-voice content must await the creator before publication.
+- [ ] `file-validated` — **File validated.** The upload is within 5 MiB, matches an allowed extension and server-inspected PNG, JPEG, or WebP type, and satisfies decode, dimension, pixel-count, and safety limits.
+- [ ] `public-derivative-prepared` — **Safe public derivative prepared.** The approved public asset uses a generated filename, has been decoded and re-encoded, and has unnecessary EXIF and other metadata removed.
+- [ ] `private-data-excluded` — **Private data excluded.** The public record contains no private email, restricted identity information, submission notes, or unnecessary embedded metadata.
+- [ ] `moderation-passed` — **Moderation passed.** A moderator has reviewed the work against every structured moderation reason and recorded the decision.
+- [ ] `claims-reviewed` — **Outcome claims reviewed.** The title, description, artwork context, and accompanying text do not promise guaranteed outcomes or replace qualified professional care.
+- [ ] `presentation-reviewed` — **Publication presentation reviewed.** The final entry is accurate, accessible, respectful, and includes the correction, reconsideration, and removal route.
+
+### Pipeline preconditions — **NOT currently met**
+
+The requirements below belong to the **submission pipeline as a whole**, not to any individual work. They are preconditions for the pipeline to be trustworthy and they are **not** checkboxes a work can pass. At policy 1.0.7 they are **not met** (except where noted as partial); see [“Submission pipeline: real limits and privacy characteristics”](#submission-pipeline-real-limits-and-privacy-characteristics).
+
+- **Segregated private pending storage.** Pending originals must sit in access-controlled, non-public storage segregated from public delivery. **Not met:** Netlify Forms stores them on shared hosting infrastructure and each file is reachable by direct URL, so they are protected by obscurity rather than access control.
+- **Limited retention of pending originals.** Pending originals must be deleted on a defined schedule. **Not currently met operationally:** the policy sets a 30-day post-decision target, but deletion is manual at 1.0.7, so there is no automated control or retained deletion evidence.
+- **Metadata removal before publication.** Identifying metadata must be stripped from anything delivered or retained. **Partially met:** the form now re-encodes images in the browser before upload (best-effort, bypassable), and moderation must still produce a clean public derivative. It is not enforced server-side at intake.
+
+**Passing all 13 per-work items does NOT imply that these pipeline preconditions are satisfied.** A work can pass every per-work item while the pipeline remains below the policy's standard. Publication under policy 1.0.7 is an explicitly acknowledged interim position, not compliance.
 
 ## Launch readiness
 

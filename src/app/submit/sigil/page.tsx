@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import SectionIntro from "@/components/SectionIntro";
 import SigilSubmissionForm from "@/components/SigilSubmissionForm";

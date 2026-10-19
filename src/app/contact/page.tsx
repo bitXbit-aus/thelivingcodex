@@ -232,9 +232,15 @@ export default function ContactPage() {
 
         <div className="mt-10">
           <DisclaimerBox>
-            The Living Codex respects your privacy. Your information will not be sold,
-            shared, or used for purposes outside of the Codex mission. You may request
-            deletion of your data at any time.
+            The Living Codex respects your privacy. Your information is not sold
+            and is not used for advertising. It <em>is</em> processed on our
+            behalf by our hosting provider, Netlify, which handles form
+            submissions and file storage, and submission notices may be emailed
+            to the Library steward so they can be reviewed. Your information is
+            not shared with anyone else except where required by law. You may
+            request a copy or deletion of your data at any time by writing to us
+            through this page; pending sigil originals are deleted within 30 days
+            of a moderation decision.
           </DisclaimerBox>
         </div>
       </div>

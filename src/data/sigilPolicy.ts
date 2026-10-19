@@ -1,7 +1,7 @@
 import type { ISODateString } from "./sigilPolicyHistory";
 
 export const sigilPolicy = {
-  policyVersion: "1.0.6",
+  policyVersion: "1.0.7",
   effectiveDate: "2026-10-19" satisfies ISODateString,
   submissionPolicySnapshot: {
     required: true,
@@ -148,6 +148,16 @@ export const sigilPolicy = {
         "Private and outside the public webroot, or in equivalently segregated non-public storage.",
       originalAccessControlled: true,
       originalRetentionLimited: true,
+      /**
+       * Concrete retention target. This is a real commitment, not a
+       * placeholder: pending originals are deleted within this many days of the
+       * moderation decision (publish, decline, deferral, or withdrawal).
+       * The Library steward owns and may revise this value; doing so is a
+       * policy revision and must be recorded in the policy history.
+       */
+      pendingOriginalRetentionDaysAfterDecision: 30,
+      pendingOriginalRetentionPolicy:
+        "Pending originals are deleted within 30 days of the moderation decision, or sooner once the submission is resolved. Limited copies may remain in hosting-provider backups until their ordinary deletion cycles complete.",
       laterDynamicSystemRequirements: [
         "Per-user and per-origin upload rate limits.",
         "Aggregate upload and storage quotas.",
@@ -158,6 +168,8 @@ export const sigilPolicy = {
     contributorEmail: {
       classification: "private",
       mayPublish: false,
+      storageDisclosure:
+        "The address is also stored in the hosting provider's form submission records and may be emailed to the Library steward for review. Neither is publication.",
       allowedUses: [
         "Submission follow-up",
         "Collection administration",

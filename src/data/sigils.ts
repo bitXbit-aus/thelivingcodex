@@ -1363,6 +1363,8 @@ export interface SigilLaunchReadiness {
   readonly additionalWorksRequiredMaximum: number;
   readonly meetsMinimum: boolean;
   readonly isReadyForLaunch: boolean;
+  readonly exceedsLaunchWindow: boolean;
+  readonly readinessReason: string;
 }
 
 function isApprovedRightsClearedSeed(sigil: Sigil): boolean {
@@ -1383,6 +1385,16 @@ function isApprovedRightsClearedSeed(sigil: Sigil): boolean {
  * durable launch rule in `sigilPolicy.launchReadiness`. Policy owns the rule;
  * the catalogue owns the approved-seed count, so adding an approved seed never
  * requires a policy revision.
+ *
+ * The 3–6 range is a LAUNCH-WINDOW rule: it answers "how many approved,
+ * rights-cleared seed works does launch require". Readiness is therefore a
+ * FLOOR at `minimum`, not a band. The former predicate also required
+ * `count <= maximum`, which re-evaluated the launch window against the live
+ * catalogue forever: once the range was full, any legitimate post-launch
+ * addition silently flipped readiness back to false. Post-launch growth is
+ * intended, so the cap is not part of the predicate. `maximum` is retained as
+ * planning metadata, and `exceedsLaunchWindow` reports the overflow
+ * informationally without affecting readiness.
  */
 export function getSigilLaunchReadiness(
   catalogue: readonly Sigil[] = sigils,
@@ -1392,6 +1404,16 @@ export function getSigilLaunchReadiness(
   const approvedSeedWorksCount = catalogue.filter(
     isApprovedRightsClearedSeed,
   ).length;
+  const exceedsLaunchWindow = approvedSeedWorksCount > maximum;
+
+  const readinessReason =
+    approvedSeedWorksCount < minimum
+      ? `Below the launch minimum: ${approvedSeedWorksCount} of the ${minimum} approved, rights-cleared seed works required are catalogued; ${minimum - approvedSeedWorksCount} more ${minimum - approvedSeedWorksCount === 1 ? "work is" : "works are"} required.`
+      : approvedSeedWorksCount < maximum
+        ? `Within the launch window: ${approvedSeedWorksCount} approved, rights-cleared seed works are catalogued; launch requires ${minimum}–${maximum}.`
+        : approvedSeedWorksCount === maximum
+          ? `At the launch-window maximum: ${approvedSeedWorksCount} approved, rights-cleared seed works are catalogued; launch requires ${minimum}–${maximum}.`
+          : `Beyond the launch window: ${approvedSeedWorksCount} approved, rights-cleared seed works are catalogued, above the ${maximum}-work launch window; this is intended post-launch growth and does not affect readiness.`;
 
   return {
     approvedSeedWorksCount,
@@ -1406,7 +1428,8 @@ export function getSigilLaunchReadiness(
       maximum - approvedSeedWorksCount,
     ),
     meetsMinimum: approvedSeedWorksCount >= minimum,
-    isReadyForLaunch:
-      approvedSeedWorksCount >= minimum && approvedSeedWorksCount <= maximum,
+    isReadyForLaunch: approvedSeedWorksCount >= minimum,
+    exceedsLaunchWindow,
+    readinessReason,
   };
 }

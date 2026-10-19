@@ -69,4 +69,15 @@ Policy 1.0.4 establishes permanent registry identifiers for the Living Sigil Lib
 - Canonical module: `src/data/sigilPolicy.ts`
 - Governance document: `docs/sigil-governance.md`
 
+### Version 1.0.5
+
+Policy 1.0.5 makes launch readiness a floor rather than a moving-window gate. The 3–6 approved, rights-cleared seed-work range remains the launch-window rule and is retained as planning metadata, but `isReadyForLaunch` is now derived only from the minimum: once at least 3 approved, rights-cleared seed works are catalogued the Library is ready for launch, and later works no longer flip it back to false. The previous predicate also required the count to stay at or below the maximum, which re-evaluated the launch window against the live catalogue forever and marked the Library unready as soon as legitimate post-launch growth took it past 6 while `additionalWorksRequiredMaximum` stayed clamped at 0 and could not show the overflow. The readiness helper now also reports `exceedsLaunchWindow` (informational, never affecting readiness) and a truthful `readinessReason` describing whether the catalogue is below the minimum, within the launch window, at its maximum, or beyond it. Policy still owns the durable rule and the catalogue owns the count, so approving a new work still never requires a policy revision. Record-level `governance.policyAcceptance` values are unchanged; each work stays pinned to the policy in force when it was accepted.
+
+- Version: `1.0.5`
+- Effective date: `2026-10-19`
+- Collection: `Living Sigil Library`
+- Source commit: `PENDING_SOURCE_COMMIT_1_0_5`
+- Canonical module: `src/data/sigilPolicy.ts`
+- Governance document: `docs/sigil-governance.md`
+
 All entries are immutable. Future revisions must append another snapshot without editing or removing any retained entry.

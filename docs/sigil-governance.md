@@ -4,7 +4,7 @@
 
 The Living Sigil Library is a curated public collection of contributed sigil artwork. It holds each work with care, preserves the contributor's stated attribution and licence choice, and presents spiritual expression without guaranteeing results.
 
-The canonical implementation policy is the structured `sigilPolicy` object in `src/data/sigilPolicy.ts`. This document explains that policy in readable form. Policy version **1.0.4** is effective **2026-10-19**. Future submission records must persist the accepted policy version and effective date so the applicable terms remain identifiable. The append-only snapshot registry and revision procedure are documented in [`docs/sigil-policy-history.md`](sigil-policy-history.md); historical entries must never be edited or removed.
+The canonical implementation policy is the structured `sigilPolicy` object in `src/data/sigilPolicy.ts`. This document explains that policy in readable form. Policy version **1.0.5** is effective **2026-10-19**. Future submission records must persist the accepted policy version and effective date so the applicable terms remain identifiable. The append-only snapshot registry and revision procedure are documented in [`docs/sigil-policy-history.md`](sigil-policy-history.md); historical entries must never be edited or removed.
 
 ## Submission is not publication
 
@@ -167,7 +167,9 @@ The canonical checklist is structured in `sigilPolicy.publicationChecklist`. Bef
 
 ## Launch readiness
 
-The **Library steward** is responsible for confirming launch readiness. Policy defines only the durable rule: launch requires **3–6 approved, rights-cleared seed works**. The mutable status is derived from the sigil catalogue rather than stored in the policy, so approving a new seed never forces a policy revision. The approved rights-cleared seed count, the number of works still required to reach the 3–6 range, and the readiness state are all computed from the catalogue by the derived readiness helper in `src/data/sigils.ts` together with this rule.
+The **Library steward** is responsible for confirming launch readiness. Policy defines only the durable rule. The **3–6 approved, rights-cleared seed works** range describes the **launch window**: how many approved, rights-cleared seed works launch requires. Its maximum is **planning metadata**, not a permanent cap. Readiness is a **floor** at the minimum: once at least 3 approved, rights-cleared seed works are catalogued, the Library is ready for launch, and later works never mark it unready again. Works beyond the launch window are intended post-launch growth; the readiness helper reports that state as informational only and does not let it affect readiness.
+
+The mutable status is derived from the sigil catalogue rather than stored in the policy, so approving a new work never forces a policy revision. The approved rights-cleared seed count, the number of works still required to reach the minimum, whether the count exceeds the launch window, the readiness state, and a human-readable readiness reason are all computed from the catalogue by the derived readiness helper in `src/data/sigils.ts` together with this rule.
 
 Unowned or generic generated placeholders and third-party works without confirmed rights must not be represented as approved seed contributions. Rights-cleared, steward-directed AI-assisted works may qualify under the eligibility requirements above. Every seed work must pass the same rights, attribution, licence, privacy, security, and moderation checks as later submissions.
 

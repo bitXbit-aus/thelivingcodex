@@ -1,7 +1,7 @@
 import type { ISODateString } from "./sigilPolicyHistory";
 
 export const sigilPolicy = {
-  policyVersion: "1.0.4",
+  policyVersion: "1.0.5",
   effectiveDate: "2026-10-19" satisfies ISODateString,
   submissionPolicySnapshot: {
     required: true,
@@ -339,7 +339,7 @@ export const sigilPolicy = {
     responsibleRole: "Library steward",
     rightsClearedSeedWorksRequired: { minimum: 3, maximum: 6 },
     readinessDerivation:
-      "This policy stores only the durable launch rule: launch requires the 3–6 approved, rights-cleared seed work range. The mutable status — the approved rights-cleared seed count, the remaining works required to reach that range, and the readiness state — is derived at runtime from the sigil catalogue together with this rule, so approving a new seed never requires a policy revision.",
+      "This policy stores only the durable launch rule. The 3–6 range describes the launch window: how many approved, rights-cleared seed works launch requires. Its maximum is planning metadata, not a permanent cap — readiness is a floor at the minimum, so once at least 3 approved, rights-cleared seed works are catalogued the Library is ready for launch, and later works never mark it unready again. The mutable status — the approved rights-cleared seed count, the remaining works required to reach the minimum, whether the count exceeds the launch window, and the readiness state — is derived at runtime from the sigil catalogue together with this rule, so approving a new work never requires a policy revision.",
   },
 } as const;
 

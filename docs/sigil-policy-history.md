@@ -97,4 +97,15 @@ Policy 1.0.6 records the Library steward's direction to open public sigil submis
 - Canonical module: `src/data/sigilPolicy.ts`
 - Governance document: `docs/sigil-governance.md`
 
+### Version 1.0.7
+
+Policy 1.0.7 sets a concrete retention target for pending originals: they are deleted within **30 days of the moderation decision** (publish, decline, deferral, or withdrawal), with limited provider-backup copies allowed to expire through ordinary deletion cycles. It discloses that contributor email is also stored in the hosting provider's form submission records and may be emailed to the steward, and that pending image storage remains provider-hosted and reachable by direct URL. The governance document's publication checklist is reconciled to the 13 canonical per-work items, with segregated private pending storage, limited retention, and intake metadata removal moved into an explicitly unmet pipeline-preconditions subsection; passing the 13 per-work items does not imply those preconditions are satisfied. It also documents best-effort browser-side metadata removal before upload and its limits, and adds a moderation runbook for safe handling of untrusted submitted images. The qualified-review override recorded in 1.0.6 is unchanged: the review remains incomplete.
+
+- Version: `1.0.7`
+- Effective date: `2026-10-19`
+- Collection: `Living Sigil Library`
+- Source commit: `2dd38c74054994783d560c04e93e226195d98c03`
+- Canonical module: `src/data/sigilPolicy.ts`
+- Governance document: `docs/sigil-governance.md`
+
 All entries are immutable. Future revisions must append another snapshot without editing or removing any retained entry.

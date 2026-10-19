@@ -76,7 +76,7 @@ Policy 1.0.5 makes launch readiness a floor rather than a moving-window gate. Th
 - Version: `1.0.5`
 - Effective date: `2026-10-19`
 - Collection: `Living Sigil Library`
-- Source commit: `PENDING_SOURCE_COMMIT_1_0_5`
+- Source commit: `735bf6b4613d17396866e2b6320b524aa3d5ed68`
 - Canonical module: `src/data/sigilPolicy.ts`
 - Governance document: `docs/sigil-governance.md`
 

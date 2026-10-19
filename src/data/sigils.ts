@@ -1138,7 +1138,7 @@ export const sigils = [
       },
     },
     createdDate: "2026-04-27",
-    series: "The Living Codex — Sacred Heart / Sacred Union",
+    series: "The Living Codex — Sacred Heart",
     licenceId: "cc-by-4.0",
     previewPath: "/sigils/the-ascendant-heart-preview.webp",
     downloadPath: "/sigils/the-ascendant-heart-download.png",

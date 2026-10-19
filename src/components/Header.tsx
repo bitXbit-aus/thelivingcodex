@@ -18,6 +18,7 @@ const navLinks = [
   { href: "/farming/", label: "Farming" },
   { href: "/about/", label: "About" },
   { href: "/contact/", label: "Contact" },
+  { href: "/support/", label: "Support" },
 ];
 
 export default function Header() {

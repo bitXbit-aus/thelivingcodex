@@ -53,7 +53,7 @@ export default function Footer() {
                 { href: "/submit/sigil/", label: "Submit a Sigil" },
                 { href: "/nodes/", label: "Offer a Node Activation" },
                 { href: "/contact/", label: "Collaborate" },
-                { href: "/contact/", label: "Support the Codex" },
+                { href: "/support/", label: "Support the Codex" },
               ].map((link) => (
                 <li key={link.label}>
                   <Link
@@ -92,7 +92,18 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 border-t border-[rgba(212,168,83,0.1)] pt-6 text-center">
-          <p className="text-[10px] tracking-widest uppercase text-[#7a7a8a]">
+          <p className="text-xs leading-relaxed text-[#7a7a8a]">
+            The Codex is open to everyone. If you would like to support it, you
+            can —{" "}
+            <Link
+              href="/support/"
+              className="text-[#d4a853] underline underline-offset-2 transition-colors hover:text-[#f5f0e8]"
+            >
+              at any time, optionally
+            </Link>
+            .
+          </p>
+          <p className="mt-4 text-[10px] tracking-widest uppercase text-[#7a7a8a]">
             The Living Codex — A Remembrance in Motion
           </p>
         </div>

@@ -17,6 +17,7 @@ import {
   BookOpen,
   Grid3X3,
   Feather,
+  Heart,
 } from "lucide-react";
 
 export default function PortalPage() {
@@ -289,7 +290,7 @@ export default function PortalPage() {
             subtitle="Quick gateways into the deeper chambers of the archive."
           />
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
                 icon: BookOpen,
@@ -320,6 +321,12 @@ export default function PortalPage() {
                 title: "Discover Technologies",
                 desc: "Sacred tech for modern stewards",
                 href: "/technologies/",
+              },
+              {
+                icon: Heart,
+                title: "Support the Codex",
+                desc: "Optional, whenever you choose",
+                href: "/support/",
               },
             ].map((action, i) => (
               <motion.div

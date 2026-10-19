@@ -80,4 +80,15 @@ Policy 1.0.5 makes launch readiness a floor rather than a moving-window gate. Th
 - Canonical module: `src/data/sigilPolicy.ts`
 - Governance document: `docs/sigil-governance.md`
 
+### Version 1.0.6
+
+Policy 1.0.6 records the Library steward's direction to open public sigil submissions at `/submit/sigil/` before the qualified legal review required by `legal.qualifiedReviewRequiredBeforePublicFormLaunch` had been completed. The requirement remains `true` and is not waived in fact: the policy adds an explicit `legal.stewardOverrides.publicSigilSubmissionLaunch` record with the decision, date, scope, the requirement overridden, and an acknowledgement that the qualified review was **not** completed, plus a truthful prose notice. The revision also documents the submission pipeline's real constraints and privacy characteristics in `docs/sigil-governance.md`, including Netlify-hosted form storage, the 8 MB whole-request cap, the 30-second timeout, one file per field, deploy-time form detection, direct-URL reachability of uploaded files after form deletion (24-hour caching), and the consequent fact that pending submissions are protected by obscurity rather than segregated private storage. No existing sigil record's `governance.policyAcceptance` changes; earlier snapshots remain untouched.
+
+- Version: `1.0.6`
+- Effective date: `2026-10-19`
+- Collection: `Living Sigil Library`
+- Source commit: `0000000000000000000000000000000000000000`
+- Canonical module: `src/data/sigilPolicy.ts`
+- Governance document: `docs/sigil-governance.md`
+
 All entries are immutable. Future revisions must append another snapshot without editing or removing any retained entry.

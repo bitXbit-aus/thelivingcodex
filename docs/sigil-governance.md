@@ -4,7 +4,7 @@
 
 The Living Sigil Library is a curated public collection of contributed sigil artwork. It holds each work with care, preserves the contributor's stated attribution and licence choice, and presents spiritual expression without guaranteeing results.
 
-The canonical implementation policy is the structured `sigilPolicy` object in `src/data/sigilPolicy.ts`. This document explains that policy in readable form. Policy version **1.0.5** is effective **2026-10-19**. Future submission records must persist the accepted policy version and effective date so the applicable terms remain identifiable. The append-only snapshot registry and revision procedure are documented in [`docs/sigil-policy-history.md`](sigil-policy-history.md); historical entries must never be edited or removed.
+The canonical implementation policy is the structured `sigilPolicy` object in `src/data/sigilPolicy.ts`. This document explains that policy in readable form. Policy version **1.0.6** is effective **2026-10-19**. Future submission records must persist the accepted policy version and effective date so the applicable terms remain identifiable. Policy 1.0.6 records an explicit steward override opening public sigil submissions before the qualified legal review required by this policy had been completed; it does not record that review as done. The append-only snapshot registry and revision procedure are documented in [`docs/sigil-policy-history.md`](sigil-policy-history.md); historical entries must never be edited or removed.
 
 ## Submission is not publication
 
@@ -130,10 +130,29 @@ Upload handling must use defence in depth:
 3. Decode images within bounded resource limits. At launch, reject images wider or taller than **10,000 pixels** or exceeding **40,000,000 total pixels**.
 4. Re-encode an approved derivative for public delivery rather than serving the submitted original. Remove unnecessary EXIF and other metadata.
 5. Generate storage filenames rather than using client filenames.
-6. Keep pending originals private and outside the public webroot, or in equivalently segregated non-public storage. Restrict access and limit retention.
+6. Keep pending originals private and outside the public webroot, or in equivalently segregated non-public storage. Restrict access and limit retention. **At policy 1.0.6 this requirement is not met by the launch submission form** — see “Submission pipeline: real limits and privacy characteristics” below.
 7. A later dynamic upload system must also enforce per-user and per-origin rate limits plus aggregate upload and storage quotas.
 
 These controls reduce risk together; no filename, extension, MIME value, or single scanner is sufficient by itself.
+
+## Submission pipeline: real limits and privacy characteristics
+
+The public sigil form at `/submit/sigil/` posts to Netlify Forms. Its real behaviour is narrower and weaker than the policy's ideal, and this section records the position truthfully so neither contributors nor moderators are misled.
+
+**Transport and limits**
+
+- Netlify Forms does not accept JSON. The form body is sent as `multipart/form-data`; JSON or URL-encoded bodies are not recorded as submissions with files.
+- The whole request is capped at **8 MB**, and the platform times out after **30 seconds**. The project therefore imposes its own **5 MiB** per-image limit, well inside the platform cap, and bounds every free-text field so that the combined body cannot approach 8 MB.
+- **One file per file field.** The form accepts a single sigil image.
+- Netlify detects forms **at deploy time** from the built static HTML. The detection attributes and the hidden `form-name` value must exist in the prerendered output, not only after client-side hydration; the build verification checks this.
+
+**Where pending files are actually stored**
+
+Uploaded files are stored on Netlify's infrastructure, not in this repository and not in `public/sigils/`. Files remain reachable by direct URL even after the form is deleted from the site, subject to Netlify's caching behaviour (up to 24 hours). There is no access control on that URL.
+
+Consequently, **pending submissions are protected by obscurity rather than by segregated private storage**. This is a known limitation against the policy's own `pendingOriginalStorage` requirement — "private and outside the public webroot, or in equivalently segregated non-public storage" — and against the related requirement that original-file access be controlled and retention limited. The limitation is accepted only as an interim launch position, not as compliance. Moving to segregated, access-controlled storage is required before the Library can claim that the upload-security policy is fully met.
+
+Client-side extension, MIME, and size checks exist for early feedback only. They are not security controls: the client-provided filename and MIME type are untrusted, and a determined contributor can bypass them. The server-side inspection, decode, re-encode, metadata-removal, and generated-filename controls described above must still be performed during moderation before any file is published.
 
 ## Correction, reconsideration, withdrawal, and removal
 
@@ -182,4 +201,4 @@ Official references:
 - Creative Commons licensing guidance: https://creativecommons.org/share-your-work/cclicenses/
 - OWASP File Upload Cheat Sheet: https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html
 
-This policy language should receive qualified legal review before a public submission form launches. Nothing in this document is legal advice.
+This policy language requires qualified legal review before a public submission form launches. **That review has not been completed.** Public sigil submissions were nonetheless opened on 2026-10-19 under the Library steward's direction, recorded as `legal.stewardOverrides.publicSigilSubmissionLaunch` in the canonical policy. The requirement `qualifiedReviewRequiredBeforePublicFormLaunch` therefore remains `true`; opening the form did not satisfy it. Contributors should obtain their own independent legal advice before submitting a work or relying on a licence summary. Nothing in this document is legal advice.

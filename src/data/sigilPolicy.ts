@@ -1,7 +1,7 @@
 import type { ISODateString } from "./sigilPolicyHistory";
 
 export const sigilPolicy = {
-  policyVersion: "1.0.5",
+  policyVersion: "1.0.6",
   effectiveDate: "2026-10-19" satisfies ISODateString,
   submissionPolicySnapshot: {
     required: true,
@@ -80,6 +80,22 @@ export const sigilPolicy = {
     notice:
       "Licence summaries are informational only. Contributors and visitors should read the official terms and obtain qualified legal advice when needed.",
     qualifiedReviewRequiredBeforePublicFormLaunch: true,
+    stewardOverrides: {
+      publicSigilSubmissionLaunch: {
+        decision:
+          "Open public sigil submissions through /submit/sigil/ immediately.",
+        decidedBy: "Library steward",
+        decisionDate: "2026-10-19",
+        scope: "Public sigil submission form",
+        requirementOverridden:
+          "qualifiedReviewRequiredBeforePublicFormLaunch",
+        qualifiedReviewCompleted: false,
+        acknowledgement:
+          "The qualified review required before a public submission form launches has NOT been completed. Opening the form does not satisfy, waive in fact, or retroactively complete that requirement.",
+      },
+    },
+    publicSubmissionLaunchNotice:
+      "Public sigil submissions were opened on 2026-10-19 under the direction of the Library steward, before the qualified legal review required by this policy had been completed. This record is an explicit steward override, not a finding that the review occurred. Contributors should obtain their own independent legal advice before submitting a work or relying on a licence summary.",
     creativeCommonsGuidanceUrl:
       "https://creativecommons.org/share-your-work/cclicenses/",
   },

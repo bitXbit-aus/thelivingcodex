@@ -27,6 +27,7 @@ export default function Footer() {
               {[
                 { href: "/portal/", label: "Remembrance Portal" },
                 { href: "/scrolls/", label: "Scroll Archive" },
+                { href: "/sigils/", label: "Sigil Library" },
                 { href: "/nodes/", label: "Node Constellation" },
                 { href: "/technologies/", label: "Sacred Technologies" },
               ].map((link) => (

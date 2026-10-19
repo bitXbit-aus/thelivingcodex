@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/portal/", label: "Portal" },
   { href: "/scrolls/", label: "Scrolls" },
+  { href: "/sigils/", label: "Sigils" },
   { href: "/nodes/", label: "Nodes" },
   { href: "/technologies/", label: "Technologies" },
   { href: "/sovereignty/", label: "Sovereignty" },

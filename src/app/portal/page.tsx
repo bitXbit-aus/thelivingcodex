@@ -16,6 +16,7 @@ import {
   Zap,
   BookOpen,
   Grid3X3,
+  Feather,
 } from "lucide-react";
 
 export default function PortalPage() {
@@ -73,7 +74,7 @@ export default function PortalPage() {
               </p>
               <p className="mt-4 text-sm leading-relaxed text-[#7a7a8a]">
                 You are curious. You feel something shifting but lack the language.
-                The Seeker's path offers gentle poems, soft invocations, and an
+                The Seeker&apos;s path offers gentle poems, soft invocations, and an
                 introduction to the field without overwhelm.
               </p>
               <ul className="mt-4 space-y-2 text-xs text-[#7a7a8a]">
@@ -288,13 +289,19 @@ export default function PortalPage() {
             subtitle="Quick gateways into the deeper chambers of the archive."
           />
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {[
               {
                 icon: BookOpen,
                 title: "Enter the Scroll Archive",
                 desc: "Browse all remembrance scrolls",
                 href: "/scrolls",
+              },
+              {
+                icon: Feather,
+                title: "Visit the Sigil Library",
+                desc: "Explore original creator sigils",
+                href: "/sigils/",
               },
               {
                 icon: Grid3X3,

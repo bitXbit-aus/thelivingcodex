@@ -50,11 +50,13 @@ Public records must exclude private email addresses, restricted identity informa
 
 Every work admitted to the Living Sigil Library receives a permanent registry identifier. The identifier's purpose is citation: it names the work itself, independent of its title, its slug, and its position in the catalogue, so a reference remains valid even if any of those change.
 
-The format is the prefix `TLC-SIG-` followed by four zero-padded digits, for example `TLC-SIG-0001`. The canonical prefix and digit count are stored in `sigilPolicy.registry`, and the identifier format is enforced by the `SigilRegistryId` type in `src/data/sigils.ts`, so a malformed identifier is a compile error.
+The format is the prefix `TLC-SIG-` followed by four zero-padded digits, for example `TLC-SIG-0001`. The prefix is stored in `sigilPolicy.registry.idPrefix`, and the `SigilRegistryId` type in `src/data/sigils.ts` derives from it, so a malformed identifier is a compile error. The digit count is declared in `sigilPolicy.registry.idDigits` for documentation, but TypeScript cannot derive a digit count from a numeric value — the type repeats the count literally, so `idDigits` and `SigilRegistryId` must be changed together.
 
 Identifiers are assigned in **order of admission to the Library** — the order in which works are accepted into the collection. Creation date is deliberately not used as an ordering key: the seed works currently share a single standing creation date, so creation date cannot establish an order. The current seed mapping begins `TLC-SIG-0001` Heart Flame — Sacred Union, `TLC-SIG-0002` The Sovereign Heart, `TLC-SIG-0003` The Mycelial Witness, `TLC-SIG-0004` The Eye of the Living Mycelium, and `TLC-SIG-0005` The Radiant Trinity.
 
 An identifier is immutable. It is assigned once and is never changed, re-sorted, or reused; rearranging the catalogue does not renumber anything. Uniqueness is enforced at build time by a guard in `src/data/sigils.ts` that aborts the build if two works share an identifier, because the type system alone cannot prove array-level uniqueness. A withdrawn or removed work keeps its identifier reserved, and retired identifiers are never reissued to another work.
+
+Because retired identifiers are never reissued, the sequence may contain legitimate gaps. A gap is not a defect and must not be backfilled to make the numbering appear contiguous. The build-time guard enforces uniqueness only; contiguity and admission order are governed by this document rather than by code.
 
 The identifier forms part of the public attribution text, appearing in parentheses immediately after the title, so it travels with every copied attribution.
 

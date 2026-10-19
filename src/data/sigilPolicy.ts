@@ -237,6 +237,12 @@ export const sigilPolicy = {
   },
   registry: {
     idPrefix: "TLC-SIG-",
+    /**
+     * Declared for documentation. TypeScript cannot derive a digit count from a
+     * numeric value, so `SigilRegistryId` in `./sigils.ts` repeats the same
+     * count literally. Change `idDigits` and that type together, or the
+     * documented format and the enforced format will silently diverge.
+     */
     idDigits: 4,
     description:
       "A permanent registry identifier for a work in the Living Sigil Library. It is independent of the work's title, slug, and array position, so it remains a stable citation even if any of those change.",

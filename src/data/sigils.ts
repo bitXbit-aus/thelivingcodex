@@ -15,7 +15,11 @@ import {
 /**
  * A permanent registry identifier: the prefix declared by
  * `sigilPolicy.registry.idPrefix` followed by four digits. Deriving the prefix
- * from the policy keeps this type and the policy in lockstep.
+ * from the policy keeps the prefix and the policy in lockstep.
+ *
+ * The digit count is repeated literally here because TypeScript cannot derive a
+ * digit count from a numeric value. `sigilPolicy.registry.idDigits` documents
+ * the same count for readers; if either changes, both must change together.
  */
 export type SigilRegistryId = `${typeof sigilPolicy.registry.idPrefix}${Digit}${Digit}${Digit}${Digit}`;
 

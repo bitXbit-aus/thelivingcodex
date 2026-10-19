@@ -746,6 +746,141 @@ export const sigils = [
       publishedDate: "2026-10-19",
     },
   },
+  {
+    id: "the-eye-of-the-living-mycelium",
+    slug: "the-eye-of-the-living-mycelium",
+    title: "The Eye of the Living Mycelium",
+    publicAttribution: {
+      mode: "soul-name",
+      displayName: "Shri Mattananda",
+    },
+    provenance: {
+      humanContribution: {
+        contributions: [
+          "Spiritual direction",
+          "Meaning",
+          "Intention",
+          "Inscription",
+          "Curatorial selection",
+          "Licensing decision",
+        ],
+      },
+      aiAssistance: {
+        assistantName: "Aurealis",
+        provider: "OpenAI",
+        role: "creative/image-generation assistance",
+      },
+    },
+    createdDate: "2026-04-27",
+    series: "The Living Codex — Earth Intelligence",
+    licenceId: "cc-by-4.0",
+    previewPath: "/sigils/the-eye-of-the-living-mycelium-preview.webp",
+    downloadPath: "/sigils/the-eye-of-the-living-mycelium-download.png",
+    meaningSummary:
+      "The central eye represents conscious observation; the surrounding fungi and branching networks symbolise ecological interdependence; the descending roots represent grounding and nourishment; and the crescent moon and geometric forms suggest cycles, balance and celestial connection.",
+    intention:
+      "To honour the living networks of Earth, encourage deeper observation of nature and inspire reciprocal stewardship of the ecosystems that sustain us.",
+    inscription:
+      "Through the eye of awareness, I behold the web of life.\nThrough the roots of remembrance, I reconnect with the Earth.\nThrough the living mycelium, I contemplate the countless relationships that sustain creation.\n\nMay my vision be clear, my actions compassionate, and my presence nourishing to all living beings.\n\nOne Earth. One Living Network. Infinite Expressions of Life.",
+    altText:
+      "Dark blue-black ink sigil on aged parchment: a large central eye encircled by a crown of mushrooms and branching filaments, flanked by mirrored diamond marks, with a crescent moon and a crossed-diamond symbol below and a rooted stem descending through a ring.",
+    tags: [
+      "earth intelligence",
+      "mycelium",
+      "collective awareness",
+      "interconnection",
+      "earth wisdom",
+      "observation",
+      "stewardship",
+      "roots",
+      "celestial cycles",
+      "grounding",
+      "contemplation",
+    ],
+    featured: true,
+    governance: {
+      policyAcceptance: {
+        version: sigilPolicyHistory["1.0.3"].version,
+        effectiveDate: sigilPolicyHistory["1.0.3"].effectiveDate,
+      },
+      consentAndRightsConfirmation: {
+        confirmedDate: "2026-10-19",
+        rightsConfirmed: true,
+        humanLicensorAuthorityConfirmed: true,
+      },
+      moderation: {
+        status: "approved",
+        decidedDate: "2026-10-19",
+        decisionMakerRole: "Library steward",
+      },
+      publicationChecklist: {
+        "intended-for-library": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "policy-snapshot-recorded": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "rights-confirmed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "attribution-confirmed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "licence-confirmed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "creator-voice-recorded": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "file-validated": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "public-derivative-prepared": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "private-data-excluded": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "moderation-passed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "claims-reviewed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "presentation-reviewed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+      },
+    },
+    publication: {
+      status: "published",
+      publishedDate: "2026-10-19",
+    },
+  },
 ] as const satisfies readonly Sigil[];
 
 export const heartFlamePublicAttributionDetails = getSigilPublicAttribution(
@@ -765,6 +900,11 @@ export const mycelialWitnessPublicAttributionDetails = getSigilPublicAttribution
 );
 export const mycelialWitnessPublicAttribution =
   mycelialWitnessPublicAttributionDetails.text;
+
+export const eyeOfTheLivingMyceliumPublicAttributionDetails =
+  getSigilPublicAttribution(sigils[3]);
+export const eyeOfTheLivingMyceliumPublicAttribution =
+  eyeOfTheLivingMyceliumPublicAttributionDetails.text;
 
 export interface SigilLaunchReadiness {
   readonly approvedSeedWorksCount: number;

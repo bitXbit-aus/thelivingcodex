@@ -267,7 +267,7 @@ export const sigils = [
       },
     },
     createdDate: "2026-04-27",
-    series: "Sacred Union",
+    series: "The Living Codex — Sacred Union",
     licenceId: "cc-by-4.0",
     previewPath: "/sigils/heart-flame-sacred-union-preview.webp",
     downloadPath: "/sigils/heart-flame-sacred-union-download.png",

@@ -1110,6 +1110,193 @@ export const sigils = [
       publishedDate: "2026-10-19",
     },
   },
+  {
+    id: "the-ascendant-heart",
+    slug: "the-ascendant-heart",
+    registryId: "TLC-SIG-0006",
+    title: "The Ascendant Heart",
+    subtitle: "Sigil of Sacred Ascent, Eternal Love and Lunar Balance",
+    publicAttribution: {
+      mode: "soul-name",
+      displayName: "Shri Mattananda",
+    },
+    provenance: {
+      humanContribution: {
+        contributions: [
+          "Spiritual direction",
+          "Symbolism",
+          "Intention",
+          "Inscription",
+          "Curatorial selection",
+          "Licensing decision",
+        ],
+      },
+      aiAssistance: {
+        assistantName: "Aurealis",
+        provider: "OpenAI",
+        role: "creative/image-generation assistance",
+      },
+    },
+    createdDate: "2026-04-27",
+    series: "The Living Codex — Sacred Heart / Sacred Union",
+    licenceId: "cc-by-4.0",
+    previewPath: "/sigils/the-ascendant-heart-preview.webp",
+    downloadPath: "/sigils/the-ascendant-heart-download.png",
+    meaningSummary:
+      "This sigil expresses the movement of the heart toward higher purpose while remaining held within a protective and cyclical field of consciousness. Taken together, the sigil suggests: Love that is eternal, guided, protected, and brought into balance through intuition and conscious evolution.",
+    symbolInterpretations: [
+      {
+        symbol: "The central heart",
+        meaning:
+          "The seat of unconditional love, sincerity and soul truth.",
+      },
+      {
+        symbol: "The upward arrow",
+        meaning:
+          "Direction, purpose, aspiration and the rise of consciousness toward higher alignment.",
+      },
+      {
+        symbol: "The infinity loop above the heart",
+        meaning:
+          "Eternal love, continuity, soul remembrance and the timeless nature of true connection.",
+      },
+      {
+        symbol: "The flanking spirals",
+        meaning:
+          "Balanced currents of masculine and feminine energy, or the inner and outer movements of expansion and return.",
+      },
+      {
+        symbol: "The crescent moon below",
+        meaning:
+          "Receptivity, intuition, emotional wisdom, sacred stillness and the feminine mystery.",
+      },
+      {
+        symbol: "The lower dot beneath the crescent",
+        meaning:
+          "A seed-point of incarnation, grounding, or the spark of consciousness anchored into the material world.",
+      },
+      {
+        symbol: "The enclosing circle",
+        meaning:
+          "Protection, wholeness, consecrated space and the unity within which all these energies are held.",
+      },
+    ],
+    intention:
+      "To anchor the heart in sacred purpose, harmonise eternal love with grounded embodiment, and support the ascent of consciousness through balance, devotion and inner knowing. This sigil would be beautiful for: heart-based meditation, sacred union work, moon rituals, personal empowerment, ceremonial anchoring of purpose and devotion.",
+    inscription:
+      "Within the circle of wholeness, the heart remembers its path.\nLove rises.\nConsciousness ascends.\nWhat is eternal reveals itself through devotion, balance and trust.\nThe moon below teaches receptivity, the arrow above teaches direction, and the heart at centre teaches truth.\nMay I rise without losing tenderness.\nMay I love without losing sovereignty.\nMay I walk the sacred path with purpose, humility and grace.\n\nOne Heart. One Path. Infinite Becoming.",
+    altText:
+      "Silver line-art sigil on a black textured background: within a large thin circle, an upward arrow above an infinity loop, a central heart flanked by symmetrical curling flourishes, a crescent moon opening upward beneath it, and a small dot near the base.",
+    tags: [
+      "ascendant heart",
+      "sacred ascent",
+      "eternal love",
+      "lunar balance",
+      "infinity",
+      "crescent moon",
+      "receptivity",
+      "intuition",
+      "devotion",
+      "sacred union",
+      "grounding",
+      "heart-centred",
+    ],
+    usageSuggestions: [
+      "heart-based meditation",
+      "sacred union work",
+      "moon rituals",
+      "personal empowerment",
+      "ceremonial anchoring of purpose and devotion",
+    ],
+    featured: true,
+    governance: {
+      policyAcceptance: {
+        version: sigilPolicyHistory["1.0.4"].version,
+        effectiveDate: sigilPolicyHistory["1.0.4"].effectiveDate,
+      },
+      consentAndRightsConfirmation: {
+        confirmedDate: "2026-10-19",
+        rightsConfirmed: true,
+        humanLicensorAuthorityConfirmed: true,
+      },
+      moderation: {
+        status: "approved",
+        decidedDate: "2026-10-19",
+        decisionMakerRole: "Library steward",
+      },
+      publicationChecklist: {
+        "intended-for-library": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "policy-snapshot-recorded": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "registry-id-assigned": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "rights-confirmed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "attribution-confirmed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "licence-confirmed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "creator-voice-recorded": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "file-validated": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "public-derivative-prepared": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "private-data-excluded": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "moderation-passed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "claims-reviewed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "presentation-reviewed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+      },
+    },
+    publication: {
+      status: "published",
+      publishedDate: "2026-10-19",
+    },
+  },
 ] as const satisfies readonly Sigil[];
 
 /**
@@ -1161,6 +1348,12 @@ export const radiantTrinityPublicAttributionDetails = getSigilPublicAttribution(
 );
 export const radiantTrinityPublicAttribution =
   radiantTrinityPublicAttributionDetails.text;
+
+export const ascendantHeartPublicAttributionDetails = getSigilPublicAttribution(
+  sigils[5],
+);
+export const ascendantHeartPublicAttribution =
+  ascendantHeartPublicAttributionDetails.text;
 
 export interface SigilLaunchReadiness {
   readonly approvedSeedWorksCount: number;

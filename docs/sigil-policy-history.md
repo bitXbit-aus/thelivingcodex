@@ -87,7 +87,7 @@ Policy 1.0.6 records the Library steward's direction to open public sigil submis
 - Version: `1.0.6`
 - Effective date: `2026-10-19`
 - Collection: `Living Sigil Library`
-- Source commit: `0000000000000000000000000000000000000000`
+- Source commit: `920a73e5a05594eabdc264dc4c3e04a841a7e090`
 - Canonical module: `src/data/sigilPolicy.ts`
 - Governance document: `docs/sigil-governance.md`
 

@@ -12,6 +12,11 @@ interface SacredButtonProps {
   className?: string;
   type?: "button" | "submit";
   disabled?: boolean;
+  /**
+   * Normal-case accessible name. The visual styling is uppercase, and some
+   * browsers leak `text-transform` into the accessible name.
+   */
+  ariaLabel?: string;
 }
 
 export default function SacredButton({
@@ -23,6 +28,7 @@ export default function SacredButton({
   className = "",
   type = "button",
   disabled = false,
+  ariaLabel,
 }: SacredButtonProps) {
   const baseStyles =
     "inline-flex items-center justify-center rounded-md font-medium tracking-wider uppercase transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#d4a853]/40";
@@ -57,11 +63,21 @@ export default function SacredButton({
   );
 
   if (href) {
-    return <Link href={href}>{content}</Link>;
+    return (
+      <Link href={href} aria-label={ariaLabel}>
+        {content}
+      </Link>
+    );
   }
 
   return (
-    <button onClick={onClick} type={type} disabled={disabled} className={combined}>
+    <button
+      onClick={onClick}
+      type={type}
+      disabled={disabled}
+      className={combined}
+      aria-label={ariaLabel}
+    >
       {children}
     </button>
   );

@@ -1,4 +1,3 @@
-import { getSigilLicenceLabel } from "@/data/sigils";
 import type { SigilLicenceId } from "@/data/sigilPolicy";
 
 /**
@@ -8,16 +7,29 @@ import type { SigilLicenceId } from "@/data/sigilPolicy";
  * what a visitor may and may not do, based on the licence the creator selected.
  */
 
+export { getSigilLicenceShortLabel } from "@/data/sigils";
+
 const IRREVOCABILITY_NOTE =
   "Creative Commons licences cannot be revoked once applied, so requesting removal from the Library does not revoke rights already granted to others.";
 
 /**
+ * The licences that grant visitors reuse rights, and therefore the only ones
+ * that carry a full-resolution download.
+ */
+const DOWNLOAD_PERMITTED_LICENCES: readonly SigilLicenceId[] = [
+  "cc-by-4.0",
+  "cc-by-nc-sa-4.0",
+];
+
+/**
  * Whether a full-resolution download is offered for a work.
- * Only the two Creative Commons licences grant reuse rights, so only they
- * carry a download; the display-only licence does not.
+ *
+ * Deliberately fails closed: this is a positive allowlist, so a licence id
+ * added to policy in future (e.g. a CC0 or all-rights-reserved variant)
+ * receives no download button until it is explicitly permitted here.
  */
 export function isSigilDownloadPermitted(licenceId: SigilLicenceId): boolean {
-  return licenceId !== "display-only";
+  return DOWNLOAD_PERMITTED_LICENCES.includes(licenceId);
 }
 
 const LICENCE_SUMMARIES: Record<SigilLicenceId, string> = {
@@ -42,13 +54,4 @@ export function getSigilDownloadNote(licenceId: SigilLicenceId): string {
     return "No download is offered for this work. Because it is displayed under a display-only licence, visitors receive no reuse rights, so the Library does not provide a separate copy.";
   }
   return "A full-resolution copy is offered for download under the licence described here.";
-}
-
-/**
- * The concise licence label (e.g. "CC BY 4.0") used for compact badges.
- * Derived from the full licence label so it always mirrors the policy source.
- */
-export function getSigilLicenceShortLabel(licenceId: SigilLicenceId): string {
-  const label = getSigilLicenceLabel(licenceId);
-  return label.match(/\(([^()]+)\)$/)?.[1] ?? label;
 }

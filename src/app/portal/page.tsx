@@ -295,7 +295,7 @@ export default function PortalPage() {
                 icon: BookOpen,
                 title: "Enter the Scroll Archive",
                 desc: "Browse all remembrance scrolls",
-                href: "/scrolls",
+                href: "/scrolls/",
               },
               {
                 icon: Feather,
@@ -307,19 +307,19 @@ export default function PortalPage() {
                 icon: Grid3X3,
                 title: "View the Node Constellation",
                 desc: "Explore sacred node activations",
-                href: "/nodes",
+                href: "/nodes/",
               },
               {
                 icon: Sparkles,
                 title: "Submit Your Remembrance",
                 desc: "Add your voice to the Codex",
-                href: "/submit",
+                href: "/submit/",
               },
               {
                 icon: Zap,
                 title: "Discover Technologies",
                 desc: "Sacred tech for modern stewards",
-                href: "/technologies",
+                href: "/technologies/",
               },
             ].map((action, i) => (
               <motion.div

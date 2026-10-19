@@ -134,7 +134,18 @@ export function getSigilLicenceUrl(licenceId: SigilLicenceId): string | null {
   return getSigilLicence(licenceId).licenceUrl;
 }
 
-function getConciseLicenceLabel(licenceId: SigilLicenceId): string {
+/**
+ * The concise licence label (e.g. "CC BY 4.0") used for compact badges.
+ * Derived from the full licence label so it always mirrors the policy source.
+ *
+ * This is the single canonical implementation; `@/lib/sigilLicenses`
+ * re-exports it rather than duplicating the logic. It lives here, in the
+ * data layer, because that layer is the dependency root — the reverse
+ * direction would create an import cycle.
+ */
+export function getSigilLicenceShortLabel(
+  licenceId: SigilLicenceId,
+): string {
   const label = getSigilLicenceLabel(licenceId);
   return label.match(/\(([^()]+)\)$/)?.[1] ?? label;
 }
@@ -170,7 +181,7 @@ export function getSigilPublicAttribution(
       ? "Anonymous"
       : sigil.publicAttribution.displayName;
   const copyrightYear = sigil.createdDate.slice(0, 4);
-  const licenceLabel = getConciseLicenceLabel(sigil.licenceId);
+  const licenceLabel = getSigilLicenceShortLabel(sigil.licenceId);
   const licenceUrl = getSigilLicenceUrl(sigil.licenceId);
   const aiAssistance = sigil.provenance?.aiAssistance;
   const aiAssistanceDisclosure = aiAssistance

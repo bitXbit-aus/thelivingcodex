@@ -1,7 +1,7 @@
 import type { ISODateString } from "./sigilPolicyHistory";
 
 export const sigilPolicy = {
-  policyVersion: "1.0.3",
+  policyVersion: "1.0.4",
   effectiveDate: "2026-10-19" satisfies ISODateString,
   submissionPolicySnapshot: {
     required: true,
@@ -235,6 +235,20 @@ export const sigilPolicy = {
     reconsiderationRoute: "/contact/",
     correctionAndRemovalRoute: "/contact/",
   },
+  registry: {
+    idPrefix: "TLC-SIG-",
+    idDigits: 4,
+    description:
+      "A permanent registry identifier for a work in the Living Sigil Library. It is independent of the work's title, slug, and array position, so it remains a stable citation even if any of those change.",
+    assignmentBasis:
+      "Identifiers are assigned in order of admission to the Library — the order in which works are accepted into the collection. Creation date is not used as an ordering key: the seed works currently share a single standing creation date, which cannot establish an order.",
+    uniqueness:
+      "Each identifier is unique across the Library. Uniqueness is enforced at build time, so a duplicate identifier fails the build rather than being published.",
+    immutability:
+      "An identifier is assigned once and never changed, re-sorted, or reused. Its value does not depend on the work's title, slug, or position in the catalogue.",
+    retirement:
+      "A withdrawn or removed work keeps its identifier reserved. Retired identifiers are never reissued to another work.",
+  },
   publicationChecklist: [
     {
       id: "intended-for-library",
@@ -247,6 +261,12 @@ export const sigilPolicy = {
       label: "Policy snapshot recorded",
       requirement:
         "The accepted policy version and effective date are stored with the submission.",
+    },
+    {
+      id: "registry-id-assigned",
+      label: "Registry identifier assigned",
+      requirement:
+        "A permanent registry identifier has been assigned in order of admission and recorded with the work. Identifiers are never re-sorted, reused, or reassigned.",
     },
     {
       id: "rights-confirmed",

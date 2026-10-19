@@ -58,4 +58,15 @@ Policy 1.0.3 makes creator-voice fidelity enforceable. It adds the `creator-voic
 - Canonical module: `src/data/sigilPolicy.ts`
 - Governance document: `docs/sigil-governance.md`
 
+### Version 1.0.4
+
+Policy 1.0.4 establishes permanent registry identifiers for the Living Sigil Library. Registry identifiers use the form `TLC-SIG-` plus four zero-padded digits and are assigned in order of admission to the Library, not by creation date (the seed works share a single standing creation date and cannot be ordered by it). Identifiers are permanent: they are never changed, re-sorted, or reused, and a retired work keeps its identifier reserved. Uniqueness is enforced at build time, the identifier is required on every record by a compile-time-checked type, and it is included in the public attribution text. The canonical publication checklist gains a thirteenth item, `registry-id-assigned`.
+
+- Version: `1.0.4`
+- Effective date: `2026-10-19`
+- Collection: `Living Sigil Library`
+- Source commit: `PENDING_SOURCE_COMMIT_1_0_4`
+- Canonical module: `src/data/sigilPolicy.ts`
+- Governance document: `docs/sigil-governance.md`
+
 All entries are immutable. Future revisions must append another snapshot without editing or removing any retained entry.

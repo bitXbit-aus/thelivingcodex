@@ -213,9 +213,12 @@ export default function SigilCard({ sigil }: SigilCardProps) {
           ))}
         </div>
 
-        <div className="mt-3 flex items-center border-t border-[rgba(212,168,83,0.08)] pt-3">
+        <div className="mt-3 flex items-center justify-between border-t border-[rgba(212,168,83,0.08)] pt-3">
           <span className="rounded-full border border-[rgba(212,168,83,0.2)] px-2 py-0.5 text-[9px] tracking-wider uppercase text-[#d4a853]">
             {shortLicenceLabel}
+          </span>
+          <span className="font-mono text-[9px] tracking-wider text-[#7a7a8a]">
+            {sigil.registryId}
           </span>
         </div>
       </motion.div>
@@ -286,6 +289,9 @@ export default function SigilCard({ sigil }: SigilCardProps) {
               )}
               <p className="mt-1 text-xs text-[#7a7a8a]">
                 by {attribution.creatorName}
+              </p>
+              <p className="mt-1 font-mono text-[9px] tracking-wider text-[#7a7a8a]">
+                {sigil.registryId}
               </p>
 
               {sigil.meaningSummary && (

@@ -4,7 +4,7 @@
 
 The Living Sigil Library is a curated public collection of contributed sigil artwork. It holds each work with care, preserves the contributor's stated attribution and licence choice, and presents spiritual expression without guaranteeing results.
 
-The canonical implementation policy is the structured `sigilPolicy` object in `src/data/sigilPolicy.ts`. This document explains that policy in readable form. Policy version **1.0.3** is effective **2026-10-19**. Future submission records must persist the accepted policy version and effective date so the applicable terms remain identifiable. The append-only snapshot registry and revision procedure are documented in [`docs/sigil-policy-history.md`](sigil-policy-history.md); historical entries must never be edited or removed.
+The canonical implementation policy is the structured `sigilPolicy` object in `src/data/sigilPolicy.ts`. This document explains that policy in readable form. Policy version **1.0.4** is effective **2026-10-19**. Future submission records must persist the accepted policy version and effective date so the applicable terms remain identifiable. The append-only snapshot registry and revision procedure are documented in [`docs/sigil-policy-history.md`](sigil-policy-history.md); historical entries must never be edited or removed.
 
 ## Submission is not publication
 
@@ -45,6 +45,18 @@ Anonymous publication governs public display, not the private administration rec
 A contributor's email address is private. It may be used for submission follow-up, collection administration, and correction, reconsideration, or removal requests, but it must not be published.
 
 Public records must exclude private email addresses, restricted identity information, private submission notes, and unnecessary embedded metadata. This protection is especially important for anonymous contributors: every public image must be decoded and re-encoded, with unnecessary EXIF and other metadata removed so the public asset does not inadvertently reveal identity, location, device, or submission details.
+
+## Registry numbers
+
+Every work admitted to the Living Sigil Library receives a permanent registry identifier. The identifier's purpose is citation: it names the work itself, independent of its title, its slug, and its position in the catalogue, so a reference remains valid even if any of those change.
+
+The format is the prefix `TLC-SIG-` followed by four zero-padded digits, for example `TLC-SIG-0001`. The canonical prefix and digit count are stored in `sigilPolicy.registry`, and the identifier format is enforced by the `SigilRegistryId` type in `src/data/sigils.ts`, so a malformed identifier is a compile error.
+
+Identifiers are assigned in **order of admission to the Library** — the order in which works are accepted into the collection. Creation date is deliberately not used as an ordering key: the seed works currently share a single standing creation date, so creation date cannot establish an order. The current seed mapping begins `TLC-SIG-0001` Heart Flame — Sacred Union, `TLC-SIG-0002` The Sovereign Heart, `TLC-SIG-0003` The Mycelial Witness, `TLC-SIG-0004` The Eye of the Living Mycelium, and `TLC-SIG-0005` The Radiant Trinity.
+
+An identifier is immutable. It is assigned once and is never changed, re-sorted, or reused; rearranging the catalogue does not renumber anything. Uniqueness is enforced at build time by a guard in `src/data/sigils.ts` that aborts the build if two works share an identifier, because the type system alone cannot prove array-level uniqueness. A withdrawn or removed work keeps its identifier reserved, and retired identifiers are never reissued to another work.
+
+The identifier forms part of the public attribution text, appearing in parentheses immediately after the title, so it travels with every copied attribution.
 
 ## Launch licence options
 
@@ -135,6 +147,7 @@ The canonical checklist is structured in `sigilPolicy.publicationChecklist`. Bef
 
 - [ ] The work is explicitly intended for the Living Sigil Library.
 - [ ] The accepted policy version and effective date are stored with the submission.
+- [ ] `registry-id-assigned` — a permanent registry identifier has been assigned in order of admission and recorded with the work; identifiers are never re-sorted, reused, or reassigned.
 - [ ] Original authorship or adequate permission to submit and apply the selected licence is confirmed.
 - [ ] Any human creative contribution and AI assistance are accurately disclosed, and AI systems or tools are not listed as legal licensors or copyright owners.
 - [ ] Known provenance, cultural-rights, trademark, privacy, and other third-party concerns are resolved or documented.

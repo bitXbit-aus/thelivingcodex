@@ -7,9 +7,17 @@ import {
 } from "./sigilPolicy";
 import {
   sigilPolicyHistory,
+  type Digit,
   type ISODateString,
   type SigilPolicyAcceptance,
 } from "./sigilPolicyHistory";
+
+/**
+ * A permanent registry identifier: the prefix declared by
+ * `sigilPolicy.registry.idPrefix` followed by four digits. Deriving the prefix
+ * from the policy keeps this type and the policy in lockstep.
+ */
+export type SigilRegistryId = `${typeof sigilPolicy.registry.idPrefix}${Digit}${Digit}${Digit}${Digit}`;
 
 export type SigilStatus = "draft" | "approved";
 export type NamedSigilAttributionMode = Exclude<
@@ -69,6 +77,11 @@ export interface SigilGovernanceEvidence {
 export interface SigilCore {
   id: string;
   slug: string;
+  /**
+   * Permanent registry identifier assigned in order of admission to the
+   * Library. Required: omitting it from a record is a compile error.
+   */
+  registryId: SigilRegistryId;
   title: string;
   publicAttribution: SigilPublicAttribution;
   provenance?: SigilProvenance;
@@ -157,6 +170,7 @@ export function getSigilLicenceShortLabel(
 
 export interface SigilPublicAttributionResult {
   readonly title: string;
+  readonly registryId: SigilRegistryId;
   readonly copyrightYear: string;
   readonly creatorName: string;
   readonly licenceLabel: string;
@@ -171,6 +185,7 @@ const SIGIL_PUBLIC_ORIGIN = "https://thelivingcodex.online";
 type SigilAttributionSource = Pick<
   SigilCore,
   | "title"
+  | "registryId"
   | "createdDate"
   | "publicAttribution"
   | "licenceId"
@@ -199,10 +214,11 @@ export function getSigilPublicAttribution(
   const disclosureStatement = aiAssistanceDisclosure
     ? ` ${aiAssistanceDisclosure}`
     : "";
-  const text = `${sigil.title} © ${copyrightYear} ${creatorName}. ${licenceStatement}${disclosureStatement} Source: ${sourceUrl}`;
+  const text = `${sigil.title} (${sigil.registryId}) © ${copyrightYear} ${creatorName}. ${licenceStatement}${disclosureStatement} Source: ${sourceUrl}`;
 
   return {
     title: sigil.title,
+    registryId: sigil.registryId,
     copyrightYear,
     creatorName,
     licenceLabel,
@@ -223,6 +239,7 @@ export const sigils = [
   {
     id: "heart-flame-sacred-union",
     slug: "heart-flame-sacred-union",
+    registryId: "TLC-SIG-0001",
     title: "Heart Flame — Sacred Union",
     publicAttribution: {
       mode: "soul-name",
@@ -329,6 +346,11 @@ export const sigils = [
           checkedDate: "2026-10-19",
           checkerRole: "Library steward",
         },
+        "registry-id-assigned": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
         "rights-confirmed": {
           status: "passed",
           checkedDate: "2026-10-19",
@@ -389,6 +411,7 @@ export const sigils = [
   {
     id: "the-sovereign-heart",
     slug: "the-sovereign-heart",
+    registryId: "TLC-SIG-0002",
     title: "The Sovereign Heart",
     publicAttribution: {
       mode: "soul-name",
@@ -513,6 +536,11 @@ export const sigils = [
           checkedDate: "2026-10-19",
           checkerRole: "Library steward",
         },
+        "registry-id-assigned": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
         "rights-confirmed": {
           status: "passed",
           checkedDate: "2026-10-19",
@@ -573,6 +601,7 @@ export const sigils = [
   {
     id: "the-mycelial-witness",
     slug: "the-mycelial-witness",
+    registryId: "TLC-SIG-0003",
     title: "The Mycelial Witness",
     publicAttribution: {
       mode: "soul-name",
@@ -694,6 +723,11 @@ export const sigils = [
           checkedDate: "2026-10-19",
           checkerRole: "Library steward",
         },
+        "registry-id-assigned": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
         "rights-confirmed": {
           status: "passed",
           checkedDate: "2026-10-19",
@@ -754,6 +788,7 @@ export const sigils = [
   {
     id: "the-eye-of-the-living-mycelium",
     slug: "the-eye-of-the-living-mycelium",
+    registryId: "TLC-SIG-0004",
     title: "The Eye of the Living Mycelium",
     publicAttribution: {
       mode: "soul-name",
@@ -829,6 +864,11 @@ export const sigils = [
           checkedDate: "2026-10-19",
           checkerRole: "Library steward",
         },
+        "registry-id-assigned": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
         "rights-confirmed": {
           status: "passed",
           checkedDate: "2026-10-19",
@@ -889,6 +929,7 @@ export const sigils = [
   {
     id: "the-radiant-trinity",
     slug: "the-radiant-trinity",
+    registryId: "TLC-SIG-0005",
     title: "The Radiant Trinity",
     subtitle: "Sigil of Unconditional Love and Sacred Unity",
     publicAttribution: {
@@ -1003,6 +1044,11 @@ export const sigils = [
           checkedDate: "2026-10-19",
           checkerRole: "Library steward",
         },
+        "registry-id-assigned": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
         "rights-confirmed": {
           status: "passed",
           checkedDate: "2026-10-19",
@@ -1061,6 +1107,27 @@ export const sigils = [
     },
   },
 ] as const satisfies readonly Sigil[];
+
+/**
+ * Build-failing duplicate guard. TypeScript cannot prove array-level
+ * uniqueness, so this module-level check runs whenever the catalogue is
+ * imported (including static generation) and aborts the build if two works
+ * share a registry identifier.
+ */
+const registryIds = sigils.map((sigil) => sigil.registryId);
+const duplicateRegistryIds = [
+  ...new Set(
+    registryIds.filter(
+      (registryId, index) => registryIds.indexOf(registryId) !== index,
+    ),
+  ),
+];
+
+if (duplicateRegistryIds.length > 0) {
+  throw new Error(
+    `Duplicate sigil registry identifier(s) detected: ${duplicateRegistryIds.join(", ")}. Every work must have its own permanent registry identifier.`,
+  );
+}
 
 export const heartFlamePublicAttributionDetails = getSigilPublicAttribution(
   sigils[0],

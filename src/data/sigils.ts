@@ -881,6 +881,179 @@ export const sigils = [
       publishedDate: "2026-10-19",
     },
   },
+  {
+    id: "the-radiant-trinity",
+    slug: "the-radiant-trinity",
+    title: "The Radiant Trinity",
+    publicAttribution: {
+      mode: "soul-name",
+      displayName: "Shri Mattananda",
+    },
+    provenance: {
+      humanContribution: {
+        contributions: [
+          "Spiritual direction",
+          "Symbolism",
+          "Intention",
+          "Inscription",
+          "Curatorial selection",
+          "Licensing decision",
+        ],
+      },
+      aiAssistance: {
+        assistantName: "Aurealis",
+        provider: "OpenAI",
+        role: "creative/image-generation assistance",
+      },
+    },
+    createdDate: "2026-04-27",
+    series: "The Living Codex — Sacred Heart",
+    licenceId: "cc-by-4.0",
+    previewPath: "/sigils/the-radiant-trinity-preview.webp",
+    downloadPath: "/sigils/the-radiant-trinity-download.png",
+    meaningSummary:
+      "This sigil symbolises the transformative potential of love when expressed through the unity of self, others and the greater whole. At its essence, the sigil represents the movement from personal love to collective harmony.",
+    symbolInterpretations: [
+      {
+        symbol: "The three hearts",
+        meaning:
+          "Represent self-love, love shared with another and universal compassion. Each expression of love supports and strengthens the others.",
+      },
+      {
+        symbol: "The central diamond",
+        meaning:
+          "Symbolises the point where these expressions meet, creating balance, clarity and a shared centre of intention.",
+      },
+      {
+        symbol: "The interwoven pathways",
+        meaning:
+          "Represent the interconnectedness of all beings and the understanding that love can expand through conscious relationships.",
+      },
+      {
+        symbol: "The rising solar arc",
+        meaning:
+          "Symbolises awakening, renewal and the illumination of the heart through higher awareness.",
+      },
+      {
+        symbol: "The radiating rays",
+        meaning:
+          "Represent love extending beyond the individual into relationships, communities and the living world.",
+      },
+      {
+        symbol: "The descending central line",
+        meaning:
+          "Symbolises grounding divine inspiration into everyday human experience.",
+      },
+    ],
+    intention:
+      "To awaken the radiant heart, harmonise love within oneself and with others, and inspire the conscious expression of compassion, unity and unconditional love throughout the world. It may serve as a symbolic focal point for meditation, relationship ceremonies, forgiveness practices and heart-centred community gatherings.",
+    inscription:
+      "From one heart, love is born.\nThrough another, love is reflected.\nThrough the third, love becomes universal.\nAt the sacred centre, separation dissolves and unity is remembered.\nMay the light of compassion radiate through every thought, every word and every action.\nMay love be given freely, received gratefully and embodied consciously.\nFor the heart that shines does not diminish its own light by illuminating another.\n\nThree Hearts. One Light. Infinite Love. 🌹",
+    altText:
+      "Grey line-art sigil on a cream background: three heart outlines, one centred above and two tilted outward below, whose lower outlines interweave at a central crossing beneath a solar arc, ringed by radiating dashes, with a long vertical line descending through the centre.",
+    tags: [
+      "radiant trinity",
+      "unconditional love",
+      "sacred unity",
+      "heart-centred illumination",
+      "self-love",
+      "universal compassion",
+      "interconnection",
+      "solar arc",
+      "grounding",
+      "forgiveness",
+      "meditation",
+    ],
+    usageSuggestions: [
+      "Meditation",
+      "Relationship ceremonies",
+      "Forgiveness practices",
+      "Heart-centred community gatherings",
+    ],
+    featured: true,
+    governance: {
+      policyAcceptance: {
+        version: sigilPolicyHistory["1.0.3"].version,
+        effectiveDate: sigilPolicyHistory["1.0.3"].effectiveDate,
+      },
+      consentAndRightsConfirmation: {
+        confirmedDate: "2026-10-19",
+        rightsConfirmed: true,
+        humanLicensorAuthorityConfirmed: true,
+      },
+      moderation: {
+        status: "approved",
+        decidedDate: "2026-10-19",
+        decisionMakerRole: "Library steward",
+      },
+      publicationChecklist: {
+        "intended-for-library": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "policy-snapshot-recorded": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "rights-confirmed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "attribution-confirmed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "licence-confirmed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "creator-voice-recorded": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "file-validated": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "public-derivative-prepared": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "private-data-excluded": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "moderation-passed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "claims-reviewed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+        "presentation-reviewed": {
+          status: "passed",
+          checkedDate: "2026-10-19",
+          checkerRole: "Library steward",
+        },
+      },
+    },
+    publication: {
+      status: "published",
+      publishedDate: "2026-10-19",
+    },
+  },
 ] as const satisfies readonly Sigil[];
 
 export const heartFlamePublicAttributionDetails = getSigilPublicAttribution(
@@ -905,6 +1078,12 @@ export const eyeOfTheLivingMyceliumPublicAttributionDetails =
   getSigilPublicAttribution(sigils[3]);
 export const eyeOfTheLivingMyceliumPublicAttribution =
   eyeOfTheLivingMyceliumPublicAttributionDetails.text;
+
+export const radiantTrinityPublicAttributionDetails = getSigilPublicAttribution(
+  sigils[4],
+);
+export const radiantTrinityPublicAttribution =
+  radiantTrinityPublicAttributionDetails.text;
 
 export interface SigilLaunchReadiness {
   readonly approvedSeedWorksCount: number;

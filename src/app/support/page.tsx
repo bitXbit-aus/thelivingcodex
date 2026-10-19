@@ -162,13 +162,23 @@ export default function SupportPage() {
             subtitle="Described in the steward's own words, below. Nothing is added to them here."
           />
           <blockquote className="mt-6 rounded-lg border border-[rgba(212,168,83,0.15)] bg-[rgba(212,168,83,0.03)] p-5">
-            <p className="text-sm leading-relaxed text-[#c8c4b8] italic">
-              &ldquo;It will be a donation to support further development and
-              items covered over the site, organic farming, community and
-              personal projects etc.&rdquo;
+            <p className="text-sm leading-relaxed text-[#c8c4b8]">
+              &ldquo;Your generous donation will help support the continued
+              development of{" "}
+              <strong className="font-medium text-[#f5f0e8]">
+                The Living Codex
+              </strong>
+              ,{" "}
+              <strong className="font-medium text-[#f5f0e8]">
+                The New Earth Healing Clinic
+              </strong>
+              , organic farming initiatives, community wellbeing programs, and
+              personal projects dedicated to holistic healing, sustainability,
+              conscious living, and the creation of a more harmonious New
+              Earth. 🌱💚🙏&rdquo;
             </p>
             <footer className="mt-3 text-[11px] tracking-wider uppercase text-[#7a7a8a]">
-              — The steward, 19 October 2026
+              — The steward, 20 October 2026
             </footer>
           </blockquote>
           <p className="mt-4 text-sm leading-relaxed text-[#7a7a8a]">

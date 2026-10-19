@@ -292,7 +292,19 @@ export default function SigilSubmissionForm() {
       formData.set("image", prepared.file);
     }
 
-    const result = await submitNetlifyForm(formData);
+    // submitNetlifyForm reports fetch failures as result kinds, but a throw
+    // from anywhere in the submit path would otherwise leave the status stuck
+    // at "uploading" with the button permanently disabled.
+    let result: Awaited<ReturnType<typeof submitNetlifyForm>>;
+    try {
+      result = await submitNetlifyForm(formData);
+    } catch {
+      setServerMessage(
+        "The submission stopped unexpectedly before the server confirmed it, so we cannot tell whether it arrived. Check your connection and try again. If the connection may have dropped mid-upload, check whether the submission arrived (for example, look for the confirmation email or ask through the contact page) before resubmitting — a retry can create a duplicate submission."
+      );
+      setStatus("server-error");
+      return;
+    }
 
     if (result.kind === "ok") {
       setStatus("submitted");

@@ -9,9 +9,35 @@
  * JPEG source). Callers must re-check the size limit on the returned Blob.
  */
 
+import { SIGIL_ACCEPTED_IMAGE_TYPES } from "@/data/sigilPolicy";
+
 const MAX_PIXEL_COUNT = 40_000_000;
 
-const SUPPORTED_TYPES = new Set(["image/png", "image/jpeg", "image/webp"]);
+// Widen the policy's literal types so lookup works with arbitrary strings.
+const ACCEPTED_IMAGE_TYPES: ReadonlyArray<{
+  mimeType: string;
+  extensions: readonly string[];
+}> = SIGIL_ACCEPTED_IMAGE_TYPES;
+
+const SUPPORTED_TYPES = new Set(ACCEPTED_IMAGE_TYPES.map((type) => type.mimeType));
+
+/**
+ * Resolve the image type, falling back to the extension allowlist when the
+ * browser reports an empty MIME type. Some browsers/OSes do that for genuine
+ * images, and validation already treats the extension as authoritative in
+ * that case. SVG still resolves to nothing and remains unsupported.
+ */
+function resolveImageMimeType(file: File): string {
+  const reported = file.type.toLowerCase();
+  if (reported) return reported;
+
+  const index = file.name.lastIndexOf(".");
+  const extension = index === -1 ? "" : file.name.slice(index).toLowerCase();
+  const match = ACCEPTED_IMAGE_TYPES.find((type) =>
+    type.extensions.includes(extension)
+  );
+  return match?.mimeType ?? "";
+}
 
 export class ImageMetadataError extends Error {
   constructor(message: string) {
@@ -27,7 +53,7 @@ export interface SanitisedImage {
 }
 
 export async function removeImageMetadata(file: File): Promise<SanitisedImage> {
-  const mimeType = file.type.toLowerCase();
+  const mimeType = resolveImageMimeType(file);
   if (!SUPPORTED_TYPES.has(mimeType)) {
     throw new ImageMetadataError(
       "The image format is not one we can re-encode safely."

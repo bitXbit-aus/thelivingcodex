@@ -28,6 +28,11 @@ const EXPECTED_FORMS = [
     label: "scroll submission form",
   },
   {
+    name: "contact",
+    file: "contact/index.html",
+    label: "contact form",
+  },
+  {
     name: "sigil-submission",
     file: "submit/sigil/index.html",
     label: "sigil submission form",

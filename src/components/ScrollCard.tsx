@@ -162,21 +162,6 @@ export default function ScrollCard({ scroll }: ScrollCardProps) {
           )}
         </div>
 
-        {scroll.previewPath && (
-          <div className="mt-3 overflow-hidden rounded-lg border border-[rgba(212,168,83,0.12)] bg-[#0a0b0f]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={scroll.previewPath}
-              alt={scroll.altText ?? ""}
-              width={1024}
-              height={1536}
-              loading="lazy"
-              decoding="async"
-              className="aspect-[2/3] w-full object-cover"
-            />
-          </div>
-        )}
-
         <h3 className="mt-3 text-base font-medium text-[#f5f0e8] transition-colors group-hover:text-[#d4a853]">
           {scroll.title}
         </h3>

@@ -19,6 +19,7 @@ const DIST = join(process.cwd(), "dist");
  *   label: string;
  *   multipart?: boolean;
  *   honeypot?: string;
+ *   fileField?: string;
  * }>}
  */
 const EXPECTED_FORMS = [
@@ -26,6 +27,9 @@ const EXPECTED_FORMS = [
     name: "scroll-submission",
     file: "submit/index.html",
     label: "scroll submission form",
+    multipart: true,
+    honeypot: "bot-field",
+    fileField: "artwork",
   },
   {
     name: "contact",
@@ -38,6 +42,7 @@ const EXPECTED_FORMS = [
     label: "sigil submission form",
     multipart: true,
     honeypot: "bot-field",
+    fileField: "image",
   },
 ];
 
@@ -132,6 +137,21 @@ for (const expected of EXPECTED_FORMS) {
     if (!hasHoneypotField) {
       failures.push(
         `${expected.label}: missing honeypot <input name="${expected.honeypot}"> in ${expected.file}.`
+      );
+    }
+  }
+
+  if (expected.fileField) {
+    // A file input must be present for Netlify to treat the form as an upload
+    // form. Match by both type and name so a renamed or retyped field fails.
+    const hasFileField = inputTags(html).some(
+      (input) =>
+        hasAttribute(input, "type", "file") &&
+        hasAttribute(input, "name", expected.fileField)
+    );
+    if (!hasFileField) {
+      failures.push(
+        `${expected.label}: missing file input <input type="file" name="${expected.fileField}"> in ${expected.file}.`
       );
     }
   }

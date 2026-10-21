@@ -9,15 +9,20 @@
  * JPEG source). Callers must re-check the size limit on the returned Blob.
  */
 
-import { SIGIL_ACCEPTED_IMAGE_TYPES } from "@/data/sigilPolicy";
+import {
+  UPLOAD_ACCEPTED_IMAGE_TYPES,
+  getFileExtension,
+} from "@/lib/uploadRules";
 
 const MAX_PIXEL_COUNT = 40_000_000;
 
-// Widen the policy's literal types so lookup works with arbitrary strings.
+// The accepted image types come from the shared upload rules so the re-encode
+// path governs every form identically (the scroll form and the sigil form).
+// Widened to plain strings so lookup works with arbitrary reported values.
 const ACCEPTED_IMAGE_TYPES: ReadonlyArray<{
   mimeType: string;
   extensions: readonly string[];
-}> = SIGIL_ACCEPTED_IMAGE_TYPES;
+}> = UPLOAD_ACCEPTED_IMAGE_TYPES;
 
 const SUPPORTED_TYPES = new Set(ACCEPTED_IMAGE_TYPES.map((type) => type.mimeType));
 
@@ -31,8 +36,7 @@ function resolveImageMimeType(file: File): string {
   const reported = file.type.toLowerCase();
   if (reported) return reported;
 
-  const index = file.name.lastIndexOf(".");
-  const extension = index === -1 ? "" : file.name.slice(index).toLowerCase();
+  const extension = getFileExtension(file.name);
   const match = ACCEPTED_IMAGE_TYPES.find((type) =>
     type.extensions.includes(extension)
   );

@@ -7,7 +7,6 @@ import Field from "@/components/form/Field";
 import { fieldClass, fieldErrorClass } from "@/components/form/styles";
 import {
   sigilPolicy,
-  SIGIL_ACCEPTED_IMAGE_TYPES,
   SIGIL_ATTRIBUTION_CHOICES,
   SIGIL_LAUNCH_LICENCES,
 } from "@/data/sigilPolicy";
@@ -15,6 +14,13 @@ import {
   ImageMetadataError,
   removeImageMetadata,
 } from "@/lib/imageMetadata";
+import {
+  UPLOAD_ACCEPT_ATTRIBUTE as ACCEPT_ATTRIBUTE,
+  UPLOAD_MAX_SIZE_BYTES as MAX_UPLOAD_BYTES,
+  UPLOAD_MAX_SIZE_MIB as MAX_UPLOAD_MIB,
+  UPLOAD_RETENTION_DAYS_AFTER_DECISION as RETENTION_DAYS,
+  validateUploadFile,
+} from "@/lib/uploadRules";
 import { submitNetlifyForm } from "@/lib/netlifyForms";
 import { AlertCircle, CheckCircle, Send } from "lucide-react";
 
@@ -48,18 +54,6 @@ const LIMITS = {
   honeypot: 256,
 } as const;
 
-const ACCEPTED_EXTENSIONS: readonly string[] =
-  SIGIL_ACCEPTED_IMAGE_TYPES.flatMap((type) => type.extensions);
-const ACCEPTED_MIME_TYPES: readonly string[] = SIGIL_ACCEPTED_IMAGE_TYPES.map(
-  (type) => type.mimeType
-);
-const ACCEPT_ATTRIBUTE = ACCEPTED_EXTENSIONS.join(",");
-const MAX_UPLOAD_BYTES = sigilPolicy.uploadSecurity.maxUploadSizeBytes;
-const MAX_UPLOAD_MIB = sigilPolicy.uploadSecurity.maxUploadSizeMiB;
-const RETENTION_DAYS =
-  sigilPolicy.uploadSecurity.serverSideControls
-    .pendingOriginalRetentionDaysAfterDecision;
-
 /** Maps a validation-error key to the element that error message is about. */
 const ERROR_TARGETS: Record<string, string> = {
   creator: "sigil-creator",
@@ -72,35 +66,6 @@ const ERROR_TARGETS: Record<string, string> = {
   ownership: "sigil-rights",
   consent: "sigil-rights",
 };
-
-function getExtension(filename: string): string {
-  const index = filename.lastIndexOf(".");
-  return index === -1 ? "" : filename.slice(index).toLowerCase();
-}
-
-function validateFile(file: File): string | null {
-  const extension = getExtension(file.name);
-  const reportedType = file.type.toLowerCase();
-
-  if (extension === ".svg" || reportedType === "image/svg+xml") {
-    return "SVG files cannot be accepted. Please upload a PNG, JPEG, or WebP image.";
-  }
-  if (!ACCEPTED_EXTENSIONS.includes(extension)) {
-    return `Unsupported file extension. Accepted extensions: ${ACCEPTED_EXTENSIONS.join(
-      ", "
-    )}.`;
-  }
-  // Some browsers/OSes report an empty type for a genuine image. The extension
-  // allowlist has already passed, so fall back to it; the server still inspects
-  // the real file, and this remains a preliminary check only.
-  if (reportedType && !ACCEPTED_MIME_TYPES.includes(reportedType)) {
-    return "The browser reported a file type we cannot accept. Please upload a PNG, JPEG, or WebP image.";
-  }
-  if (file.size > MAX_UPLOAD_BYTES) {
-    return `The image is larger than ${MAX_UPLOAD_MIB} MiB. Please compress or resize it and try again.`;
-  }
-  return null;
-}
 
 function failureMessage(
   result: Awaited<ReturnType<typeof submitNetlifyForm>>
@@ -165,7 +130,7 @@ export default function SigilSubmissionForm() {
     }
 
     setFileMeta({ name: file.name, size: file.size });
-    const message = validateFile(file);
+    const message = validateUploadFile(file);
     if (message) {
       setPrepared(null);
       setErrors((prev) => ({ ...prev, image: message }));
@@ -229,7 +194,7 @@ export default function SigilSubmissionForm() {
     if (!file) {
       next.image = "Please choose an image to upload.";
     } else {
-      const fileError = validateFile(file);
+      const fileError = validateUploadFile(file);
       if (fileError) next.image = fileError;
     }
 

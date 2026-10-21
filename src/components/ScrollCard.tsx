@@ -165,16 +165,6 @@ export default function ScrollCard({ scroll }: ScrollCardProps) {
         <h3 className="mt-3 text-base font-medium text-[#f5f0e8] transition-colors group-hover:text-[#d4a853]">
           {scroll.title}
         </h3>
-        {scroll.subtitle && (
-          <p className="mt-1 text-xs leading-relaxed text-[#c8c4b8]">
-            {scroll.subtitle}
-          </p>
-        )}
-        {scroll.collection && (
-          <p className="mt-1 text-[10px] tracking-widest uppercase text-[#7a7a8a]">
-            {scroll.collection}
-          </p>
-        )}
         <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-[#7a7a8a]">
           {scroll.excerpt}
         </p>

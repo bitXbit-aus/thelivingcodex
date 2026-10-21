@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Node } from "@/data/nodes";
 import { MapPin, Gem, Music, Flame, X, Sparkles, Calendar } from "lucide-react";
 
@@ -125,29 +125,37 @@ export default function NodeCard({ node }: NodeCardProps) {
         </div>
       </motion.div>
 
-      <AnimatePresence>
-        {expanded && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-[#0a0b0f]/90 p-4 backdrop-blur-md"
-            onClick={closeDialog}
-          >
-            <motion.div
-              ref={dialogRef}
-              id={dialogId}
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby={titleId}
-              tabIndex={-1}
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.3 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-xl border border-[rgba(212,168,83,0.2)] bg-[#12141c] p-6 sm:p-8"
-            >
+      {/*
+        The dialog is always mounted so the work's content is present in the
+        prerendered HTML, not only in the client bundle. It is `display: none`
+        (inert and out of the accessibility tree) until opened, so nothing
+        changes visually or for assistive tech.
+      */}
+      <div
+        className={
+          expanded
+            ? "fixed inset-0 z-[100] flex items-center justify-center bg-[#0a0b0f]/90 p-4 backdrop-blur-md"
+            : "hidden"
+        }
+        onClick={closeDialog}
+      >
+        <motion.div
+          ref={dialogRef}
+          id={dialogId}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={titleId}
+          tabIndex={-1}
+          initial={false}
+          animate={
+            expanded
+              ? { opacity: 1, scale: 1, y: 0 }
+              : { opacity: 0, scale: 0.95, y: 20 }
+          }
+          transition={{ duration: 0.3 }}
+          onClick={(e) => e.stopPropagation()}
+          className="relative max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-xl border border-[rgba(212,168,83,0.2)] bg-[#12141c] p-6 sm:p-8"
+        >
               <button
                 type="button"
                 onClick={closeDialog}
@@ -238,10 +246,8 @@ export default function NodeCard({ node }: NodeCardProps) {
                   ))}
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        </motion.div>
+      </div>
     </>
   );
 }

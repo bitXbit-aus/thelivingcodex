@@ -1,3 +1,35 @@
+import type { SigilLicenceId } from "./sigilPolicy";
+import type { Digit } from "./sigilPolicyHistory";
+
+/**
+ * Scroll registry configuration.
+ *
+ * Mirrors the sigil registry discipline in `sigilPolicy.registry`: the prefix
+ * and the documented digit count live here as the single source, and the
+ * enforced `ScrollRegistryId` type derives its prefix from this object. The
+ * digit count is repeated literally in the type because TypeScript cannot
+ * derive a digit count from a number; change `idDigits` and the type together,
+ * or the documented and enforced formats will silently diverge.
+ */
+export const scrollRegistry = {
+  idPrefix: "TLC-SCR-",
+  idDigits: 4,
+  description:
+    "A permanent registry identifier for a registered scroll in The Living Codex. It is independent of the work's title, id, and array position, so it remains a stable citation even if any of those change.",
+  assignmentBasis:
+    "Identifiers are assigned in order of admission to the Codex — the order in which works are accepted into the registered collection. Creation date is not used as an ordering key: for works whose original date is unconfirmed, the Codex records only the admission date.",
+  uniqueness:
+    "Each identifier is unique across the registered scroll collection. Uniqueness is enforced at build time, so a duplicate identifier fails the build rather than being published.",
+  immutability:
+    "An identifier is assigned once and never changed, re-sorted, or reused. A withdrawn work keeps its number reserved, so gaps in the sequence are legitimate and must not be backfilled.",
+} as const;
+
+/**
+ * A permanent registry identifier: the prefix declared by
+ * `scrollRegistry.idPrefix` followed by four digits.
+ */
+export type ScrollRegistryId = `${typeof scrollRegistry.idPrefix}${Digit}${Digit}${Digit}${Digit}`;
+
 export interface Scroll {
   id: string;
   title: string;
@@ -10,6 +42,46 @@ export interface Scroll {
   featured: boolean;
   element?: string;
   crystal?: string;
+  // ---------------------------------------------------------------------------
+  // Registered-work extensions. Every field below is OPTIONAL so the existing
+  // text-only scrolls keep working and render nothing for an absent field.
+  //
+  // `meaning` and `intention` are creator-voice fields: they are supplied by
+  // the creator only and must never be invented, inferred, paraphrased, or
+  // composed. An omitted field is correct; a composed field is a breach.
+  // ---------------------------------------------------------------------------
+  /** The work's ceremonial subtitle, as supplied by the creator. Never inferred from `title`. */
+  subtitle?: string;
+  /** Permanent registry identifier, assigned in order of admission. */
+  registryId?: ScrollRegistryId;
+  /** The Codex's shared licence id (see `sigilPolicy.launchLicences`). */
+  licenceId?: SigilLicenceId;
+  /** Preview artwork shown on the card and in the detail view. */
+  previewPath?: string;
+  /** Full-resolution download path, offered only when the licence permits it. */
+  downloadPath?: string;
+  /**
+   * A factual accessibility description of the visible artwork. Not creator
+   * voice, so it describes only what is present.
+   */
+  altText?: string;
+  /** Creator-supplied meaning, rendered verbatim. */
+  meaning?: string;
+  /** Creator-supplied intention, rendered verbatim. */
+  intention?: string;
+  /**
+   * A legal caveat that belongs to the work and must be rendered publicly
+   * with it, in the detail view.
+   */
+  legalNote?: string;
+  /** The collection or lineage the work belongs to, e.g. `The Living Codex — …`. */
+  collection?: string;
+  /**
+   * The date the work was admitted to the Codex. Where the original creation
+   * date is genuinely unconfirmed, the UI labels `date` as the ADMISSION date
+   * when this field is present, and never presents it as a creation date.
+   */
+  admissionDate?: string;
 }
 
 export const categories = [
@@ -28,6 +100,7 @@ export const categories = [
   "Earth Stewardship",
   "Harmonic Farming",
   "Codex Technology",
+  "Personal Sovereignty / Sacred Identity",
 ];
 
 export const scrolls: Scroll[] = [
@@ -279,4 +352,83 @@ The Earth provides.`,
     element: "Earth",
     crystal: "Green Aventurine",
   },
+  {
+    id: "name-change-declaration",
+    title: "Name Change Declaration — Shri Mattananda",
+    subtitle: "Scroll of Spiritual Sovereignty and Conscious Rebirth",
+    excerpt:
+      "A ceremonial parchment scroll setting out a personal declaration of sovereignty and identity, in which the creator adopts the name Shri Mattananda. It is catalogued here as the Codex's first registered scroll.",
+    content: `There comes a moment upon the journey of remembrance when the soul chooses to give voice to its becoming.
+
+This declaration marks the conscious embracing of a sacred name, not as a rejection of all that came before, but as an acknowledgement of the wisdom gathered along the path.
+
+Through the name Shri Mattananda, the bearer affirms a commitment to live with awareness, integrity, compassion and the joy of giving.
+
+May the name be honoured through action.
+May sovereignty be guided by responsibility.
+May the path ahead reflect the truth held within the heart.
+
+One Being. One Sacred Intention. Infinite Becoming.`,
+    category: "Personal Sovereignty / Sacred Identity",
+    tags: [
+      "Sacred Naming",
+      "Sovereignty",
+      "Identity",
+      "Transformation",
+      "Conscious Rebirth",
+      "Declaration",
+      "Spiritual Awakening",
+    ],
+    author: "Shri Mattananda",
+    date: "2026-10-21",
+    featured: true,
+    registryId: "TLC-SCR-0001",
+    collection: "The Living Codex — Sacred Scrolls & Declarations",
+    licenceId: "cc-by-4.0",
+    previewPath: "/scrolls/name-change-declaration-preview.webp",
+    downloadPath: "/scrolls/name-change-declaration-download.png",
+    altText:
+      "A vertical aged-parchment scroll on wooden rollers with ornate metal finials at each end. A golden sun-and-lotus emblem sits above a large red calligraphic heading reading \u201cName Change Declaration\u201d, followed by smaller italic subtitle and body text, a numbered declaration list, a signature block with ruled lines labelled Signature, Witness I, Date and Location, two circular thumbprint marks, and a golden sacred-geometry seal near the base.",
+    meaning: `This ceremonial scroll represents the conscious transition from the former name Matt Mills to the spiritually chosen name Shri Mattananda.
+
+It symbolises the recognition of personal identity as something deeper than a name assigned at birth, and the freedom to express one's evolving understanding of self, purpose and connection to Source.
+
+The scroll honours five central themes:
+
+- Spiritual rebirth: The embracing of a new name as a reflection of inner transformation and awakened purpose.
+- Self-sovereignty: The affirmation of individual dignity, personal autonomy and responsibility for one's chosen path.
+- Sacred naming: Shri represents sacred radiance and reverence, while Mattananda is personally interpreted within the scroll as the bliss of giving and the joy of the gift.
+- Conscious declaration: The act of making one's intentions visible through words, signature, ceremony and witnesses.
+- Continuity and remembrance: Honouring the journey from a former identity into a consciously chosen expression of being.
+
+The parchment, solar lotus, sacred geometry and signature fields reinforce the ceremonial nature of this personal declaration.`,
+    intention: `To honour the conscious adoption of the name Shri Mattananda, affirm personal and spiritual sovereignty, release limiting identifications of the past, and embrace a life guided by love, truth, freedom and service to the greater whole.
+
+The scroll is intended to serve as a personal ceremonial declaration and a lasting record of spiritual transformation.`,
+    legalNote: `Its language concerning lawful standing and name changes expresses the creator's personal philosophy. The scroll itself does not establish a legally recognised name change or alter statutory rights or obligations. Formal legal recognition in Australia requires following the applicable state or territory procedures.`,
+    admissionDate: "2026-10-21",
+  },
 ];
+
+/**
+ * Build-failing duplicate guard. TypeScript cannot prove array-level
+ * uniqueness, so this module-level check runs whenever the catalogue is
+ * imported (including static generation) and aborts the build if two works
+ * share a registry identifier — exactly as the sigil catalogue does.
+ */
+const scrollRegistryIds = scrolls
+  .map((scroll) => scroll.registryId)
+  .filter((registryId): registryId is ScrollRegistryId => Boolean(registryId));
+const duplicateScrollRegistryIds = [
+  ...new Set(
+    scrollRegistryIds.filter(
+      (registryId, index) => scrollRegistryIds.indexOf(registryId) !== index,
+    ),
+  ),
+];
+
+if (duplicateScrollRegistryIds.length > 0) {
+  throw new Error(
+    `Duplicate scroll registry identifier(s) detected: ${duplicateScrollRegistryIds.join(", ")}. Every registered work must have its own permanent registry identifier.`,
+  );
+}

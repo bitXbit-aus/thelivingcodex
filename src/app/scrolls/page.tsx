@@ -22,11 +22,17 @@ export default function ScrollsPage() {
 
   const filtered = useMemo(() => {
     return scrolls.filter((scroll) => {
-      const matchesSearch =
-        search === "" ||
-        scroll.title.toLowerCase().includes(search.toLowerCase()) ||
-        scroll.excerpt.toLowerCase().includes(search.toLowerCase()) ||
-        scroll.content.toLowerCase().includes(search.toLowerCase());
+      const haystack = [
+        scroll.title,
+        scroll.subtitle ?? "",
+        scroll.excerpt,
+        scroll.content,
+        scroll.meaning ?? "",
+        scroll.intention ?? "",
+      ]
+        .join("\n")
+        .toLowerCase();
+      const matchesSearch = search === "" || haystack.includes(search.toLowerCase());
       const matchesCategory =
         selectedCategory === "All" || scroll.category === selectedCategory;
       const matchesTag = selectedTag === null || scroll.tags.includes(selectedTag);

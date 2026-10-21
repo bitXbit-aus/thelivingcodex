@@ -8,7 +8,6 @@ import {
   isSigilDownloadPermitted,
   getSigilLicenceSummary,
   getSigilDownloadNote,
-  getSigilLicenceShortLabel,
 } from "@/lib/sigilLicenses";
 import {
   BookOpen,
@@ -149,31 +148,32 @@ export default function ScrollCard({ scroll }: ScrollCardProps) {
         className="group flex h-full cursor-pointer flex-col rounded-lg border border-[rgba(212,168,83,0.12)] bg-[#12141c]/80 p-5 backdrop-blur-sm transition-all hover:border-[rgba(212,168,83,0.3)] hover:bg-[#1a1d2a]/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a853] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0b0f]"
       >
         <div className="flex items-start justify-between gap-3">
-          <div className="flex items-center gap-2">
-            <BookOpen className="h-4 w-4 text-[#d4a853]" />
-            <span className="text-[10px] tracking-widest uppercase text-[#d4a853]">
+          <div className="flex min-w-0 items-center gap-2">
+            <BookOpen className="h-4 w-4 shrink-0 text-[#d4a853]" />
+            <span className="truncate text-[10px] tracking-widest uppercase text-[#d4a853]">
               {scroll.category}
             </span>
           </div>
           {scroll.featured && (
-            <span className="rounded-full bg-[rgba(212,168,83,0.12)] px-2 py-0.5 text-[9px] tracking-wider uppercase text-[#d4a853]">
+            <span className="shrink-0 rounded-full bg-[rgba(212,168,83,0.12)] px-2 py-0.5 text-[9px] tracking-wider uppercase text-[#d4a853]">
               Featured
             </span>
           )}
         </div>
 
-        <h3 className="mt-3 text-base font-medium text-[#f5f0e8] transition-colors group-hover:text-[#d4a853]">
+        {/* Fixed line counts keep every card the same height across the grid. */}
+        <h3 className="mt-3 line-clamp-2 min-h-[3rem] text-base leading-6 font-medium text-[#f5f0e8] transition-colors group-hover:text-[#d4a853]">
           {scroll.title}
         </h3>
-        <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-[#7a7a8a]">
+        <p className="mt-2 line-clamp-3 min-h-[3.75rem] text-xs leading-5 text-[#7a7a8a]">
           {scroll.excerpt}
         </p>
 
-        <div className="mt-4 flex flex-wrap items-center gap-2">
+        <div className="mt-4 flex min-h-[1.125rem] flex-nowrap items-center gap-2 overflow-hidden">
           {scroll.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="flex items-center gap-1 rounded-full bg-[rgba(212,168,83,0.06)] px-2 py-0.5 text-[9px] text-[#7a7a8a]"
+              className="flex shrink-0 items-center gap-1 rounded-full bg-[rgba(212,168,83,0.06)] px-2 py-0.5 text-[9px] text-[#7a7a8a]"
             >
               <Tag className="h-2.5 w-2.5" />
               {tag}
@@ -182,43 +182,32 @@ export default function ScrollCard({ scroll }: ScrollCardProps) {
         </div>
 
         <div className="mt-auto pt-3">
-          <div className="flex items-center justify-between border-t border-[rgba(212,168,83,0.08)] pt-3">
-            <div className="flex items-center gap-3 text-[10px] text-[#7a7a8a]">
-              <span className="flex items-center gap-1">
-                <Feather className="h-3 w-3" />
+          {/* One meta line for every work: registry id for registered works, date otherwise. */}
+          <div className="flex flex-nowrap items-center justify-between gap-3 border-t border-[rgba(212,168,83,0.08)] pt-3">
+            <div className="flex min-w-0 items-center gap-3 text-[10px] text-[#7a7a8a]">
+              <span className="flex items-center gap-1 truncate">
+                <Feather className="h-3 w-3 shrink-0" />
                 {scroll.author}
               </span>
               {scroll.crystal && (
-                <span className="flex items-center gap-1">
-                  <Gem className="h-3 w-3" />
+                <span className="flex items-center gap-1 truncate">
+                  <Gem className="h-3 w-3 shrink-0" />
                   {scroll.crystal}
                 </span>
               )}
+              {scroll.registryId && (
+                <span className="truncate font-mono tracking-wider">
+                  {scroll.registryId}
+                </span>
+              )}
             </div>
-            <span className="flex items-center gap-1 text-[10px] text-[#7a7a8a]">
+            <span className="flex shrink-0 items-center gap-1 text-[10px] text-[#7a7a8a]">
               {admissionDate && <Calendar className="h-3 w-3" />}
               {admissionDate
                 ? `Admitted ${formatDate(admissionDate, "short")}`
                 : formatDate(scroll.date, "short")}
             </span>
           </div>
-
-          {(licenceId || scroll.registryId) && (
-            <div className="mt-2 flex items-center justify-between">
-              {licenceId ? (
-                <span className="rounded-full border border-[rgba(212,168,83,0.2)] px-2 py-0.5 text-[9px] tracking-wider uppercase text-[#d4a853]">
-                  {getSigilLicenceShortLabel(licenceId)}
-                </span>
-              ) : (
-                <span />
-              )}
-              {scroll.registryId && (
-                <span className="font-mono text-[9px] tracking-wider text-[#7a7a8a]">
-                  {scroll.registryId}
-                </span>
-              )}
-            </div>
-          )}
         </div>
       </motion.div>
 
